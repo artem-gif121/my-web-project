@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Святкові колекції — ÉLORIA PÂTISSERIE & CAFÉ</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* Додано лише кнопки обраного */
+.eloria-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: calc(100% - 36px);
+    margin: 18px 18px 20px;
+    box-sizing: border-box;
+}
+
+.eloria-card-bottom .drink-price {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.eloria-favorite-btn {
+    position: static !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e8b9c5;
+    border-radius: 50%;
+    background: #fffafa;
+    color: #bd7189;
+    font-size: 17px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background .2s ease, color .2s ease;
+}
+
+.eloria-favorite-btn:hover,
+.eloria-favorite-btn.is-favorite {
+    background: #f5dce4;
+    color: #b34f70;
+}
+
+.favorites-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+[data-favorites-count] {
+    display: inline-flex;
+    min-width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #f3dbe3;
+    color: #9f4e68;
+    font-size: 11px;
+}
+
+.eloria-favorites-float {
+    position: fixed;
+    right: 88px;
+    bottom: 24px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 17px;
+    border: 1px solid #e8b9c5;
+    border-radius: 999px;
+    background: #fff8fa;
+    color: #a95772;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(135,76,92,.12);
+    font-size: 14px;
+}
+
+.eloria-favorites-float:hover {
+    background: #f5dce4;
+    color: #93445f;
+}
+
+@media (max-width: 576px) {
+    .eloria-card-bottom {
+        width: calc(100% - 28px);
+        margin: 14px 14px 16px;
+    }
+
+    .eloria-favorites-float {
+        right: 76px;
+        bottom: 18px;
+        padding: 10px 13px;
+        font-size: 13px;
+    }
+}
+
+
+/* ÉLORIA — CUSTOM CAKE CONSTRUCTOR */
+.celebration-custom-cake {
+    position: relative;
+    overflow: hidden;
+    margin: 80px auto;
+    padding: 85px 24px;
+    max-width: 1320px;
+    text-align: center;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.95),
+            transparent 65%
+        ),
+        linear-gradient(135deg, #fff8f7, #f9e8ed, #fffaf5);
+    border: 1px solid #efd5dc;
+    box-sizing: border-box;
+}
+
+.custom-cake-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.custom-cake-eyebrow {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #b77b8d;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 600;
+}
+
+.celebration-custom-cake h2 {
+    margin: 0 0 22px;
+    color: #684b53;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.celebration-custom-cake h2 span {
+    display: block;
+    color: #b9788d;
+    font-style: italic;
+}
+
+.celebration-custom-cake p {
+    max-width: 570px;
+    margin: 0 auto 32px;
+    color: #806970;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.custom-cake-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 28px;
+    color: #fffaf9;
+    background: linear-gradient(135deg, #c58b9d, #b8758b);
+    border: 1px solid #d9a8b6;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: background .3s ease, transform .3s ease,
+                box-shadow .3s ease;
+}
+
+.custom-cake-link:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #b9788d, #a9667c);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(169, 102, 124, 0.2);
+}
+
+.custom-cake-link i {
+    transition: transform .3s ease;
+}
+
+.custom-cake-link:hover i {
+    transform: translateX(5px);
+}
+
+.custom-cake-signature {
+    margin-top: 35px;
+    color: #b99a9f;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.custom-cake-decoration {
+    position: absolute;
+    color: rgba(190, 132, 151, 0.35);
+    font-family: Georgia, serif;
+    font-size: 100px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.custom-cake-decoration-left {
+    top: 28px;
+    left: 7%;
+}
+
+.custom-cake-decoration-right {
+    right: 7%;
+    bottom: 25px;
+}
+
+@media (max-width: 576px) {
+    .celebration-custom-cake {
+        margin: 45px 14px;
+        padding: 65px 22px;
+    }
+
+    .celebration-custom-cake p {
+        font-size: 14px;
+    }
+
+    .custom-cake-link {
+        gap: 10px;
+        padding: 14px 18px;
+        font-size: 12px;
+    }
+
+    .custom-cake-decoration {
+        font-size: 60px;
+    }
+
+    .custom-cake-decoration-left {
+        left: 3%;
+    }
+
+    .custom-cake-decoration-right {
+        right: 3%;
+    }
+}
+
+</style>
+</head>
+
+<body id="top">
+
+<header class="site-header">
+    <div class="header-inner">
+        <nav class="nav-left">
+            <a href="index.html">Про кондитерську</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="career.html">Наша команда</a>
+        </nav>
+
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE & CAFÉ</span>
+        </a>
+
+        <button class="hamburger" aria-label="Меню">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-right">
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="favorite.html" class="favorites-nav-link">
+    
+        </nav>
+
+        <div class="mobile-menu">
+            <a href="index.html">Головна</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="career.html">Наша команда</a>
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="bakery.html">Випічка</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="favorite.html" class="favorites-nav-link">
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="drinks-page">
+
+    <section class="eloria-hero" id="collections">
+        <div class="eloria-hero-bg"></div>
+        <img src="images/Eloria_background2.png" alt="Торти ÉLORIA">
+
+        <div class="eloria-hero-card">
+            <div class="eloria-logo">ÉLORIA PÂTISSERIE</div>
+            <h1>
+                Святкові<br>
+                <span>колекції</span>
+            </h1>
+            <p>
+                Вишукані колекції десертів ÉLORIA для весілля,
+                дня народження, корпоративних подій та родинних свят.
+            </p>
+            <a href="#wedding" class="scroll-circle">
+                <span>↓</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- WEDDING -->
+    <section class="drink-category" id="wedding">
+        <h2 class="category-title">
+            <i class="fa-solid fa-heart"></i>
+            WEDDING COLLECTION
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="velours-amour">
+                <img src="images/Velours d’Amour.png" alt="Velours d’Amour">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Velours d’Amour</h3>
+                <p>Ванільний бісквіт, білий шоколад, малина та мадагаскарська ваніль. Ніжний і романтичний смак.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">12000 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="velours-amour" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="perle-blanche">
+                <img src="images/Perle Blanche.png" alt="Perle Blanche">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Perle Blanche</h3>
+                <p>Білий шоколад, кокос, ваніль та мигдаль. Легкий, вершковий і делікатний.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">15500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="perle-blanche" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="perle-pistache">
+                <img src="images/Perle de Pistache.png" alt="Perle de Pistache">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Perle de Pistache</h3>
+                <p>Фісташковий крем, малиновий конфітюр, мигдальний бісквіт та білий шоколад. Вишукане поєднання фісташки та ягід.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">11500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="perle-pistache" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="amour-macarons">
+                <img src="images/Amour Macarons.png" alt="Amour Macarons">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Amour Macarons</h3>
+                <p>Колекція макаронів зі смаками троянди, малини, фісташки та ванілі.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="amour-macarons" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="vanille-perle">
+                <img src="images/Vanille Perle.png" alt="Vanille Perle">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Vanille Perle</h3>
+                <p>Білий шоколад, ваніль, груша та мигдальний бісквіт. Ніжний десерт із тонкою фруктовою нотою.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">14000 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="vanille-perle" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- BIRTHDAY -->
+    <section class="drink-category" id="birthday">
+        <h2 class="category-title">
+            <i class="fa-solid fa-cake-candles"></i>
+            BIRTHDAY COLLECTION
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="fig-royale">
+                <img src="images/Fig Royale.png" alt="Fig Royale">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Fig Royale</h3>
+                <p>Соковитий інжир, ароматний мед та хрусткий волоський горіх. Теплий і насичений смак.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">4500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="fig-royale" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="golden-caramel">
+                <img src="images/Golden Caramel.png" alt="Golden Caramel">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Golden Caramel</h3>
+                <p>Карамельний мус, фундук, ванільний бісквіт та солона карамель. Насичений та оксамитовий смак.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">4250 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="golden-caramel" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="berry-etoile">
+                <img src="images/Berry Étoile.png" alt="Berry Étoile">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Berry Étoile</h3>
+                <p>Малиновий мус, чорниця, ванільний крем та мигдальний бісквіт. Легкий ягідний десерт.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">4000 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="berry-etoile" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="mango-soleil">
+                <img src="images/Mango Soleil.png" alt="Mango Soleil">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Mango Soleil</h3>
+                <p>Стигле манго, маракуйя та кокос. Яскравий тропічний смак.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">4750 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="mango-soleil" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="yuzu-pearl">
+                <img src="images/Yuzu Pearl.png" alt="Yuzu Pearl">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Yuzu Pearl</h3>
+                <p>Юдзу, кокос та білий шоколад. Свіжий, цитрусовий та елегантний.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">4700 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="yuzu-pearl" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- CORPORATE -->
+    <section class="drink-category" id="corporate">
+        <h2 class="category-title">
+            <i class="fa-solid fa-briefcase"></i>
+            CORPORATE COLLECTION
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="maison-elegance">
+                <img src="images/Maison Élégance.png" alt="Maison Élégance">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Maison Élégance</h3>
+                <p>Міні-еклери, фісташкові макарони, шоколадні тарталетки та ванільні мадлени. Ідеально для презентацій і зустрічей.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">1800 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="maison-elegance" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="maison-blanche">
+                <img src="images/Maison Blanche.png" alt="Maison Blanche">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Maison Blanche</h3>
+                <p>Мадлени, міні-торти, еклери, печиво та макарони. Вишукана колекція для офісного дня.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">2500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="maison-blanche" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="lumiere-royale">
+                <img src="images/Lumière Royale.png" alt="Lumière Royale">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Lumière Royale</h3>
+                <p>Десерти з білого шоколаду, фісташкові муси, карамельні тарталетки та макарони із золотим декором.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">2200 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="lumiere-royale" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="velvet-etoile">
+                <img src="images/Velvet Étoile.png" alt="Velvet Étoile">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Velvet Étoile</h3>
+                <p>Авторська колекція міні-десертів ÉLORIA з фісташкою, малиною, ваніллю, шоколадом та карамеллю.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">2000 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="velvet-etoile" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="pearl-maison">
+                <img src="images/Pearl Maison.png" alt="Pearl Maison">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Pearl Maison</h3>
+                <p>Мадлени, персикові міні-торти, еклери, печиво та макарони. Легка й елегантна офісна колекція.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">2100 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="pearl-maison" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- FAMILY -->
+    <section class="drink-category" id="family">
+        <h2 class="category-title">
+            <i class="fa-solid fa-house"></i>
+            FAMILY COLLECTION
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="maison-fraise">
+                <img src="images/Maison Fraise.png" alt="Maison Fraise">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-house"></i></div>
+                <h3>Maison Fraise</h3>
+                <p>Ванільний бісквіт, полуничний мус, крем маскарпоне та свіжа полуниця. Ніжна класика для родинного свята.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3750 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="maison-fraise" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="poire-vanille">
+                <img src="images/Poire Vanille.png" alt="Poire Vanille">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-house"></i></div>
+                <h3>Poire Vanille</h3>
+                <p>Соковита груша, ванільний мус, карамель та мигдальний бісквіт. Теплий та витончений смак.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="poire-vanille" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="framboise-douce">
+                <img src="images/Framboise Douce.png" alt="Framboise Douce">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-house"></i></div>
+                <h3>Framboise Douce</h3>
+                <p>Малиновий конфітюр, ванільний крем, мигдальний бісквіт та ягідний мус. Легкий та ароматний десерт.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3550 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="framboise-douce" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="abricot-solaire">
+                <img src="images/Abricot Solaire.png" alt="Abricot Solaire">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-house"></i></div>
+                <h3>Abricot Solaire</h3>
+                <p>Соковитий абрикос, маракуйя, мигдаль та ваніль. Сонячний, ніжний і гармонійний смак для родинного святкування.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3700 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="abricot-solaire" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="petit-bonheur">
+                <img src="images/Petit Bonheur.png" alt="Petit Bonheur">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-house"></i></div>
+                <h3>Petit Bonheur</h3>
+                <p>Невеликі святкові десерти ÉLORIA, створені для теплих родинних моментів. Легка колекція, якою приємно ділитися.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">3500 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle data-id="petit-bonheur" aria-label="Додати в улюблене"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- ÉLORIA — CUSTOM CAKE CONSTRUCTOR -->
+<section class="celebration-custom-cake">
+    <div class="custom-cake-decoration custom-cake-decoration-left">✧</div>
+    <div class="custom-cake-decoration custom-cake-decoration-right">✧</div>
+
+    <div class="custom-cake-content">
+        <span class="custom-cake-eyebrow">YOUR CAKE, YOUR STORY</span>
+
+        <h2>
+            Створіть свій
+            <span>ідеальний торт</span>
+        </h2>
+
+        <p>
+            Особливий день заслуговує на особливий десерт.
+            Оберіть оформлення, кольори та декор і створіть
+            торт, який відображатиме саме вашу історію.
+        </p>
+
+        <a href="custom-cake.html" class="custom-cake-link">
+            <span>Створити власний торт</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <div class="custom-cake-signature">
+            ÉLORIA PÂTISSERIE & CAFÉ
+        </div>
+    </div>
+</section>
+<!-- END CUSTOM CAKE CONSTRUCTOR -->
+
+<footer class="contacts-footer">
+    <p>© ÉLORIA PÂTISSERIE & CAFÉ. Усі права захищено.</p>
+</footer>
+
+<a href="favorite.html" class="eloria-favorites-float" aria-label="Улюблені товари">
+    <i class="fa-regular fa-heart"></i>
+    Улюблене <span data-favorites-count>0</span>
+</a>
+
+<a href="#top" class="top-button" aria-label="На початок">
+    <i class="fa-solid fa-chevron-up"></i>
+</a>
+
+<script>
+/* Мобільне меню */
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow =
+            mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+}
+
+/* Перехід на сторінку товару */
+document.querySelectorAll('.drink-card').forEach(function (card) {
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', function (event) {
+        if (event.target.closest('[data-favorite-toggle]')) return;
+
+        const productId = card.getAttribute('data-id');
+        window.location.href = 'product.html?id=' + productId;
+    });
+});
+
+/* Улюблені святкові колекції */
+(function () {
+    const STORAGE_KEY = 'eloriaFavorites';
+
+    function readFavorites() {
+        try {
+            const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            return Array.isArray(value) ? value : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function updateCounts() {
+        const count = readFavorites().length;
+        document.querySelectorAll('[data-favorites-count]').forEach(function (el) {
+            el.textContent = count;
+        });
+    }
+
+    function paintButton(button) {
+        const id = button.dataset.id;
+        const active = readFavorites().some(function (item) {
+            return (typeof item === 'string' ? item : item.id) === id;
+        });
+
+        button.classList.toggle('is-favorite', active);
+
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-solid', active);
+            icon.classList.toggle('fa-regular', !active);
+        }
+
+        button.setAttribute(
+            'aria-label',
+            active ? 'Прибрати з улюбленого' : 'Додати в улюблене'
+        );
+        button.title = active ? 'Прибрати з улюбленого' : 'Додати в улюблене';
+    }
+
+    document.querySelectorAll('[data-favorite-toggle]').forEach(function (button) {
+        paintButton(button);
+
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = button.dataset.id;
+            const items = readFavorites();
+
+            const index = items.findIndex(function (item) {
+                return (typeof item === 'string' ? item : item.id) === id;
+            });
+
+            if (index >= 0) {
+                items.splice(index, 1);
+            } else {
+                items.push({ id: id, type: 'celebration' });
+            }
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+            paintButton(button);
+            updateCounts();
+        });
+    });
+
+    updateCounts();
+    window.addEventListener('storage', updateCounts);
+})();
+</script>
+
+</body>
+</html>

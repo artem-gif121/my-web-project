@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Улюблені товари</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gold: #9b7844;
+            --gold-light: #c5a575;
+            --text: #302a24;
+            --muted: #81776d;
+            --border: rgba(160, 130, 90, .18);
+            --cream: #fffdf9;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--text);
+            font-family: "Montserrat", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(190, 155, 95, .08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(220, 190, 150, .10),
+                    transparent 30%
+                ),
+                linear-gradient(135deg, #fffefa, #f7f1e8);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 20px 6%;
+
+            background: rgba(255, 255, 255, .90);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 36px;
+            letter-spacing: 7px;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 12px 19px;
+
+            border: 1px solid #d7c2a1;
+            border-radius: 30px;
+            background: var(--cream);
+
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .header-link:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .favorite-page {
+            width: min(1250px, 92%);
+            margin: 65px auto 100px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .small-title {
+            margin-bottom: 15px;
+            color: #a18154;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 11px;
+        }
+
+        .page-heading h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 500;
+            font-size: clamp(48px, 7vw, 75px);
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .heading-heart {
+            color: #b87b73;
+            font-size: .65em;
+            vertical-align: middle;
+        }
+
+        .page-heading p {
+            margin-top: 19px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .favorites-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .favorites-count {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .favorites-count strong {
+            color: var(--gold);
+        }
+
+        .clear-favorites {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 15px;
+
+            border: 1px solid #e1d3c1;
+            border-radius: 25px;
+            background: transparent;
+
+            color: #987b65;
+            font-size: 11px;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .clear-favorites:hover {
+            background: #f1e7da;
+            color: #714f38;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .favorite-card {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, .88);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+
+            box-shadow: 0 10px 35px rgba(70, 50, 30, .05);
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 45px rgba(70, 50, 30, .11);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #eee6da;
+            aspect-ratio: 4 / 3;
+        }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s;
+        }
+
+        .favorite-card:hover .product-image {
+            transform: scale(1.045);
+        }
+
+        .product-category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+
+            max-width: calc(100% - 80px);
+            padding: 8px 12px;
+
+            border: 1px solid rgba(255, 255, 255, .65);
+            border-radius: 20px;
+            background: rgba(255, 253, 249, .92);
+
+            color: #8e7047;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .heart-button {
+            position: absolute;
+            top: 13px;
+            right: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid rgba(255, 255, 255, .8);
+            border-radius: 50%;
+            background: rgba(255, 253, 249, .95);
+
+            color: #b76e70;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .heart-button:hover {
+            background: #b76e70;
+            color: white;
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-name {
+            margin-bottom: 9px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 29px;
+            font-weight: 600;
+            line-height: 1.1;
+            color: #3b332b;
+        }
+
+        .product-description {
+            min-height: 38px;
+            margin-bottom: 18px;
+
+            color: #897f74;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .product-price {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 27px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .view-product {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 11px 14px;
+
+            border-radius: 25px;
+            background: linear-gradient(135deg, #aa8756, #806038);
+
+            color: white;
+            font-size: 10px;
+            white-space: nowrap;
+            transition: .3s;
+        }
+
+        .view-product:hover {
+            box-shadow: 0 8px 18px rgba(130, 100, 55, .2);
+            transform: translateY(-2px);
+        }
+
+        .empty {
+            padding: 75px 25px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, .88);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            box-shadow: 0 15px 45px rgba(70, 50, 30, .05);
+        }
+
+        .empty-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+            background: #f2e8df;
+            color: #b87b73;
+            font-size: 32px;
+        }
+
+        .empty h2 {
+            margin-bottom: 14px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 43px;
+            font-weight: 500;
+        }
+
+        .empty p {
+            max-width: 440px;
+            margin: 0 auto 28px;
+
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .catalog-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 15px 25px;
+
+            border-radius: 30px;
+            background: linear-gradient(135deg, #aa8756, #806038);
+
+            color: white;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .catalog-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(130, 100, 55, .2);
+        }
+
+        .toast {
+            position: fixed;
+            z-index: 200;
+            left: 50%;
+            bottom: 25px;
+
+            max-width: calc(100% - 30px);
+            padding: 14px 22px;
+
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: #fffdf9;
+            box-shadow: 0 10px 35px rgba(50, 35, 20, .12);
+
+            color: #5c4936;
+            font-size: 12px;
+            text-align: center;
+
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 15px);
+            transition: .3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        @media (max-width: 950px) {
+            .favorites-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 16px 4%;
+            }
+
+            .logo {
+                font-size: 27px;
+                letter-spacing: 4px;
+            }
+
+            .header-actions {
+                gap: 7px;
+            }
+
+            .header-link {
+                width: 42px;
+                height: 42px;
+                padding: 0;
+                font-size: 14px;
+            }
+
+            .header-link span {
+                display: none;
+            }
+
+            .favorite-page {
+                width: 92%;
+                margin: 38px auto 65px;
+            }
+
+            .page-heading {
+                margin-bottom: 35px;
+            }
+
+            .page-heading h1 {
+                font-size: 49px;
+            }
+
+            .page-heading p {
+                font-size: 12px;
+            }
+
+            .favorites-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .favorite-card {
+                display: grid;
+                grid-template-columns: 120px minmax(0, 1fr);
+                border-radius: 20px;
+            }
+
+            .product-image-wrap {
+                height: 100%;
+                min-height: 185px;
+                aspect-ratio: auto;
+            }
+
+            .product-category-badge {
+                top: 8px;
+                left: 7px;
+                max-width: calc(100% - 14px);
+                padding: 5px 7px;
+                font-size: 7px;
+                letter-spacing: .5px;
+            }
+
+            .heart-button {
+                top: auto;
+                bottom: 9px;
+                right: 9px;
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+
+            .product-info {
+                padding: 16px 13px;
+            }
+
+            .product-name {
+                font-size: 25px;
+            }
+
+            .product-description {
+                min-height: 0;
+                margin-bottom: 14px;
+                font-size: 10px;
+            }
+
+            .product-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .product-price {
+                font-size: 24px;
+            }
+
+            .view-product {
+                padding: 10px 12px;
+                font-size: 10px;
+            }
+
+            .favorites-toolbar {
+                align-items: flex-start;
+            }
+
+            .clear-favorites {
+                padding: 9px 11px;
+                font-size: 10px;
+            }
+
+            .empty {
+                padding: 55px 20px;
+            }
+
+            .empty h2 {
+                font-size: 36px;
+            }
+        }
+
+        .fa-heart  { background:#FBF7EF;
+            color: #c5a575;
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="index.html" class="logo">ÉLORIA</a>
+
+    <nav class="header-actions">
+
+        <a href="index.html" class="header-link" aria-label="До каталогу">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>До каталогу</span>
+        </a>
+
+        <a href="cart.html" class="header-link" aria-label="Кошик">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Кошик</span>
+        </a>
+
+    </nav>
+
+</header>
+
+<main class="favorite-page">
+
+    <section class="page-heading">
+
+        <div class="small-title">ÉLORIA PÂTISSERIE</div>
+
+        
+          <h1>
+            Улюблені   <i class="fa-solid fa-heart"></i>
+          </h1>
+
+        <p>
+            Ваша особлива колекція десертів та напоїв.<br>
+            Усе, що припало вам до смаку, в одному місці.
+        </p>
+
+    </section>
+
+    <div id="favoritesContainer" aria-live="polite"></div>
+
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="product.js"></script>
+
+<script>
+/*
+=========================================================
+ ÉLORIA — УЛЮБЛЕНІ ТОВАРИ
+
+ Зберігання: localStorage["eloriaFavorites"]
+
+ Підтримує:
+ - масив ID товарів: ["1", "2"]
+ - масив об'єктів: [{ id: "1" }, { id: "2" }]
+
+ Інші сторінки можуть додавати товари до цього самого
+ масиву, використовуючи ID з каталогу.
+=========================================================
+*/
+
+const FAVORITES_KEY = "eloriaFavorites";
+
+function normalizeId(id) {
+    return String(id);
+}
+
+function getFavorites() {
+    try {
+        const stored = JSON.parse(
+            localStorage.getItem(FAVORITES_KEY) || "[]"
+        );
+
+        if (!Array.isArray(stored)) {
+            return [];
+        }
+
+        return [...new Set(
+            stored
+                .map(item => {
+                    if (item && typeof item === "object") {
+                        return item.id;
+                    }
+                    return item;
+                })
+                .filter(id => id !== undefined && id !== null)
+                .map(normalizeId)
+        )];
+    } catch (error) {
+        console.error("Помилка читання обраного:", error);
+        return [];
+    }
+}
+
+function saveFavorites(ids) {
+    const uniqueIds = [...new Set(ids.map(normalizeId))];
+
+    localStorage.setItem(
+        FAVORITES_KEY,
+        JSON.stringify(uniqueIds)
+    );
+}
+
+function findFavoriteProduct(id) {
+    if (typeof getProductById === "function") {
+        const product = getProductById(id);
+
+        if (product) {
+            return product;
+        }
+    }
+
+    /*
+      Резервний пошук, якщо product.js надає масив products.
+    */
+    if (typeof products !== "undefined" && Array.isArray(products)) {
+        return products.find(
+            product => normalizeId(product.id) === normalizeId(id)
+        ) || null;
+    }
+
+    return null;
+}
+
+function formatPrice(price) {
+    if (typeof money === "function") {
+        return money(Number(price) || 0);
+    }
+
+    return (Number(price) || 0).toLocaleString("uk-UA") + " ₴";
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+function renderFavorites() {
+    const container = document.getElementById("favoritesContainer");
+
+    if (!container) return;
+
+    const favoriteIds = getFavorites();
+
+    const favoriteProducts = favoriteIds
+        .map(id => findFavoriteProduct(id))
+        .filter(Boolean);
+
+    /*
+      Прибираємо ID, яких більше немає в каталозі.
+    */
+    const validIds = favoriteProducts.map(
+        product => normalizeId(product.id)
+    );
+
+    if (validIds.length !== favoriteIds.length) {
+        saveFavorites(validIds);
+    }
+
+    if (favoriteProducts.length === 0) {
+        container.innerHTML = `
+            <section class="empty">
+
+                <div class="empty-icon">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+
+                <h2>Тут поки що порожньо</h2>
+
+                <p>
+                    Зберігайте десерти та напої, які вам сподобалися.
+                    Натисніть на сердечко біля товару в каталозі,
+                    і він з'явиться у вашій колекції.
+                </p>
+
+                <a href="index.html" class="catalog-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Перейти до каталогу
+                </a>
+
+            </section>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="favorites-toolbar">
+
+            <div class="favorites-count">
+                У вашій колекції:
+                <strong>${favoriteProducts.length}</strong>
+                ${getProductWord(favoriteProducts.length)}
+            </div>
+
+            <button class="clear-favorites"
+                    type="button"
+                    onclick="clearFavorites()">
+
+                <i class="fa-regular fa-trash-can"></i>
+                Очистити обране
+
+            </button>
+
+        </div>
+
+        <section class="favorites-grid">
+
+            ${favoriteProducts.map(product => {
+                const id = normalizeId(product.id);
+
+                const name = escapeHTML(product.name || "Десерт ÉLORIA");
+                const category = escapeHTML(product.category || "ÉLORIA");
+                const image = escapeHTML(
+                    product.image || "images/dessert.png.png"
+                );
+                const price = formatPrice(product.price);
+
+                const description = escapeHTML(
+                    product.description ||
+                    product.shortDescription ||
+                    "Вишуканий смак та особлива атмосфера ÉLORIA."
+                );
+
+                const productURL =
+                    "product.html?id=" + encodeURIComponent(id);
+
+                return `
+                    <article class="favorite-card">
+
+                        <div class="product-image-wrap">
+
+                            <a href="${productURL}"
+                               aria-label="Переглянути ${name}">
+
+                                <img
+                                    class="product-image"
+                                    src="${image}"
+                                    alt="${name}"
+                                    loading="lazy"
+                                    onerror="this.onerror=null;this.src='images/dessert.png.png';">
+
+                            </a>
+
+                            <span class="product-category-badge">
+                                ${category}
+                            </span>
+
+                            <button
+                                class="heart-button"
+                                type="button"
+                                onclick="removeFavorite('${escapeHTML(id)}')"
+                                aria-label="Видалити ${name} з улюбленого"
+                                title="Видалити з улюбленого">
+
+                                <i class="fa-solid fa-heart"></i>
+
+                            </button>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <a href="${productURL}">
+                                <h2 class="product-name">${name}</h2>
+                            </a>
+
+                            <p class="product-description">
+                                ${description}
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <div class="product-price">
+                                    ${price}
+                                </div>
+
+                                <a href="${productURL}"
+                                   class="view-product">
+
+                                    Переглянути
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                `;
+            }).join("")}
+
+        </section>
+    `;
+}
+
+function getProductWord(count) {
+    const lastTwo = count % 100;
+    const last = count % 10;
+
+    if (lastTwo >= 11 && lastTwo <= 14) {
+        return "товарів";
+    }
+
+    if (last === 1) return "товар";
+    if (last >= 2 && last <= 4) return "товари";
+
+    return "товарів";
+}
+
+function removeFavorite(id) {
+    const favorites = getFavorites();
+
+    saveFavorites(
+        favorites.filter(item => item !== normalizeId(id))
+    );
+
+    renderFavorites();
+    showToast("Товар видалено з улюбленого");
+}
+
+function clearFavorites() {
+    if (getFavorites().length === 0) return;
+
+    const confirmed = confirm(
+        "Видалити всі товари з улюбленого?"
+    );
+
+    if (!confirmed) return;
+
+    saveFavorites([]);
+    renderFavorites();
+
+    showToast("Колекцію улюбленого очищено");
+}
+
+/*
+  Оновлення сторінки, якщо обране змінено в іншій вкладці.
+*/
+window.addEventListener("storage", event => {
+    if (event.key === FAVORITES_KEY) {
+        renderFavorites();
+    }
+});
+
+/*
+  Запуск сторінки.
+*/
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderFavorites);
+} else {
+    renderFavorites();
+}
+</script>
+
+</body>
+</html>

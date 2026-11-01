@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Бронювання столика</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --pink: #d49aab;
+            --pink-dark: #b8758e;
+            --pink-light: #fff0f4;
+            --pink-pale: #fff9fa;
+            --rose-gold: #c6a078;
+            --text: #705963;
+            --muted: #a18c94;
+            --border: #f0dfe5;
+            --white: #ffffff;
+            --shadow: 0 18px 55px rgba(156, 104, 123, 0.09);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 25px;
+        }
+
+        body {
+            margin: 0;
+            background: #fffaf9;
+            color: var(--text);
+            font-family: "Montserrat", sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* HEADER */
+
+        .reservation-header {
+            min-height: 88px;
+            padding: 16px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #fffdfc;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+        }
+
+        .brand-name {
+            color: #9f7180;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 38px;
+            font-weight: 600;
+            letter-spacing: 5px;
+        }
+
+        .brand-subtitle {
+            color: var(--rose-gold);
+            font-size: 8px;
+            letter-spacing: 3px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #8b737d;
+            font-size: 11px;
+            transition: color 0.25s;
+        }
+
+        .back-link:hover {
+            color: var(--pink-dark);
+        }
+
+        /* HERO */
+
+        .reservation-hero {
+            min-height: 590px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 85px 24px;
+            text-align: center;
+
+            /*
+              Фото сторінки.
+              Поклади файл у папку images.
+              Якщо назва або розширення інші — зміни шлях тут.
+            */
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255, 246, 247, 0.84),
+                    rgba(255, 248, 247, 0.60)
+                ),
+                url("images/Eloria_reservation.png") center 48% / cover no-repeat,
+                #f8e8eb;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--rose-gold);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+
+        .hero-content h1 {
+            margin: 23px 0 18px;
+            color: #846473;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(46px, 6.5vw, 78px);
+            font-weight: 500;
+            line-height: 0.98;
+        }
+
+        .hero-content h1 em {
+            color: #bd8297;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            color: #866f79;
+            font-size: 12px;
+            line-height: 2.1;
+        }
+
+        .hero-button,
+        .submit-button {
+            min-height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+            padding: 14px 27px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            background: linear-gradient(110deg, #d9a0b1, #c98da2);
+            color: white;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+        }
+
+        .hero-button:hover,
+        .submit-button:hover {
+            background: #b97990;
+            box-shadow: 0 8px 25px rgba(185, 121, 144, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* BOOKING INTRO */
+
+        .booking-section {
+            padding: 85px 20px 95px;
+        }
+
+        .section-heading {
+            margin-bottom: 42px;
+            text-align: center;
+        }
+
+        .section-heading h2,
+        .reservation-note h2,
+        .confirmation-card h2 {
+            margin: 8px 0;
+            color: #876575;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(36px, 4vw, 49px);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* FORM CARD */
+
+        .booking-card {
+            width: 100%;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: clamp(24px, 5vw, 58px);
+            border: 1px solid #f4e5e9;
+            border-radius: 6px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 17px;
+            margin-bottom: 27px;
+        }
+
+        .section-number {
+            flex: 0 0 39px;
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #e8c4d0;
+            border-radius: 50%;
+            color: var(--pink-dark);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 17px;
+        }
+
+        .form-section-title h3 {
+            margin: 0;
+            color: #886b78;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .form-section-title p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .form-group {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            color: #826975;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            outline: none;
+            background: #fffdfd;
+            color: #765f68;
+            font-family: "Montserrat", sans-serif;
+            font-size: 11px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group textarea {
+            min-height: 112px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #d7a0b2;
+            box-shadow: 0 0 0 3px rgba(215, 160, 178, 0.12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #c1aeb5;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-divider {
+            height: 1px;
+            margin: 38px 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #f0dce3,
+                transparent
+            );
+        }
+
+        /* TABLE PREFERENCES */
+
+        .table-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .table-option {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 17px;
+            border: 1px solid #f0e1e6;
+            border-radius: 4px;
+            background: #fffdfd;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .table-option:hover {
+            border-color: #e2b6c4;
+        }
+
+        .table-option:has(input:checked) {
+            border-color: #d79bad;
+            background: #fff5f7;
+            box-shadow: 0 4px 16px rgba(215, 155, 173, 0.1);
+        }
+
+        .table-option > input {
+            flex: 0 0 auto;
+            accent-color: var(--pink-dark);
+        }
+
+        .option-icon {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #fff0f4;
+            color: #c4869d;
+            font-size: 15px;
+        }
+
+        .option-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.7;
+        }
+
+        .option-text strong {
+            color: #816674;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .option-text small {
+            color: #ac959d;
+            font-size: 9px;
+        }
+
+        .wishes-group {
+            margin-top: 25px;
+        }
+
+        /* CONTACT CONSENT */
+
+        .consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 24px;
+            color: #967e88;
+            font-size: 10px;
+            line-height: 1.9;
+            cursor: pointer;
+        }
+
+        .consent input {
+            flex: 0 0 auto;
+            margin-top: 5px;
+            accent-color: var(--pink-dark);
+        }
+
+        .submit-button {
+            width: 100%;
+            margin-top: 28px;
+        }
+
+        /* FINAL SECTION */
+
+        .reservation-note {
+            padding: 65px 20px;
+            background: #fff0f4;
+            text-align: center;
+        }
+
+        .reservation-note > i {
+            color: var(--pink-dark);
+            font-size: 24px;
+        }
+
+        .reservation-note h2 {
+            margin-top: 12px;
+            font-size: 37px;
+        }
+
+        .reservation-note p {
+            max-width: 490px;
+            margin: 0 auto;
+            color: #987f89;
+            font-size: 11px;
+            line-height: 2;
+        }
+
+        /* FOOTER */
+
+        .reservation-footer {
+            padding: 35px 20px;
+            background: #fffdfc;
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: inline-block;
+            color: #9f7180;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 31px;
+            font-weight: 600;
+            letter-spacing: 5px;
+        }
+
+        .reservation-footer p {
+            margin: 2px 0 12px;
+            color: var(--rose-gold);
+            font-size: 8px;
+            letter-spacing: 2px;
+        }
+
+        .reservation-footer > span {
+            color: #b19ba3;
+            font-size: 9px;
+        }
+
+        /* CONFIRMATION MODAL */
+
+        .confirmation-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(93, 65, 78, 0.35);
+            backdrop-filter: blur(5px);
+        }
+
+        .confirmation-modal.is-open {
+            display: flex;
+        }
+
+        .confirmation-card {
+            position: relative;
+            width: min(100%, 500px);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            padding: 40px 30px;
+            border: 1px solid #f0dce3;
+            border-radius: 7px;
+            background: #fffdfd;
+            box-shadow: 0 25px 90px rgba(90, 53, 69, 0.18);
+            text-align: center;
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background: #fff0f4;
+            color: #a77789;
+            cursor: pointer;
+        }
+
+        .confirmation-icon {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 17px;
+            border-radius: 50%;
+            background: #fff0f4;
+            color: #c4869d;
+            font-size: 26px;
+        }
+
+        .confirmation-card h2 {
+            font-size: 36px;
+        }
+
+        .confirmation-description {
+            color: #a18b92;
+            font-size: 10px;
+        }
+
+        .confirmation-details {
+            margin-top: 22px;
+            padding: 18px;
+            border: 1px solid #f0dfe5;
+            border-radius: 4px;
+            background: #fff8fa;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 9px 0;
+            border-bottom: 1px solid #f3e5e9;
+            font-size: 10px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-row span:first-child {
+            color: #a18b92;
+        }
+
+        .detail-row span:last-child {
+            color: #7b626e;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .confirmation-reference {
+            color: #a18b92;
+            font-size: 10px;
+        }
+
+        .confirmation-reference strong {
+            color: #b8758e;
+            letter-spacing: 1px;
+        }
+
+        .confirmation-card .submit-button {
+            margin-top: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+            .reservation-hero {
+                min-height: 500px;
+            }
+
+            .booking-section {
+                padding: 65px 15px 75px;
+            }
+
+            .booking-card {
+                padding: 27px 20px;
+            }
+
+            .form-grid,
+            .table-options {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reservation-header {
+                min-height: 75px;
+                padding: 14px 5%;
+            }
+
+            .brand-name {
+                font-size: 29px;
+                letter-spacing: 4px;
+            }
+
+            .brand-subtitle {
+                font-size: 7px;
+                letter-spacing: 2px;
+            }
+
+            .back-link {
+                gap: 6px;
+                font-size: 9px;
+            }
+
+            .reservation-hero {
+                min-height: 460px;
+                padding: 55px 18px;
+                background-position: center;
+            }
+
+            .hero-content h1 {
+                font-size: 46px;
+            }
+
+            .hero-content p {
+                font-size: 11px;
+            }
+
+            .section-heading h2 {
+                font-size: 38px;
+            }
+
+            .form-section-title {
+                gap: 12px;
+            }
+
+            .section-number {
+                flex-basis: 34px;
+                width: 34px;
+                height: 34px;
+            }
+
+            .form-section-title h3 {
+                font-size: 24px;
+            }
+
+            .form-divider {
+                margin: 29px 0;
+            }
+
+            .table-option {
+                padding: 14px;
+            }
+
+            .confirmation-card {
+                padding: 38px 18px 24px;
+            }
+
+            .confirmation-card h2 {
+                font-size: 32px;
+            }
+
+            .detail-row {
+                gap: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="reservation-header">
+    <a href="index.html" class="brand" aria-label="ÉLORIA — головна">
+        <span class="brand-name">ÉLORIA</span>
+        <span class="brand-subtitle">PÂTISSERIE & CAFÉ</span>
+    </a>
+
+    <a href="index.html" class="back-link">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        На головну
+    </a>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="reservation-hero">
+        <div class="hero-content">
+            <span class="eyebrow">A MOMENT JUST FOR YOU</span>
+
+            <h1>
+                Ваш особливий<br>
+                <em>момент</em>
+            </h1>
+
+            <p>
+                Залиште повсякденність за дверима.
+                Ми підготуємо для вас затишний столик,
+                щоб ви могли насолодитися атмосферою ÉLORIA.
+            </p>
+
+            <a href="#booking" class="hero-button">
+                Обрати столик
+                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- BOOKING FORM -->
+    <section class="booking-section" id="booking">
+
+        <div class="section-heading">
+            <span class="eyebrow">YOUR VISIT AT ÉLORIA</span>
+            <h2>Ваше бронювання</h2>
+            <p>Кілька деталей — і ми зможемо підготуватися до вашого візиту.</p>
+        </div>
+
+        <form id="reservationForm" class="booking-card">
+
+            <!-- SECTION 01 -->
+            <section class="form-section">
+                <div class="form-section-title">
+                    <span class="section-number">01</span>
+                    <div>
+                        <h3>Деталі візиту</h3>
+                        <p>Коли та скільки гостей ми очікуємо?</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="visitDate">Дата відвідування *</label>
+                        <input type="date" id="visitDate" name="visitDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visitTime">Бажаний час *</label>
+                        <select id="visitTime" name="visitTime" required>
+                            <option value="">Оберіть час</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Кількість гостей *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="1">1 гість</option>
+                            <option value="2" selected>2 гості</option>
+                            <option value="3">3 гості</option>
+                            <option value="4">4 гості</option>
+                            <option value="5">5 гостей</option>
+                            <option value="6">6 гостей</option>
+                            <option value="7">7 гостей</option>
+                            <option value="8">8 гостей</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occasion">Привід для візиту</label>
+                        <select id="occasion" name="occasion">
+                            <option value="Звичайний візит">Звичайний візит</option>
+                            <option value="День народження">День народження</option>
+                            <option value="Романтична зустріч">Романтична зустріч</option>
+                            <option value="Сімейна зустріч">Сімейна зустріч</option>
+                            <option value="Зустріч із друзями">Зустріч із друзями</option>
+                            <option value="Ділова зустріч">Ділова зустріч</option>
+                            <option value="Інша подія">Інша подія</option>
+                        </select>
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="form-divider"></div>
+
+            <!-- SECTION 02 -->
+            <section class="form-section">
+                <div class="form-section-title">
+                    <span class="section-number">02</span>
+                    <div>
+                        <h3>Ваш ідеальний столик</h3>
+                        <p>Оберіть атмосферу, яка вам до вподоби.</p>
+                    </div>
+                </div>
+
+                <div class="table-options">
+
+                    <label class="table-option">
+                        <input type="radio" name="tablePreference" value="Біля вікна">
+                        <span class="option-icon">
+                            <i class="fa-regular fa-sun" aria-hidden="true"></i>
+                        </span>
+                        <span class="option-text">
+                            <strong>Біля вікна</strong>
+                            <small>М'яке денне світло</small>
+                        </span>
+                    </label>
+
+                    <label class="table-option">
+                        <input type="radio" name="tablePreference" value="Тиха зона">
+                        <span class="option-icon">
+                            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                        </span>
+                        <span class="option-text">
+                            <strong>Тиха зона</strong>
+                            <small>Спокійна атмосфера</small>
+                        </span>
+                    </label>
+
+                    <label class="table-option">
+                        <input type="radio" name="tablePreference" value="Біля квітів">
+                        <span class="option-icon">
+                            <i class="fa-solid fa-spa" aria-hidden="true"></i>
+                        </span>
+                        <span class="option-text">
+                            <strong>Біля квітів</strong>
+                            <small>Затишок і краса деталей</small>
+                        </span>
+                    </label>
+
+                    <label class="table-option">
+                        <input type="radio" name="tablePreference" value="Святкове оформлення">
+                        <span class="option-icon">
+                            <i class="fa-solid fa-gift" aria-hidden="true"></i>
+                        </span>
+                        <span class="option-text">
+                            <strong>Святкове оформлення</strong>
+                            <small>Для особливої події</small>
+                        </span>
+                    </label>
+
+                </div>
+
+                <div class="form-group wishes-group">
+                    <label for="wishes">Додаткові побажання</label>
+                    <textarea
+                        id="wishes"
+                        name="wishes"
+                        rows="3"
+                        maxlength="1000"
+                        placeholder="Наприклад, дитячий стільчик або побажання до розташування столика..."
+                    ></textarea>
+                </div>
+            </section>
+
+            <div class="form-divider"></div>
+
+            <!-- SECTION 03 -->
+            <section class="form-section">
+                <div class="form-section-title">
+                    <span class="section-number">03</span>
+                    <div>
+                        <h3>Залишмося на зв’язку</h3>
+                        <p>Вкажіть, як із вами можна зв’язатися.</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Ваше ім’я *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            autocomplete="name"
+                            maxlength="100"
+                            placeholder="Як до вас звертатися?"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Номер телефону *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            autocomplete="tel"
+                            maxlength="30"
+                            placeholder="+380 XX XXX XX XX"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">Електронна пошта</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            maxlength="150"
+                            placeholder="name@example.com"
+                        >
+                    </div>
+
+                </div>
+
+                <label class="consent">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <span>
+                        Я погоджуюся на обробку наданих персональних даних
+                        для опрацювання мого запиту. *
+                    </span>
+                </label>
+            </section>
+
+            <button type="submit" class="submit-button">
+                Надіслати бронювання
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+
+        </form>
+    </section>
+
+    <!-- CLOSING MESSAGE -->
+    <section class="reservation-note">
+        <i class="fa-regular fa-heart" aria-hidden="true"></i>
+        <h2>Маленькі моменти. Великі емоції.</h2>
+        <p>
+            Ранкова кава, теплі розмови та час для себе.
+            Нехай ваш наступний особливий момент почнеться в ÉLORIA.
+        </p>
+    </section>
+
+</main>
+
+<footer class="reservation-footer">
+    <a href="index.html" class="footer-brand">ÉLORIA</a>
+    <p>PÂTISSERIE & CAFÉ · KYIV</p>
+    <span>© 2026 ÉLORIA. Усі права захищено.</span>
+</footer>
+
+<!-- CONFIRMATION WINDOW -->
+<div
+    class="confirmation-modal"
+    id="confirmationModal"
+    aria-hidden="true"
+>
+    <div
+        class="confirmation-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirmationTitle"
+    >
+        <button
+            type="button"
+            class="modal-close"
+            id="closeConfirmation"
+            aria-label="Закрити"
+        >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+
+        <div class="confirmation-icon">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+        </div>
+
+        <span class="eyebrow">THANK YOU FOR CHOOSING ÉLORIA</span>
+
+        <h2 id="confirmationTitle">Дякуємо за ваш запит!</h2>
+
+        <p class="confirmation-description">
+            Усі деталі вашого візиту зібрано нижче.
+        </p>
+
+        <div id="confirmationDetails" class="confirmation-details"></div>
+
+        <p class="confirmation-reference">
+            Номер запиту:
+            <strong id="reservationNumber"></strong>
+        </p>
+
+        <button type="button" class="submit-button" id="finishConfirmation">
+            Чудово, дякую!
+        </button>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("reservationForm");
+    const dateInput = document.getElementById("visitDate");
+
+    const modal = document.getElementById("confirmationModal");
+    const confirmationDetails = document.getElementById("confirmationDetails");
+    const reservationNumber = document.getElementById("reservationNumber");
+
+    const closeButton = document.getElementById("closeConfirmation");
+    const finishButton = document.getElementById("finishConfirmation");
+
+    // Встановлюємо мінімальну дату — сьогодні.
+    function getLocalDateString() {
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    }
+
+    dateInput.min = getLocalDateString();
+    dateInput.value = getLocalDateString();
+
+    // Форматуємо дату для вікна підтвердження.
+    function formatDate(dateString) {
+        if (!dateString) return "Не вказано";
+
+        const parts = dateString.split("-");
+        if (parts.length !== 3) return dateString;
+
+        return `${parts[2]}.${parts[1]}.${parts[0]}`;
+    }
+
+    // Безпечно додаємо рядки до вікна підтвердження.
+    function addDetail(label, value) {
+        const row = document.createElement("div");
+        row.className = "detail-row";
+
+        const labelElement = document.createElement("span");
+        labelElement.textContent = label;
+
+        const valueElement = document.createElement("span");
+        valueElement.textContent = value || "Не вказано";
+
+        row.append(labelElement, valueElement);
+        confirmationDetails.appendChild(row);
+    }
+
+    function openModal() {
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        closeButton.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const today = getLocalDateString();
+        const chosenDate = dateInput.value;
+
+        if (chosenDate < today) {
+            alert("Будь ласка, оберіть сьогоднішню або майбутню дату.");
+            dateInput.focus();
+            return;
+        }
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const chosenTime = document.getElementById("visitTime").value;
+        const guests = document.getElementById("guests").value;
+        const occasion = document.getElementById("occasion").value;
+
+        const tablePreference =
+            form.querySelector('input[name="tablePreference"]:checked')?.value
+            || "Без особливих побажань";
+
+        const wishes = document.getElementById("wishes").value.trim();
+
+        // Формуємо номер запиту.
+        const reference = "EL-" + Date.now().toString().slice(-8);
+
+        // Заповнюємо вікно результату.
+        confirmationDetails.replaceChildren();
+
+        addDetail("Ім’я", fullName);
+        addDetail("Телефон", phone);
+        addDetail("Електронна пошта", email || "Не вказано");
+        addDetail("Дата візиту", formatDate(chosenDate));
+        addDetail("Час", chosenTime);
+        addDetail("Кількість гостей", guests);
+        addDetail("Привід", occasion);
+        addDetail("Побажання до столика", tablePreference);
+        addDetail("Додаткові побажання", wishes || "Не вказано");
+
+        reservationNumber.textContent = reference;
+
+        // Зберігаємо запит у браузері для демонстрації.
+        // Це не відправляє дані до ресторану чи на сервер.
+        const reservation = {
+            reference,
+            fullName,
+            phone,
+            email,
+            date: chosenDate,
+            time: chosenTime,
+            guests,
+            occasion,
+            tablePreference,
+            wishes,
+            status: "Новий запит",
+            createdAt: new Date().toISOString()
+        };
+
+        try {
+            const previous = JSON.parse(
+                localStorage.getItem("eloriaReservations") || "[]"
+            );
+
+            const reservations = Array.isArray(previous) ? previous : [];
+            reservations.push(reservation);
+
+            localStorage.setItem(
+                "eloriaReservations",
+                JSON.stringify(reservations)
+            );
+        } catch (error) {
+            console.warn("Не вдалося зберегти запит у браузері.", error);
+        }
+
+        openModal();
+    });
+
+    closeButton.addEventListener("click", closeModal);
+    finishButton.addEventListener("click", closeModal);
+
+    // Закриття при натисканні поза вікном.
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Закриття клавішею Escape.
+    document.addEventListener("keydown", (event) => {
+        if (
+            event.key === "Escape" &&
+            modal.classList.contains("is-open")
+        ) {
+            closeModal();
+        }
+    });
+});
+</script>
+
+</body>
+</html>

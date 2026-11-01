@@ -1,0 +1,3119 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Кар'єра</title>
+
+
+    <!-- Основний CSS сайту -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- FontAwesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================================
+           CAREER PAGE
+        ===================================================== */
+
+        body {
+            background: #fbf7f4;
+            color: #4a3335;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .career-hero {
+            min-height: 650px;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(211, 166, 166, .25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(198, 167, 141, .20),
+                    transparent 28%
+                ),
+                #f7eeeb;
+        }
+
+
+        .career-hero::before {
+            content: "É";
+
+            position: absolute;
+            right: 2%;
+            top: -80px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 600px;
+
+            line-height: 1;
+
+            color: rgba(119, 76, 80, .035);
+        }
+
+
+        .career-hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1250px;
+            width: 100%;
+
+            margin: auto;
+            padding: 100px 35px;
+        }
+
+
+        .career-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            font-size: 10px;
+            letter-spacing: 4px;
+
+            color: #9d7072;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+        }
+
+
+        .career-eyebrow::before {
+            content: "";
+
+            width: 45px;
+            height: 1px;
+
+            background: #b99594;
+        }
+
+
+        .career-hero h1 {
+            max-width: 850px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(65px, 9vw, 125px);
+
+            font-weight: 500;
+
+            line-height: .78;
+
+            color: #472f32;
+        }
+
+
+        .career-hero h1 em {
+            color: #a16d72;
+            font-weight: 400;
+        }
+
+
+        .career-hero-text {
+            max-width: 650px;
+
+            margin-top: 45px;
+
+            font-size: 13px;
+            line-height: 2;
+
+            color: #765f60;
+
+            font-weight: 300;
+        }
+
+
+        .hero-scroll {
+            margin-top: 50px;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+
+            color: #755457;
+
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+
+        .hero-scroll i {
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .career-intro {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 120px 30px 90px;
+
+            text-align: center;
+        }
+
+
+        .career-intro-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+
+            color: #a47576;
+
+            text-transform: uppercase;
+        }
+
+
+        .career-intro h2 {
+            margin-top: 20px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: clamp(45px, 6vw, 75px);
+
+            line-height: .9;
+
+            font-weight: 500;
+
+            color: #4a3033;
+        }
+
+
+        .career-intro h2 em {
+            color: #a06d72;
+            font-weight: 400;
+        }
+
+
+        .career-intro p {
+            max-width: 650px;
+
+            margin: 30px auto 0;
+
+            font-size: 12px;
+            line-height: 2;
+
+            color: #796365;
+        }
+
+
+        .decor-line {
+            width: 90px;
+            height: 1px;
+
+            background: #c8a7a5;
+
+            margin: 35px auto;
+        }
+
+
+        .decor-star {
+            color: #a57577;
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           JOBS
+        ===================================================== */
+
+        .jobs-section {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 30px 30px 120px;
+        }
+
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 45px;
+
+            border-bottom: 1px solid #dfccc7;
+
+            padding-bottom: 20px;
+        }
+
+
+        .section-heading small {
+            font-size: 9px;
+            letter-spacing: 3px;
+
+            color: #a17476;
+
+            text-transform: uppercase;
+        }
+
+
+        .section-heading h2 {
+            margin: 8px 0 0;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 52px;
+
+            font-weight: 500;
+
+            color: #493033;
+        }
+
+
+        .job-card {
+            position: relative;
+
+            background: #fffaf7;
+
+            border: 1px solid #dfcbc6;
+
+            padding: 35px;
+
+            min-height: 280px;
+
+            transition: .35s;
+
+            overflow: hidden;
+        }
+
+
+        .job-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 3px;
+            height: 0;
+
+            background: #9e6c70;
+
+            transition: .35s;
+        }
+
+
+        .job-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 18px 45px rgba(80, 45, 47, .10);
+        }
+
+
+        .job-card:hover::before {
+            height: 100%;
+        }
+
+
+        .job-number {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 25px;
+
+            color: #b38d8c;
+        }
+
+
+        .job-icon {
+            width: 48px;
+            height: 48px;
+
+            border: 1px solid #dbc2bd;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #986a6d;
+
+            margin-top: 20px;
+        }
+
+
+        .job-card h3 {
+            margin-top: 25px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 34px;
+
+            font-weight: 500;
+
+            color: #493033;
+        }
+
+
+        .job-card p {
+            margin-top: 10px;
+
+            font-size: 11px;
+
+            line-height: 1.8;
+
+            color: #786163;
+        }
+
+
+        .job-tag {
+            display: inline-block;
+
+            margin-top: 22px;
+
+            padding: 7px 12px;
+
+            border: 1px solid #d8bfbb;
+
+            color: #89696a;
+
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           WHY ELORIA
+        ===================================================== */
+
+        .why-section {
+            background: #efe0dc;
+
+            padding: 120px 30px;
+        }
+
+
+        .why-container {
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+
+        .why-heading {
+            text-align: center;
+
+            margin-bottom: 65px;
+        }
+
+
+        .why-heading span {
+            font-size: 9px;
+            letter-spacing: 4px;
+
+            color: #9c7071;
+
+            text-transform: uppercase;
+        }
+
+
+        .why-heading h2 {
+            margin-top: 15px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 65px;
+
+            font-weight: 500;
+
+            color: #493033;
+        }
+
+
+        .why-card {
+            height: 100%;
+
+            padding: 45px 35px;
+
+            background: rgba(255, 250, 247, .65);
+
+            border: 1px solid #d9c1bc;
+
+            transition: .3s;
+        }
+
+
+        .why-card:hover {
+            background: #fffaf7;
+
+            transform: translateY(-5px);
+        }
+
+
+        .why-number {
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 25px;
+
+            color: #a37375;
+        }
+
+
+        .why-icon {
+            margin-top: 35px;
+
+            font-size: 22px;
+
+            color: #96666a;
+        }
+
+
+        .why-card h3 {
+            margin-top: 18px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 31px;
+
+            font-weight: 500;
+        }
+
+
+        .why-card p {
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #776163;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .application-section {
+            padding: 120px 25px;
+
+            background: #fbf7f4;
+        }
+
+
+        .application-card {
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 70px;
+
+            background: #fffaf7;
+
+            border: 1px solid #dbc4bf;
+
+            position: relative;
+        }
+
+
+        .application-card::after {
+            content: "ÉLORIA";
+
+            position: absolute;
+
+            right: 35px;
+            top: 30px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 18px;
+
+            letter-spacing: 4px;
+
+            color: #d3b5b1;
+        }
+
+
+        .application-title span {
+            font-size: 9px;
+
+            letter-spacing: 4px;
+
+            color: #a17476;
+
+            text-transform: uppercase;
+        }
+
+
+        .application-title h2 {
+            margin-top: 12px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 64px;
+
+            line-height: .9;
+
+            font-weight: 500;
+
+            color: #493033;
+        }
+
+
+        .application-title h2 em {
+            color: #a06d72;
+
+            font-weight: 400;
+        }
+
+
+        .application-title p {
+            max-width: 600px;
+
+            margin-top: 20px;
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #786264;
+        }
+
+
+        .candidate-form {
+            margin-top: 55px;
+        }
+
+
+        .field {
+            margin-bottom: 28px;
+        }
+
+
+        .field label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            color: #88696a;
+        }
+
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+
+            border: 0;
+
+            border-bottom: 1px solid #cdb8b4;
+
+            background: transparent;
+
+            padding: 13px 4px;
+
+            outline: none;
+
+            color: #493335;
+
+            font-size: 12px;
+        }
+
+
+        .field textarea {
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: #98676b;
+        }
+
+
+        .cv-box {
+            border: 1px dashed #cdb4b0;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background: #fcf7f4;
+        }
+
+
+        .cv-box i {
+            font-size: 25px;
+
+            color: #a27476;
+
+            margin-bottom: 10px;
+        }
+
+
+        .cv-box p {
+            margin: 0 0 15px;
+
+            font-size: 10px;
+
+            color: #806a6b;
+        }
+
+
+        .cv-box input {
+            font-size: 10px;
+        }
+
+
+        .form-consent {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: flex-start;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+            color: #776163;
+
+            margin-top: 10px;
+        }
+
+
+        .form-consent input {
+            margin-top: 3px;
+
+            accent-color: #98676b;
+        }
+
+
+        .application-button {
+            margin-top: 35px;
+
+            padding: 17px 38px;
+
+            border: 0;
+
+            background: #70484d;
+
+            color: white;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            transition: .3s;
+        }
+
+
+        .application-button:hover {
+            background: #98676b;
+
+            transform: translateY(-2px);
+        }
+
+
+        .application-success {
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: #f1e2de;
+
+            border-left: 3px solid #9c6c70;
+
+            color: #60484a;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        .application-success.show {
+            display: block;
+        }
+
+
+        /* =====================================================
+           TEAM
+        ===================================================== */
+
+        .team-section {
+            background: #f0e4e0;
+
+            padding: 120px 30px;
+        }
+
+
+        .team-container {
+            max-width: 1250px;
+
+            margin: auto;
+        }
+
+
+        .team-heading {
+            text-align: center;
+
+            margin-bottom: 65px;
+        }
+
+
+        .team-heading span {
+            font-size: 9px;
+
+            letter-spacing: 4px;
+
+            color: #9e7071;
+
+            text-transform: uppercase;
+        }
+
+
+        .team-heading h2 {
+            margin-top: 15px;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 70px;
+
+            font-weight: 500;
+
+            color: #493033;
+        }
+
+
+        .team-heading p {
+            max-width: 600px;
+
+            margin: 20px auto 0;
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            color: #796365;
+        }
+
+
+        .team-category {
+            margin-top: 65px;
+
+            margin-bottom: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        /* Icons before professions */
+.team-category h3 i {
+    margin-right: 10px;
+    font-size: .75em;
+    color: #a17476;
+}
+
+.team-category h3 {
+            margin: 0;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 35px;
+
+            font-weight: 500;
+
+            color: #503638;
+        }
+
+
+        .team-category span {
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+            color: #9a7071;
+        }
+
+
+        .team-category-line {
+            flex: 1;
+
+            height: 1px;
+
+            background: #d2b9b4;
+        }
+
+
+        .team-card {
+            display: block;
+
+            position: relative;
+
+            background: #fffaf7;
+
+            border: 1px solid #dbc5c0;
+
+            overflow: hidden;
+
+            transition: .35s;
+        }
+
+
+        .team-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 18px 45px rgba(70, 40, 42, .14);
+        }
+
+
+        .team-photo {
+            position: relative;
+
+            aspect-ratio: 4 / 5;
+
+            overflow: hidden;
+
+            background: #eadbd6;
+        }
+
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: .5s;
+        }
+
+
+        .team-card:hover .team-photo img {
+            transform: scale(1.05);
+        }
+
+
+        .team-photo::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(52, 29, 31, .42),
+                    transparent 40%
+                );
+        }
+
+
+        .team-open {
+            position: absolute;
+
+            right: 14px;
+            bottom: 14px;
+
+            width: 37px;
+            height: 37px;
+
+            border-radius: 50%;
+
+            background: #fffaf7;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #67494b;
+
+            z-index: 2;
+        }
+
+
+        .team-info {
+            padding: 20px 18px 22px;
+        }
+
+
+        .team-role {
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+            color: #a17476;
+
+            text-transform: uppercase;
+        }
+
+
+        .team-info h4 {
+            margin: 7px 0 0;
+
+            font-family: "Cormorant Garamond", serif;
+
+            font-size: 28px;
+
+            font-weight: 500;
+
+            color: #4c3335;
+        }
+
+
+        .team-info p {
+            margin: 4px 0 0;
+
+            font-size: 9px;
+
+            color: #856d6d;
+        }
+
+
+        /* =====================================================
+           TEAM MEMBER PAGE LINK EFFECT
+        ===================================================== */
+
+        .team-card {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .career-hero {
+                min-height: 550px;
+            }
+
+
+            .career-hero-content {
+                padding: 80px 22px;
+            }
+
+
+            .career-hero h1 {
+                font-size: 70px;
+            }
+
+
+            .section-heading {
+                display: block;
+            }
+
+
+            .section-heading h2 {
+                font-size: 45px;
+            }
+
+
+            .application-card {
+                padding: 40px 25px;
+            }
+
+
+            .application-title h2 {
+                font-size: 50px;
+            }
+
+
+            .team-heading h2 {
+                font-size: 52px;
+            }
+
+
+            .team-category h3 {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <!-- Ліва навігація -->
+        <nav class="nav-left">
+            <a href="account.html">Eloria акаунт</a>
+            <a href="chef.html">Про шефа</a>
+        </nav>
+
+        <!-- Логотип -->
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE & CAFÉ</span>
+        </a>
+
+        <!-- Гамбургер -->
+        <button class="hamburger" aria-label="Меню">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Права навігація -->
+        <nav class="nav-right">
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </nav>
+
+        <!-- Мобільне меню -->
+        <div class="mobile-menu">
+            <a href="account.html">Eloria акаунт</a>
+            <a href="index.html">Головна</a>
+            <a href="menu.html">Каталог</a>
+            <a href="celebrations.html">Святкові колекції</a>
+            <a href="bakery.html">Випічка</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="career-hero">
+
+    <div class="career-hero-content">
+
+        <div class="career-eyebrow">
+            WORK WITH ÉLORIA
+        </div>
+
+
+        <h1>
+            Працюйте
+            <br>
+            <em>разом з ÉLORIA</em>
+        </h1>
+
+
+        <p class="career-hero-text">
+
+            Створюємо не просто десерти.
+            Створюємо атмосферу, до якої хочеться повертатися.
+            Якщо ви любите красу, якість та роботу,
+            у якій є місце творчості — можливо,
+            саме ви станете частиною ÉLORIA.
+
+        </p>
+
+
+        <a
+            href="#vacancies"
+            class="hero-scroll">
+
+            Відкрити вакансії
+
+            <i class="fa-solid fa-arrow-down"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="career-intro">
+
+    <span class="career-intro-label">
+        JOIN OUR WORLD
+    </span>
+
+
+    <div class="decor-line"></div>
+
+    <div class="decor-star">
+        ✦
+    </div>
+
+
+    <h2>
+        Тут кожна
+        <em>деталь має значення</em>
+    </h2>
+
+
+    <p>
+
+        У ÉLORIA ми об'єднали кондитерське мистецтво,
+        гостинність, естетику та любов до деталей.
+        Нам важливі не лише професійні навички,
+        а й бажання створювати особливі моменти
+        для наших гостей.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     VACANCIES
+===================================================== -->
+
+<section
+    class="jobs-section"
+    id="vacancies">
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <small>
+                OPEN POSITIONS
+            </small>
+
+            <h2>
+                Приєднуйтесь до команди
+            </h2>
+
+        </div>
+
+        <span class="decor-star">
+            ✦
+        </span>
+
+    </div>
+
+
+
+    <div class="row g-4">
+
+
+        <!-- КОНДИТЕР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    01
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+
+                <h3>
+                    Кондитер
+                </h3>
+
+                <p>
+                    Створення авторських десертів,
+                    тортів та фірмових колекцій ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+        <!-- БАРИСТА -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    02
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+
+                <h3>
+                    Бариста
+                </h3>
+
+                <p>
+                    Кава, авторські напої,
+                    атмосфера та спілкування з гостями.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME / PART-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- МЕНЕДЖЕР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    03
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+
+                <h3>
+                    Менеджер
+                </h3>
+
+                <p>
+                    Замовлення, клієнти,
+                    комунікація та організація роботи.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- SMM -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    04
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-camera-retro"></i>
+                </div>
+
+                <h3>
+                    SMM / Content Manager
+                </h3>
+
+                <p>
+                    Фото, відео, контент
+                    та соціальні мережі ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    PART-TIME / ONLINE
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ОФІЦІАНТ -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    05
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                </div>
+
+                <h3>
+                    Офіціант
+                </h3>
+
+                <p>
+                    Турбота про гостей,
+                    подача десертів та створення сервісу ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME / PART-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- КУР'ЄР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    06
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-motorcycle"></i>
+                </div>
+
+                <h3>
+                    Кур'єр
+                </h3>
+
+                <p>
+                    Дбайлива та своєчасна доставка
+                    замовлень ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- АДМІНІСТРАТОР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    07
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <h3>
+                    Адміністратор залу
+                </h3>
+
+                <p>
+                    Організація роботи залу,
+                    зустріч гостей та координація команди.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ОНЛАЙН МЕНЕДЖЕР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    08
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <h3>
+                    Онлайн менеджер
+                </h3>
+
+                <p>
+                    Онлайн-замовлення,
+                    повідомлення та спілкування з клієнтами.
+                </p>
+
+                <span class="job-tag">
+                    ONLINE
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ШВЕЙЦАР -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    09
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-door-open"></i>
+                </div>
+
+                <h3>
+                    Швейцар
+                </h3>
+
+                <p>
+                    Зустріч гостей та створення
+                    першого враження про ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    FULL-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ФЛОРИСТ -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    10
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <h3>
+                    Флорист
+                </h3>
+
+                <p>
+                    Створення квіткових композицій
+                    для столів та особливих подій.
+                </p>
+
+                <span class="job-tag">
+                    PART-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ФОТОГРАФ -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    11
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+
+                <h3>
+                    Фотограф
+                </h3>
+
+                <p>
+                    Візуальні історії ÉLORIA,
+                    десерти, команда та атмосфера.
+                </p>
+
+                <span class="job-tag">
+                    PART-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- ВІДЕОГРАФ -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <article class="job-card">
+
+                <span class="job-number">
+                    12
+                </span>
+
+                <div class="job-icon">
+                    <i class="fa-solid fa-video"></i>
+                </div>
+
+                <h3>
+                    Відеограф
+                </h3>
+
+                <p>
+                    Відео для соціальних мереж,
+                    рекламних кампаній та бренду ÉLORIA.
+                </p>
+
+                <span class="job-tag">
+                    PART-TIME
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY ELORIA
+===================================================== -->
+
+<section class="why-section">
+
+    <div class="why-container">
+
+
+        <div class="why-heading">
+
+            <span>
+                OUR PHILOSOPHY
+            </span>
+
+            <h2>
+                Чому ÉLORIA?
+            </h2>
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="why-card">
+
+                    <span class="why-number">
+                        01
+                    </span>
+
+                    <div class="why-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+
+                    <h3>
+                        Творіть
+                    </h3>
+
+                    <p>
+                        Створюйте десерти,
+                        враження та атмосферу,
+                        яку запам'ятовують.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="why-card">
+
+                    <span class="why-number">
+                        02
+                    </span>
+
+                    <div class="why-icon">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+
+                    <h3>
+                        Розвивайтесь
+                    </h3>
+
+                    <p>
+                        Вдосконалюйте свої навички
+                        та відкривайте нові професійні можливості.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="why-card">
+
+                    <span class="why-number">
+                        03
+                    </span>
+
+                    <div class="why-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+
+                    <h3>
+                        Надихайтесь
+                    </h3>
+
+                    <p>
+                        Працюйте серед людей,
+                        які люблять красу, деталі
+                        та свою справу.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="why-card">
+
+                    <span class="why-number">
+                        04
+                    </span>
+
+                    <div class="why-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3>
+                        Будьте своїми
+                    </h3>
+
+                    <p>
+                        Ставайте частиною команди,
+                        де кожна людина має значення.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     APPLICATION FORM
+===================================================== -->
+
+<section class="application-section">
+
+    <div class="application-card">
+
+
+        <div class="application-title">
+
+            <span>
+                JOIN ÉLORIA
+            </span>
+
+            <h2>
+                Приєднатися
+                <em>до ÉLORIA</em>
+            </h2>
+
+            <p>
+                Розкажіть нам трохи про себе.
+                Навіть якщо зараз немає вакансії,
+                яка ідеально вам підходить,
+                ми будемо раді познайомитися.
+            </p>
+
+        </div>
+
+
+
+        <form
+            class="candidate-form"
+            id="candidateForm">
+
+
+            <div class="row">
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label for="candidateName">
+                            Ім'я та прізвище
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateName"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label for="candidateAge">
+                            Вік
+                        </label>
+
+                        <input
+                            type="number"
+                            id="candidateAge"
+                            min="16"
+                            max="80"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label for="candidatePhone">
+                            Телефон
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="candidatePhone"
+                            placeholder="+380 XX XXX XX XX"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label for="candidateEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="candidateEmail"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-12">
+
+                    <div class="field">
+
+                        <label for="candidatePosition">
+                            Бажана посада
+                        </label>
+
+                        <select
+                            id="candidatePosition"
+                            required>
+
+                            <option
+                                value=""
+                                disabled
+                                selected>
+
+                                Оберіть посаду
+
+                            </option>
+
+                            <option>Кондитер</option>
+
+                            <option>Бариста</option>
+
+                            <option>Менеджер</option>
+
+                            <option>SMM / Content Manager</option>
+
+                            <option>Кур'єр</option>
+
+                            <option>Офіціант</option>
+
+                            <option>Адміністратор залу</option>
+
+                            <option>Онлайн менеджер</option>
+
+                            <option>Швейцар</option>
+
+                            <option>Флорист</option>
+
+                            <option>Фотограф</option>
+
+                            <option>Відеограф</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-12">
+
+                    <div class="field">
+
+                        <label for="candidateExperience">
+                            Досвід роботи
+                        </label>
+
+                        <textarea
+                            id="candidateExperience"
+                            placeholder="Розкажіть коротко про ваш професійний досвід..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-12">
+
+                    <div class="field">
+
+                        <label for="candidateWhy">
+                            Чому хочете працювати в ÉLORIA?
+                        </label>
+
+                        <textarea
+                            id="candidateWhy"
+                            placeholder="Розкажіть нам про вашу мотивацію..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label for="candidatePortfolio">
+                            Instagram / Портфоліо
+                        </label>
+
+                        <input
+                            type="url"
+                            id="candidatePortfolio"
+                            placeholder="https://">
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <div class="field">
+
+                        <label>
+                            Завантажити CV
+                        </label>
+
+                        <div class="cv-box">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            <p>
+                                PDF, DOC або DOCX
+                            </p>
+
+                            <input
+                                type="file"
+                                accept=".pdf,.doc,.docx">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <label class="form-consent">
+
+                <input
+                    type="checkbox"
+                    required>
+
+                <span>
+                    Я погоджуюсь на обробку моїх персональних даних
+                    для розгляду моєї кандидатури.
+                </span>
+
+            </label>
+
+
+
+            <button
+                type="submit"
+                class="application-button">
+
+                Надіслати заявку
+
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+
+            </button>
+
+
+            <div
+                class="application-success"
+                id="applicationSuccess">
+
+                <strong>
+                    Дякуємо, <span id="candidateSuccessName"></span>! 🤍
+                </strong>
+
+                <br>
+
+                Вашу заявку отримано.
+                Команда ÉLORIA перегляне її та зв'яжеться з вами.
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OUR TEAM
+===================================================== -->
+
+<section class="team-section">
+
+    <div class="team-container">
+
+        <div class="team-heading">
+            <span>PEOPLE OF ÉLORIA</span>
+
+            <h2>Наша команда</h2>
+
+            <p>
+                Люди, які щодня створюють атмосферу,
+                смак та характер ÉLORIA.
+                Натисніть на фотографію,
+                щоб познайомитися ближче.
+            </p>
+        </div>
+
+
+        <!-- ШЕФ-КОНДИТЕР -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-crown"></i> Шеф-кондитер</h3>
+            <span>1 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="chefTeam"></div>
+
+
+        <!-- КОНДИТЕРИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-cake-candles"></i> Кондитери</h3>
+            <span>10 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="pastryTeam"></div>
+
+        <!-- ПЕКАРІ -->
+<div class="team-category">
+    <h3>
+        <i class="fa-solid fa-bread-slice"></i>
+        Пекарі
+    </h3>
+
+    <span>5 PEOPLE</span>
+
+    <div class="team-category-line"></div>
+</div>
+
+<div class="row g-4" id="bakerTeam"></div>
+
+        <!-- БАРИСТИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-mug-hot"></i> Бариста</h3>
+            <span>4 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="baristaTeam"></div>
+
+
+        <!-- МЕНЕДЖМЕНТ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-headset"></i> Менеджмент / Онлайн-менеджери</h3>
+            <span>4 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="onlineManagerTeam"></div>
+
+
+        <!-- ОФІЦІАНТИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-bell-concierge"></i> Офіціанти</h3>
+            <span>10 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="waiterTeam"></div>
+
+
+        <!-- АДМІНІСТРАТОРИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-clipboard-user"></i> Адміністратори залу</h3>
+            <span>5 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="administratorTeam"></div>
+
+
+        <!-- ШВЕЙЦАРИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-user-tie"></i> Швейцари</h3>
+            <span>3 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="conciergeTeam"></div>
+
+
+        <!-- КУР'ЄР -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-truck"></i> Кур'єр</h3>
+            <span>1 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="courierTeam"></div>
+
+
+        <!-- ФЛОРИСТИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-spa"></i> Флористи</h3>
+            <span>3 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="floristTeam"></div>
+
+
+        <!-- ФОТОГРАФИ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-camera"></i> Фотографи</h3>
+            <span>3 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="photographerTeam"></div>
+
+
+        <!-- ВІДЕОГРАФ -->
+        <div class="team-category">
+            <h3><i class="fa-solid fa-video"></i> Відеограф</h3>
+            <span>1 PEOPLE</span>
+            <div class="team-category-line"></div>
+        </div>
+
+        <div class="row g-4" id="videographerTeam"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="py-5">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+
+            <div class="col-lg-5">
+
+                <h2
+                    style="
+                    font-family:Cormorant Garamond,serif;
+                    letter-spacing:5px;
+                    color:#58393c;
+                    ">
+
+                    ÉLORIA
+
+                </h2>
+
+                <p class="small text-muted mt-3">
+
+                    PÂTISSERIE & CAFÉ
+
+                </p>
+
+                <p class="small text-muted">
+
+                    Створюємо десерти,
+                    атмосферу та особливі моменти.
+
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <h6>
+                    Навігація
+                </h6>
+
+                <a
+                    href="index.html"
+                    class="d-block text-muted small mb-2">
+
+                    Головна
+
+                </a>
+
+                <a
+                    href="menu.html"
+                    class="d-block text-muted small mb-2">
+
+                    Каталог
+
+                </a>
+
+                <a
+                    href="drinks.html"
+                    class="d-block text-muted small mb-2">
+
+                    Напої
+
+                </a>
+
+                <a
+                    href="contacts.html"
+                    class="d-block text-muted small">
+
+                    Контакти
+
+                </a>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <h6>
+                    ÉLORIA CAREER
+                </h6>
+
+                <p class="small text-muted">
+
+                    Маєте талант, любов до своєї справи
+                    та бажання створювати красу?
+
+                </p>
+
+                <a
+                    href="#candidateForm"
+                    class="btn btn-outline-dark btn-sm">
+
+                    Приєднатися
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <hr class="my-5">
+
+
+        <div class="d-flex justify-content-between flex-wrap gap-2">
+
+            <small class="text-muted">
+                © 2026 ÉLORIA PÂTISSERIE & CAFÉ
+            </small>
+
+            <small class="text-muted">
+                KYIV • UKRAINE
+            </small>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<a href="#top"
+   class="top-button"
+   aria-label="На початок">
+
+    <i class="fa-solid fa-chevron-up"></i>
+
+</a>
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<script>
+
+/* =====================================================
+   TEAM DATA
+   Each person has their own ID and exact photo.
+===================================================== */
+
+const teamMembers = {
+
+    /* =================================================
+       CHEF
+    ================================================= */
+
+    "chef-1": {
+        name: "Олександр Дорошенко",
+        role: "Шеф-кондитер",
+        image: "Eloria_chef.png"
+    },
+
+
+    /* =================================================
+       PASTRY
+    ================================================= */
+
+    "pastry-1": {
+        name: "Софія Мельник",
+        role: "Кондитер",
+        image: "Eloria_pastry1.png"
+    },
+
+    "pastry-2": {
+        name: "Анна Кравець",
+        role: "Кондитер",
+        image: "Eloria_pastry2.png"
+    },
+
+    "pastry-3": {
+        name: "Вікторія Левченко",
+        role: "Кондитер",
+        image: "Eloria_pastry3.png"
+    },
+
+    "pastry-4": {
+        name: "Марія Бондар",
+        role: "Кондитер",
+        image: "Eloria_pastry5.png"
+    },
+
+    "pastry-5": {
+        name: "Катерина Романюк",
+        role: "Кондитер",
+        image: "Eloria_pastry7.png"
+    },
+
+    "pastry-6": {
+        name: "Олена Савчук",
+        role: "Кондитер",
+        image: "Eloria_pastry9.png"
+    },
+
+    "pastry-7": {
+        name: "Дарина Коваль",
+        role: "Кондитер",
+        image: "Eloria_pastry10.png"
+    },
+
+    "pastry-8": {
+        name: "Максим Гнатюк",
+        role: "Кондитер",
+        image: "Eloria_pastry4.png"
+    },
+
+    "pastry-9": {
+        name: "Андрій Мороз",
+        role: "Кондитер",
+        image: "Eloria_pastry6.png"
+    },
+
+    "pastry-10": {
+        name: "Дмитро Ткаченко",
+        role: "Кондитер",
+        image: "Eloria_pastry8.png"
+    },
+
+  
+  /* =================================================
+   BAKERS
+================================================= */
+
+"baker-1": {
+    name: "Софія Кравченко",
+    role: "Пекар",
+    image: "Eloria_baker1.png"
+},
+
+"baker-2": {
+    name: "Анастасія Мельник",
+    role: "Пекар",
+    image: "Eloria_baker2.png"
+},
+
+"baker-3": {
+    name: "Вікторія Бондар",
+    role: "Пекар",
+    image: "Eloria_baker3.png"
+},
+
+"baker-4": {
+    name: "Артем Коваленко",
+    role: "Пекар",
+    image: "Eloria_baker4.png"
+},
+
+"baker-5": {
+    name: "Максим Романюк",
+    role: "Пекар",
+    image: "Eloria_baker5.png"
+},
+
+    /* =================================================
+       BARISTA
+    ================================================= */
+
+    "barista-1": {
+        name: "Аліна Шевченко",
+        role: "Бариста",
+        image: "Eloria_barista1.png"
+    },
+
+    "barista-2": {
+        name: "Марина Коваль",
+        role: "Бариста",
+        image: "Eloria_barista3.png"
+    },
+
+    "barista-3": {
+        name: "Олексій Бойко",
+        role: "Бариста",
+        image: "Eloria_barista2.png"
+    },
+
+    "barista-4": {
+        name: "Максим Руденко",
+        role: "Бариста",
+        image: "Eloria_barista4.png"
+    },
+
+
+    /* =================================================
+       ONLINE MANAGERS
+    ================================================= */
+
+    "online-manager-1": {
+        name: "Валерія Савченко",
+        role: "Онлайн менеджер",
+        image: "Eloria_online meneger1.png"
+    },
+
+    "online-manager-2": {
+        name: "Софія Ткачук",
+        role: "Онлайн менеджер",
+        image: "Eloria_online meneger2.png"
+    },
+
+    "online-manager-3": {
+        name: "Дарина Мазур",
+        role: "Онлайн менеджер",
+        image: "Eloria_online meneger3.png"
+    },
+
+    "online-manager-4": {
+        name: "Анна Черненко",
+        role: "Онлайн менеджер",
+        image: "Eloria_online meneger4.png"
+    },
+
+
+    /* =================================================
+       WAITERS
+    ================================================= */
+
+    "waiter-1": {
+        name: "Єлизавета Климчук",
+        role: "Офіціант",
+        image: "Eloria_waiter1.png"
+    },
+
+    "waiter-2": {
+        name: "Софія Поліщук",
+        role: "Офіціант",
+        image: "Eloria_waiter3.png"
+    },
+
+    "waiter-3": {
+        name: "Дарина Іваненко",
+        role: "Офіціант",
+        image: "Eloria_waiter6.png"
+    },
+
+    "waiter-4": {
+        name: "Анна Литвин",
+        role: "Офіціант",
+        image: "Eloria_waiter8.png"
+    },
+
+    "waiter-5": {
+        name: "Вікторія Козак",
+        role: "Офіціант",
+        image: "Eloria_waiter9.png"
+    },
+
+    "waiter-6": {
+        name: "Катерина Павленко",
+        role: "Офіціант",
+        image: "Eloria_waiter10.png"
+    },
+
+    "waiter-7": {
+        name: "Олександр Марченко",
+        role: "Офіціант",
+        image: "Eloria_waiter2.png"
+    },
+
+    "waiter-8": {
+        name: "Артем Бондар",
+        role: "Офіціант",
+        image: "Eloria_waiter4.png"
+    },
+
+    "waiter-9": {
+        name: "Данило Кравець",
+        role: "Офіціант",
+        image: "Eloria_waiter5.png"
+    },
+
+    "waiter-10": {
+        name: "Максим Шевчук",
+        role: "Офіціант",
+        image: "Eloria_waiter7.png"
+    },
+
+
+    /* =================================================
+       ADMINISTRATORS
+    ================================================= */
+
+    "administrator-1": {
+        name: "Юлія Романенко",
+        role: "Адміністратор залу",
+        image: "Eloria_hall administrator1.png"
+    },
+
+    "administrator-2": {
+        name: "Анастасія Мельник",
+        role: "Адміністратор залу",
+        image: "Eloria_hall administrator2.png"
+    },
+
+    "administrator-3": {
+        name: "Ірина Ковальчук",
+        role: "Адміністратор залу",
+        image: "Eloria_hall administrator3.png"
+    },
+
+    "administrator-4": {
+        name: "Наталія Бондар",
+        role: "Адміністратор залу",
+        image: "Eloria_hall administrator4.png"
+    },
+
+    "administrator-5": {
+        name: "Оксана Левченко",
+        role: "Адміністратор залу",
+        image: "Eloria_hall administrator5.png"
+    },
+
+
+    /* =================================================
+       CONCIERGE
+    ================================================= */
+
+    "concierge-1": {
+        name: "Роман Гнатюк",
+        role: "Швейцар",
+        image: "Eloria_concierge1.png"
+    },
+
+    "concierge-2": {
+        name: "Андрій Кравець",
+        role: "Швейцар",
+        image: "Eloria_concierge2.png"
+    },
+
+    "concierge-3": {
+        name: "Максим Бойко",
+        role: "Швейцар",
+        image: "Eloria_concierge3.png"
+    },
+
+
+    /* =================================================
+       FLORISTS
+    ================================================= */
+
+    "florist-1": {
+        name: "Софія Данилюк",
+        role: "Флорист",
+        image: "Eloria_florist1.png"
+    },
+
+    "florist-2": {
+        name: "Марія Коваль",
+        role: "Флорист",
+        image: "Eloria_florist2.png"
+    },
+
+    "florist-3": {
+        name: "Анастасія Левченко",
+        role: "Флорист",
+        image: "Eloria_florist3.png"
+    },
+
+
+    /* =================================================
+       PHOTOGRAPHERS
+    ================================================= */
+
+    "photographer-1": {
+        name: "Вікторія Мороз",
+        role: "Фотограф",
+        image: "Eloria_photographer1.png"
+    },
+
+    "photographer-2": {
+        name: "Катерина Бондар",
+        role: "Фотограф",
+        image: "Eloria_photographer2.png"
+    },
+
+    "photographer-3": {
+        name: "Олена Романюк",
+        role: "Фотограф",
+        image: "Eloria_photographer3.png"
+    },
+
+
+    /* =================================================
+       COURIER
+    ================================================= */
+
+    "courier-1": {
+        name: "Олег Коваленко",
+        role: "Кур'єр",
+        image: "Eloria_courier1.png"
+    },
+
+
+    /* =================================================
+       VIDEOGRAPHER
+    ================================================= */
+
+    "videographer-1": {
+        name: "Андрій Мельник",
+        role: "Відеограф",
+        image: "Eloria_videographer1.png"
+    }
+
+};
+
+
+/* =====================================================
+   CREATE CARD
+===================================================== */
+
+function createTeamCard(id) {
+
+    const person = teamMembers[id];
+
+    if (!person) return "";
+
+    return `
+        <div class="col-6 col-md-4 col-lg-3">
+
+            <a
+                href="team-member.html?id=${id}"
+                class="team-card">
+
+                <div class="team-photo">
+
+                    <img
+                        src="images/${person.image}"
+                        alt="${person.name}"
+                        onerror="
+                            this.onerror=null;
+                            this.style.background='#eadbd6';
+                        "
+                    >
+
+                    <span class="team-open">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+
+                </div>
+
+                <div class="team-info">
+
+                    <span class="team-role">
+                        ${person.role}
+                    </span>
+
+                    <h4>
+                        ${person.name}
+                    </h4>
+
+                    <p>
+                        ÉLORIA PÂTISSERIE & CAFÉ
+                    </p>
+
+                </div>
+
+            </a>
+
+        </div>
+    `;
+}
+
+
+/* =====================================================
+   RENDER CATEGORY
+===================================================== */
+
+function renderCategory(containerId, ids) {
+
+    const container =
+        document.getElementById(containerId);
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    ids.forEach(id => {
+
+        container.insertAdjacentHTML(
+            "beforeend",
+            createTeamCard(id)
+        );
+
+    });
+}
+
+
+/* =====================================================
+   RENDER CHEF
+===================================================== */
+
+renderCategory(
+    "chefTeam",
+    [
+        "chef-1"
+    ]
+);
+
+
+/* =====================================================
+   RENDER PASTRY
+===================================================== */
+
+renderCategory(
+    "pastryTeam",
+    [
+        "pastry-1",
+        "pastry-2",
+        "pastry-3",
+        "pastry-4",
+        "pastry-5",
+        "pastry-6",
+        "pastry-7",
+        "pastry-8",
+        "pastry-9",
+        "pastry-10"
+    ]
+);
+
+/* =================================================
+   RENDER BAKERS
+================================================= */
+
+renderCategory(
+    "bakerTeam",
+    [
+        "baker-1",
+        "baker-2",
+        "baker-3",
+        "baker-4",
+        "baker-5"
+    ]
+);
+
+/* =====================================================
+   RENDER BARISTA
+===================================================== */
+
+renderCategory(
+    "baristaTeam",
+    [
+        "barista-1",
+        "barista-2",
+        "barista-3",
+        "barista-4"
+    ]
+);
+
+
+/* =====================================================
+   RENDER ONLINE MANAGERS
+===================================================== */
+
+renderCategory(
+    "onlineManagerTeam",
+    [
+        "online-manager-1",
+        "online-manager-2",
+        "online-manager-3",
+        "online-manager-4"
+    ]
+);
+
+
+/* =====================================================
+   RENDER WAITERS
+===================================================== */
+
+renderCategory(
+    "waiterTeam",
+    [
+        "waiter-1",
+        "waiter-2",
+        "waiter-3",
+        "waiter-4",
+        "waiter-5",
+        "waiter-6",
+        "waiter-7",
+        "waiter-8",
+        "waiter-9",
+        "waiter-10"
+    ]
+);
+
+
+/* =====================================================
+   RENDER ADMINISTRATORS
+===================================================== */
+
+renderCategory(
+    "administratorTeam",
+    [
+        "administrator-1",
+        "administrator-2",
+        "administrator-3",
+        "administrator-4",
+        "administrator-5"
+    ]
+);
+
+
+/* =====================================================
+   RENDER CONCIERGE
+===================================================== */
+
+renderCategory(
+    "conciergeTeam",
+    [
+        "concierge-1",
+        "concierge-2",
+        "concierge-3"
+    ]
+);
+
+
+/* =====================================================
+   RENDER FLORISTS
+===================================================== */
+
+renderCategory(
+    "floristTeam",
+    [
+        "florist-1",
+        "florist-2",
+        "florist-3"
+    ]
+);
+
+
+/* =====================================================
+   RENDER PHOTOGRAPHERS
+===================================================== */
+
+renderCategory(
+    "photographerTeam",
+    [
+        "photographer-1",
+        "photographer-2",
+        "photographer-3"
+    ]
+);
+
+
+/* =====================================================
+   RENDER COURIER
+===================================================== */
+
+renderCategory(
+    "courierTeam",
+    [
+        "courier-1"
+    ]
+);
+
+
+/* =====================================================
+   RENDER VIDEOGRAPHER
+===================================================== */
+
+renderCategory(
+    "videographerTeam",
+    [
+        "videographer-1"
+    ]
+);
+
+
+/* =====================================================
+   APPLICATION FORM
+===================================================== */
+
+const candidateForm =
+    document.getElementById("candidateForm");
+
+if (candidateForm) {
+
+    candidateForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            if (!candidateForm.checkValidity()) {
+
+                candidateForm.reportValidity();
+
+                return;
+            }
+
+            const name =
+                document
+                    .getElementById("candidateName")
+                    .value
+                    .trim();
+
+            document
+                .getElementById("candidateSuccessName")
+                .textContent = name;
+
+            document
+                .getElementById("applicationSuccess")
+                .classList.add("show");
+
+            candidateForm.reset();
+
+            document
+                .getElementById("applicationSuccess")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+        }
+    );
+
+}
+
+</script>
+
+
+<script>
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+hamburger.addEventListener('click', function () {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+});
+</script>
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Кошик</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(190,155,95,.08),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(220,190,150,.10),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #fffefa,
+                    #f7f1e8
+                );
+
+            color: #29241f;
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .header {
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 24px 6%;
+
+            background:
+                rgba(255,255,255,.90);
+
+            backdrop-filter:
+                blur(16px);
+
+            border-bottom:
+                1px solid rgba(120,90,50,.12);
+        }
+
+        .logo {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 36px;
+
+            letter-spacing: 7px;
+
+            color: #9c7947;
+        }
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 12px 20px;
+
+            border:
+                1px solid #d7c2a1;
+
+            border-radius: 30px;
+
+            background: #fffdf9;
+
+            font-size: 13px;
+
+            transition: .3s;
+        }
+
+        .back:hover {
+
+            background: #9b7844;
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+        }
+
+        .cart-page {
+
+            width:
+                min(1250px, 92%);
+
+            margin:
+                65px auto 100px;
+        }
+
+        .page-heading {
+
+            text-align: center;
+
+            margin-bottom: 55px;
+        }
+
+        .small-title {
+
+            color: #a18154;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            font-size: 11px;
+
+            margin-bottom: 15px;
+        }
+
+        .page-heading h1 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-weight: 500;
+
+            font-size:
+                clamp(48px, 7vw, 75px);
+
+            line-height: .9;
+
+            color: #302a24;
+        }
+
+        .page-heading p {
+
+            margin-top: 20px;
+
+            color: #81776d;
+
+            font-size: 13px;
+        }
+
+        .cart-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                360px;
+
+            gap: 30px;
+
+            align-items: start;
+        }
+
+        .cart-products {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        .cart-item {
+
+            display: grid;
+
+            grid-template-columns:
+                110px
+                1fr
+                auto;
+
+            gap: 22px;
+
+            align-items: center;
+
+            padding: 18px;
+
+            background:
+                rgba(255,255,255,.87);
+
+            border:
+                1px solid rgba(160,130,90,.17);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(70,50,30,.05);
+
+            transition: .3s;
+        }
+
+        .cart-item:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 15px 40px
+                rgba(70,50,30,.09);
+        }
+
+        .cart-image {
+
+            width: 110px;
+
+            height: 110px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            background: #eee6da;
+        }
+
+        .item-info h3 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 27px;
+
+            font-weight: 600;
+
+            color: #3b332b;
+
+            margin-bottom: 6px;
+        }
+
+        .item-category {
+
+            color: #aa8a5a;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .item-price {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            color: #8e6c3d;
+
+            font-size: 22px;
+        }
+
+        .item-actions {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-end;
+
+            gap: 12px;
+        }
+
+        .item-total {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 24px;
+
+            color: #9a7848;
+        }
+
+        .quantity-control {
+
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            border:
+                1px solid #d7c4a6;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            background: #fffdf9;
+        }
+
+        .quantity-control button {
+
+            width: 37px;
+
+            height: 40px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #816441;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: .2s;
+        }
+
+        .quantity-control button:hover {
+
+            background: #eee4d6;
+        }
+
+        .quantity-control span {
+
+            width: 32px;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        .remove-btn {
+
+            border: none;
+
+            background: transparent;
+
+            color: #aa8172;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            transition: .2s;
+        }
+
+        .remove-btn:hover {
+
+            color: #8d4c3c;
+        }
+
+        .summary {
+
+            position: sticky;
+
+            top: 105px;
+
+            padding: 35px;
+
+            background:
+                rgba(255,255,255,.90);
+
+            border:
+                1px solid rgba(160,130,90,.18);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 20px 55px
+                rgba(70,50,30,.08);
+        }
+
+        .summary-title {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 34px;
+
+            font-weight: 500;
+
+            margin-bottom: 25px;
+        }
+
+        .summary-line {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 12px 0;
+
+            color: #71685f;
+
+            font-size: 13px;
+        }
+
+        .summary-line.total {
+
+            border-top:
+                1px solid #e3d7c7;
+
+            margin-top: 10px;
+
+            padding-top: 22px;
+
+            color: #302a24;
+        }
+
+        .summary-line.total strong {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            color: #9b7844;
+
+            font-size: 30px;
+        }
+
+        .checkout-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 30px;
+
+            padding: 17px 20px;
+
+            margin-top: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #aa8756,
+                    #806038
+                );
+
+            color: white;
+
+            cursor: pointer;
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size: 13px;
+
+            transition: .3s;
+
+            box-shadow:
+                0 12px 25px
+                rgba(130,100,55,.20);
+        }
+
+        .checkout-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 18px 30px
+                rgba(130,100,55,.28);
+        }
+
+        .clear-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: transparent;
+
+            color: #967b63;
+
+            padding: 14px;
+
+            margin-top: 10px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+        }
+
+        .clear-btn:hover {
+
+            color: #714f38;
+        }
+
+        .empty {
+
+            background:
+                rgba(255,255,255,.9);
+
+            border:
+                1px solid rgba(160,130,90,.17);
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            padding: 90px 30px;
+        }
+
+        .empty-icon {
+
+            width: 85px;
+
+            height: 85px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f0e8dc;
+
+            color: #aa8756;
+
+            font-size: 30px;
+        }
+
+        .empty h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 42px;
+
+            font-weight: 500;
+
+            margin-bottom: 12px;
+        }
+
+        .empty p {
+
+            color: #80776e;
+
+            font-size: 13px;
+
+            margin-bottom: 28px;
+        }
+
+        .catalog-btn {
+
+            display: inline-flex;
+
+            padding: 14px 25px;
+
+            border-radius: 30px;
+
+            background: #9b7844;
+
+            color: white;
+
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+
+            .cart-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+
+                position: static;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .header {
+
+                padding: 18px 4%;
+            }
+
+            .logo {
+
+                font-size: 27px;
+
+                letter-spacing: 4px;
+            }
+
+            .cart-page {
+
+                width: 94%;
+
+                margin-top: 35px;
+            }
+
+            .cart-item {
+
+                grid-template-columns: 80px 1fr;
+
+                gap: 15px;
+            }
+
+            .cart-image {
+
+                width: 80px;
+
+                height: 80px;
+            }
+
+            .item-actions {
+
+                grid-column: 2;
+
+                align-items: flex-start;
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+            }
+
+            .item-info h3 {
+
+                font-size: 23px;
+            }
+
+            .summary {
+
+                padding: 27px;
+            }
+        }
+
+
+        .checkout-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+    </style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        ÉLORIA
+    </a>
+
+    <a href="index.html" class="back">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        До каталогу
+
+    </a>
+
+</header>
+
+<main class="cart-page">
+
+    <div class="page-heading">
+
+        <div class="small-title">
+            ÉLORIA PÂTISSERIE
+        </div>
+
+        <h1>
+            Ваш кошик
+        </h1>
+
+        <p>
+            Обрані вами вишукані десерти та напої
+        </p>
+
+    </div>
+
+    <div id="cartContainer"></div>
+
+</main>
+
+<script src="product.js"></script>
+
+<script>
+
+function renderCartPage() {
+
+    const container =
+        document.getElementById("cartContainer");
+
+    if (!container) {
+        return;
+    }
+
+    const cart = getCart();
+
+    if (!cart.length) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+
+                <h2>
+                    Ваш кошик порожній
+                </h2>
+
+                <p>
+                    Додайте улюблені позиції з колекції ÉLORIA.
+                </p>
+
+                <a
+                    href="index.html"
+                    class="catalog-btn">
+
+                    Перейти до каталогу
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    let subtotal = 0;
+
+    let productsHTML = "";
+
+    cart.forEach(item => {
+
+        const product = getProductById(item.id);
+
+        if (!product) {
+            return;
+        }
+
+        const price = Number(product.price);
+
+        const qty = Number(item.qty);
+
+        if (!Number.isFinite(price) || !Number.isFinite(qty)) {
+            return;
+        }
+
+        const total = price * qty;
+
+        subtotal += total;
+
+        productsHTML += `
+
+            <article
+                class="cart-item"
+                data-cart-id="${product.id}">
+
+                <a
+                    href="product.html?id=${encodeURIComponent(product.id)}">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        class="cart-image"
+                        onerror="this.src='images/dessert.png.png'">
+
+                </a>
+
+                <div class="item-info">
+
+                    <div class="item-category">
+                        ${product.category}
+                    </div>
+
+                    <h3>
+                        <a
+                            href="product.html?id=${encodeURIComponent(product.id)}">
+
+                            ${product.name}
+
+                        </a>
+                    </h3>
+
+                    <div class="item-price">
+                        ${money(price)}
+                    </div>
+
+                </div>
+
+                <div class="item-actions">
+
+                    <div class="item-total">
+                        ${money(total)}
+                    </div>
+
+                    <div class="quantity-control">
+
+                        <button
+                            onclick="changeCartQuantity('${product.id}', -1)">
+                            −
+                        </button>
+
+                        <span>
+                            ${qty}
+                        </span>
+
+                        <button
+                            onclick="changeCartQuantity('${product.id}', 1)">
+                            +
+                        </button>
+
+                    </div>
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeFromCart('${product.id}')">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Видалити
+
+                    </button>
+
+                </div>
+
+            </article>
+        `;
+    });
+
+    if (!productsHTML) {
+
+        localStorage.removeItem("eloriaCart");
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+
+                <h2>
+                    Ваш кошик порожній
+                </h2>
+
+                <p>
+                    Додайте улюблені позиції з колекції ÉLORIA.
+                </p>
+
+                <a
+                    href="index.html"
+                    class="catalog-btn">
+
+                    Перейти до каталогу
+
+                </a>
+
+            </div>
+
+        `;
+
+        updateCartCount();
+
+        return;
+    }
+
+    const delivery = 0;
+
+    const total = subtotal + delivery;
+
+    container.innerHTML = `
+
+        <div class="cart-layout">
+
+            <div class="cart-products">
+
+                ${productsHTML}
+
+            </div>
+
+            <aside class="summary">
+
+                <h2 class="summary-title">
+                    Підсумок
+                </h2>
+
+                <div class="summary-line">
+
+                    <span>
+                        Товари
+                    </span>
+
+                    <strong>
+                        ${money(subtotal)}
+                    </strong>
+
+                </div>
+
+                <div class="summary-line">
+
+                    <span>
+                        Доставка
+                    </span>
+
+                    <span>
+                        Уточнюється
+                    </span>
+
+                </div>
+
+                <div class="summary-line total">
+
+                    <span>
+                        Разом
+                    </span>
+
+                    <strong>
+                        ${money(total)}
+                    </strong>
+
+                </div>
+
+                <a
+    href="checkout.html"
+    class="checkout-btn">
+
+    <i class="fa-solid fa-credit-card"></i>
+
+    Оформити замовлення
+
+</a>
+
+                <button
+                    class="clear-btn"
+                    onclick="clearCart()">
+
+                    Очистити кошик
+
+                </button>
+
+            </aside>
+
+        </div>
+    `;
+}
+
+function changeCartQuantity(id, change) {
+
+    const cart = getCart();
+
+    const item = cart.find(
+        product => product.id === id
+    );
+
+    if (!item) {
+        return;
+    }
+
+    item.qty = Number(item.qty) + change;
+
+    if (item.qty <= 0) {
+
+        const index =
+            cart.findIndex(
+                product => product.id === id
+            );
+
+        cart.splice(index, 1);
+    }
+
+    saveCart(cart);
+
+    renderCartPage();
+}
+
+function removeFromCart(id) {
+
+    const cart = getCart().filter(
+        item => item.id !== id
+    );
+
+    saveCart(cart);
+
+    renderCartPage();
+}
+
+function clearCart() {
+
+    if (!getCart().length) {
+        return;
+    }
+
+    const answer =
+        confirm("Очистити весь кошик?");
+
+    if (!answer) {
+        return;
+    }
+
+    localStorage.removeItem("eloriaCart");
+
+    updateCartCount();
+
+    renderCartPage();
+}
+
+
+/* =========================================================
+   ЗАПУСК КОШИКА
+========================================================= */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        renderCartPage
+    );
+
+} else {
+
+    renderCartPage();
+
+}
+
+</script>
+
+</body>
+</html>

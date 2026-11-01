@@ -1,0 +1,3119 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ÉLORIA — Створи власний торт</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+    --bg: #fffaf6;
+    --white: #ffffff;
+    --pink: #f7e5e2;
+    --light: #fff3f0;
+    --rose: #bd8588;
+    --rose-dark: #98666b;
+    --gold: #c5a16d;
+    --text: #604b47;
+    --muted: #95817b;
+    --border: #eadbd5;
+    --shadow: 0 12px 35px #79564c12;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: min(1200px, calc(100% - 32px));
+    margin: auto;
+}
+
+.header {
+    background: #fffaf6f5;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+}
+
+.header-inner {
+    min-height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    font: 600 34px 'Cormorant Garamond', serif;
+    letter-spacing: 5px;
+    color: var(--rose-dark);
+    text-decoration: none;
+}
+
+.logo small {
+    display: block;
+    text-align: center;
+    font: 8px Montserrat, sans-serif;
+    letter-spacing: 3px;
+    margin-top: 3px;
+}
+
+.back {
+    border: 1px solid var(--border);
+    padding: 12px 15px;
+    text-decoration: none;
+    font-size: 11px;
+    background: white;
+    color: var(--text);
+    transition: .2s;
+}
+
+.back:hover {
+    background: var(--light);
+    border-color: var(--rose);
+}
+
+.hero {
+    min-height: 310px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 100px 20px;
+    background:
+      linear-gradient(#fff8f380, #fff8f390),
+        url("images/Eloria_custom-cake.png") center/cover,
+        var(--pink);
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.hero h1 {
+    font: 500 clamp(48px, 7vw, 78px)/.95 'Cormorant Garamond', serif;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    display: block;
+    font-style: italic;
+    color: var(--rose);
+}
+
+.hero p {
+    max-width: 580px;
+    margin: auto;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.intro {
+    text-align: center;
+    padding: 40px 0 18px;
+}
+
+.intro h2 {
+    font: 500 42px 'Cormorant Garamond', serif;
+    margin: 12px 0;
+}
+
+.intro p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.builder {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, .82fr);
+    gap: 24px;
+    align-items: start;
+    padding: 20px 0 70px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+}
+
+.panel-heading {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+
+.step {
+    width: 37px;
+    height: 37px;
+    flex: 0 0 37px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--light);
+    color: var(--rose-dark);
+    font: 22px 'Cormorant Garamond', serif;
+}
+
+.panel h3 {
+    font: 600 27px 'Cormorant Garamond', serif;
+    margin: 0 0 5px;
+}
+
+.panel-heading p {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.field-group {
+    margin-top: 20px;
+}
+
+.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.shape-grid,
+.size-grid,
+.option-grid,
+.flavour-grid,
+.decor-grid,
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.shape-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    min-width: 0;
+    border-radius: 14px;
+    position: relative;
+    transition: .2s;
+}
+
+.shape-card.active,
+.choice.active,
+.flavour-card.active,
+.decor-choice.active,
+.greeting-card.active {
+    border-color: var(--rose);
+    background: #fff2ef;
+    box-shadow: inset 0 0 0 1px #bd858822;
+}
+
+.shape-card:hover,
+.choice:hover,
+.flavour-card:hover,
+.decor-choice:hover,
+.greeting-card:hover {
+    border-color: var(--rose);
+}
+
+.shape-card.active:after {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: var(--rose-dark);
+}
+
+.shape-card img,
+.shape-image-placeholder {
+    width: 100%;
+    height: 155px;
+    object-fit: contain;
+    display: block;
+    background: #fff9f7;
+    border-radius: 10px;
+}
+
+.shape-image-placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-size: 32px;
+}
+
+.shape-card strong {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.shape-card small {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.from-price {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rose-dark);
+}
+
+.choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    padding: 13px 11px;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    min-width: 0;
+    border-radius: 10px;
+    transition: .2s;
+}
+
+.choice.active:after {
+    content: "✓";
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    color: var(--rose-dark);
+}
+
+.choice-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--rose-dark);
+}
+
+.choice strong {
+    display: block;
+    font-size: 11px;
+    line-height: 1.6;
+    padding-right: 7px;
+}
+
+.choice small {
+    display: block;
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+}
+
+.size-card {
+    padding: 13px 10px;
+}
+
+.size-card strong {
+    padding-right: 15px;
+}
+
+.flavour-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 9px;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    text-align: left;
+    min-width: 0;
+    transition: .2s;
+    border-radius: 12px;
+}
+
+.flavour-card.active:after {
+    content: "✓";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #fff;
+    color: var(--rose-dark);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.flavour-card img {
+    width: 100%;
+    height: 112px;
+    object-fit: contain;
+    background: #fffaf7;
+    border-radius: 8px;
+}
+
+.flavour-card strong {
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.flavour-card small {
+    font-size: 9px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.decor-heading {
+    font: 500 22px 'Cormorant Garamond', serif;
+    margin: 0 0 6px;
+}
+
+.decor-description {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 0 0 17px;
+}
+
+.decor-choice {
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    text-align: center;
+    min-width: 0;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.decor-choice img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    padding: 5px;
+    display: block;
+    background: #fffaf7;
+}
+
+.decor-choice span {
+    display: block;
+    min-height: 38px;
+    padding: 8px 7px;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.select-field,
+.text-field,
+.textarea-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    outline: none;
+    border-radius: 8px;
+}
+
+.select-field,
+.text-field {
+    min-height: 44px;
+}
+
+.textarea-field {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.select-field:focus,
+.text-field:focus,
+.textarea-field:focus {
+    border-color: var(--rose);
+}
+
+.hint {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 8px 0 0;
+}
+
+.selection-note {
+    background: #fff6f2;
+    padding: 12px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.8;
+    border-radius: 10px;
+}
+
+.greeting-card {
+    padding: 8px;
+    border: 1px solid var(--border);
+    background: #fffdfb;
+    color: var(--text);
+    text-align: left;
+    min-width: 0;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.greeting-card img {
+    width: 100%;
+    height: 145px;
+    object-fit: contain;
+    display: block;
+    background: #fffaf7;
+    border-radius: 8px;
+}
+
+.greeting-card strong {
+    display: block;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.greeting-card small {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    margin-top: 4px;
+}
+
+.custom-card-option {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 13px;
+    margin-top: 12px;
+    background: #fff8f5;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.custom-card-option input,
+.check-row input {
+    accent-color: var(--rose-dark);
+}
+
+.upload-box {
+    display: block;
+    margin-top: 12px;
+    padding: 16px;
+    border: 1px dashed #d9b9b0;
+    text-align: center;
+    line-height: 1.8;
+    background: #fffaf7;
+}
+
+.upload-box i {
+    display: block;
+    color: var(--rose);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.upload-box input {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.preview-column {
+    position: sticky;
+    top: 95px;
+}
+
+.preview-card {
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.preview-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+}
+
+.preview-top h3 {
+    font: 600 26px 'Cormorant Garamond', serif;
+    margin: 0;
+}
+
+.online {
+    font-size: 9px;
+    color: #78917a;
+    white-space: nowrap;
+}
+
+.online:before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #86a88a;
+    margin-right: 5px;
+}
+
+.cake-stage {
+    min-height: 300px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(ellipse, #fff 0%, #fff9f6 60%, #f8eae5 100%);
+    overflow: hidden;
+}
+
+#cakePreview {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    max-width: 410px;
+    aspect-ratio: 1/1;
+    max-height: 410px;
+    object-fit: contain;
+    padding: 15px;
+    filter: drop-shadow(0 15px 12px #67443c12);
+}
+
+.cake-text-overlay {
+    position: absolute;
+    z-index: 2;
+    top: 52%;
+    left: 50%;
+    width: 62%;
+    transform: translate(-50%, -50%);
+    font: 600 clamp(14px, 2vw, 23px)/1.15 'Cormorant Garamond', serif;
+    text-align: center;
+    color: var(--rose-dark);
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 2px white;
+    pointer-events: none;
+}
+
+.preview-caption {
+    padding: 13px;
+    border-top: 1px solid #f1e4df;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.price-card {
+    margin-top: 16px;
+    padding: 23px;
+    border: 1px solid #e8d3ca;
+    background: linear-gradient(140deg, #fff4f0, #fffdf9);
+    border-radius: 16px;
+}
+
+.price-card h3 {
+    font: 500 29px 'Cormorant Garamond', serif;
+    margin: 8px 0;
+}
+
+.price-card > p {
+    font-size: 10px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.price-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 13px 0;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.price-line strong {
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.price-divider {
+    height: 1px;
+    background: #ead8ce;
+    margin: 18px 0;
+}
+
+.price-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.price-total span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.price-total strong {
+    font: 600 35px 'Cormorant Garamond', serif;
+    color: var(--rose-dark);
+    white-space: nowrap;
+}
+
+.check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 18px 0;
+    font-size: 10px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.check-row input {
+    margin-top: 3px;
+    flex: 0 0 auto;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.btn {
+    min-height: 45px;
+    padding: 12px;
+    border: 1px solid var(--rose);
+    background: var(--rose);
+    color: white;
+    font-size: 10px;
+    letter-spacing: .3px;
+    transition: .2s;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background: var(--rose-dark);
+    border-color: var(--rose-dark);
+}
+
+.btn.secondary {
+    background: white;
+    color: var(--rose-dark);
+    border-color: var(--border);
+}
+
+.btn.secondary:hover {
+    background: var(--light);
+    border-color: var(--rose);
+}
+
+.btn.full {
+    grid-column: 1/-1;
+}
+
+.footer {
+    padding: 28px 15px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.footer strong {
+    font: 600 22px 'Cormorant Garamond', serif;
+    letter-spacing: 3px;
+    color: var(--rose-dark);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: #47312f66;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-card {
+    width: min(560px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 16px;
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+}
+
+.modal-head h2 {
+    font: 500 34px 'Cormorant Garamond', serif;
+    margin: 0;
+}
+
+.close-modal {
+    border: 0;
+    background: transparent;
+    font-size: 25px;
+    color: var(--rose-dark);
+}
+
+#orderSummary {
+    font-size: 11px;
+    line-height: 2;
+    color: var(--muted);
+    white-space: pre-line;
+    margin: 20px 0;
+    overflow-wrap: anywhere;
+}
+
+.toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 80;
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
+    max-width: 340px;
+    font-size: 11px;
+    line-height: 1.8;
+    display: none;
+    border-radius: 10px;
+}
+
+.toast.show {
+    display: block;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media(max-width: 850px) {
+    .builder {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-column {
+        position: static;
+        grid-row: 1;
+    }
+
+    .cake-stage {
+        min-height: 260px;
+    }
+
+    #cakePreview {
+        max-height: 330px;
+    }
+}
+
+@media(max-width: 480px) {
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .header-inner {
+        min-height: 67px;
+    }
+
+    .logo {
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+
+    .back {
+        padding: 10px;
+        font-size: 9px;
+    }
+
+    .hero {
+        min-height: 260px;
+    }
+
+    .intro h2 {
+        font-size: 34px;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .panel h3 {
+        font-size: 24px;
+    }
+
+    .choice {
+        padding: 10px 7px;
+        gap: 7px;
+    }
+
+    .choice-icon {
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
+        font-size: 11px;
+    }
+
+    .choice strong {
+        font-size: 10px;
+    }
+
+    .choice small {
+        font-size: 8px;
+    }
+
+    .shape-card img,
+    .shape-image-placeholder {
+        height: 115px;
+    }
+
+    .flavour-card img {
+        height: 95px;
+    }
+
+    .decor-choice img {
+        height: 130px;
+    }
+
+    .greeting-card img {
+        height: 125px;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .btn.full {
+        grid-column: auto;
+    }
+
+    .price-total strong {
+        font-size: 30px;
+    }
+}
+
+
+.decor-option-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.decor-option-card .decor-choice {
+    width: 100%;
+    height: 100%;
+}
+
+
+.decor-option-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.decor-option-card .decor-choice {
+    width: 100%;
+    height: 100%;
+}
+
+.view-360-button {
+    min-height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fffaf6;
+    color: var(--rose-dark);
+    font: 600 10px Montserrat, sans-serif;
+    letter-spacing: 1px;
+    transition: .2s;
+}
+
+.view-360-button:hover {
+    background: var(--rose-dark);
+    color: white;
+}
+
+.view-360-button i {
+    margin-right: 6px;
+}
+
+.cake360-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: #382629b8;
+    backdrop-filter: blur(6px);
+}
+
+.cake360-modal.open {
+    display: flex;
+}
+
+.cake360-window {
+    position: relative;
+    width: min(680px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    text-align: center;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.cake360-window h2 {
+    font: 500 34px 'Cormorant Garamond', serif;
+    color: var(--rose-dark);
+}
+
+.cake360-window p {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.cake360-window video {
+    display: block;
+    width: 100%;
+    max-height: 60vh;
+    margin: 18px auto;
+    background: #f7e5e2;
+    border-radius: 8px;
+}
+
+.cake360-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border: 0;
+    background: transparent;
+    color: var(--rose-dark);
+    font-size: 28px;
+}
+
+@media (max-width: 480px) {
+    .cake360-window {
+        padding: 22px 14px;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <small>PÂTISSERIE & CAFÉ</small>
+        </a>
+
+        <a href="price.html" class="back">
+            <i class="fa-solid fa-arrow-left"></i>
+            До каталогу
+        </a>
+    </div>
+</header>
+
+<section class="hero">
+    <div>
+        <span class="eyebrow">VOTRE GÂTEAU PERSONNALISÉ</span>
+        <h1>Створи свій <span>ідеальний торт</span></h1>
+        <p>
+            Обирай форму, розмір, бісквіт, крем і начинку.
+            Ми подбаємо, щоб твій особливий десерт був саме таким,
+            як ти мрієш.
+        </p>
+    </div>
+</section>
+
+<main class="container">
+
+    <section class="intro">
+        <span class="eyebrow">MADE WITH LOVE</span>
+        <h2>Конструктор торта ÉLORIA</h2>
+        <p>Кожна деталь — твій вибір. Ціна змінюється разом із твоїм дизайном.</p>
+    </section>
+
+    <div class="builder">
+
+        <div class="form-column">
+
+            <!-- I. ФОРМА ТА РОЗМІР -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">I</div>
+                    <div>
+                        <h3>Форма та розмір</h3>
+                        <p>Почни зі свого ідеального десерту.</p>
+                    </div>
+                </div>
+
+                <div class="shape-grid" id="shapeOptions">
+
+                    <button type="button" class="shape-card active" data-shape="round">
+                        <img src="images/Round cake with decor.png" alt="Круглий торт">
+                        <strong>Круглий</strong>
+                        <small>Класична елегантність</small>
+                        <span class="from-price">від 3 800 ₴</span>
+                    </button>
+
+                    <button type="button" class="shape-card" data-shape="square">
+                        <img src="images/Square decorated cake.png" alt="Квадратний торт">
+                        <strong>Квадратний</strong>
+                        <small>Сучасна геометрія</small>
+                        <span class="from-price">від 4 000 ₴</span>
+                    </button>
+
+                    <button type="button" class="shape-card" data-shape="two-tier">
+                        <img src="images/Two-tier cake with decor.png" alt="Двоярусний торт">
+                        <strong>Два яруси</strong>
+                        <small>Для особливої події</small>
+                        <span class="from-price">від 7 000 ₴</span>
+                    </button>
+
+                    <button type="button" class="shape-card" data-shape="three-tier">
+                        <img src="images/Three-tier cake with decor.png" alt="Триярусний торт">
+                        <strong>Три яруси</strong>
+                        <small>Грандіозне святкування</small>
+                        <span class="from-price">від 12 000 ₴</span>
+                    </button>
+
+                    <button type="button" class="shape-card" data-shape="custom">
+                        <span class="shape-image-placeholder">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </span>
+                        <strong>Індивідуальний дизайн</strong>
+                        <small>Торт за власним ескізом</small>
+                        <span class="from-price">від 15 000 ₴</span>
+                    </button>
+
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Оберіть розмір торта</label>
+
+                    <div class="size-grid" id="sizeOptions">
+
+                        <button type="button" class="choice size-card" data-size="small">
+                            <span class="choice-icon">
+                                <i class="fa-solid fa-cake-candles"></i>
+                            </span>
+                            <span>
+                                <strong>Малий — 2 кг</strong>
+                                <small>Невелике святкування</small>
+                            </span>
+                        </button>
+
+                        <button type="button" class="choice size-card active" data-size="medium">
+                            <span class="choice-icon">
+                                <i class="fa-solid fa-cake-candles"></i>
+                            </span>
+                            <span>
+                                <strong>Середній — 4 кг</strong>
+                                <small>Для компанії</small>
+                            </span>
+                        </button>
+
+                        <button type="button" class="choice size-card" data-size="large">
+                            <span class="choice-icon">
+                                <i class="fa-solid fa-cake-candles"></i>
+                            </span>
+                            <span>
+                                <strong>Великий — 8 кг</strong>
+                                <small>Для великого свята</small>
+                            </span>
+                        </button>
+
+                        <button type="button" class="choice size-card" data-size="celebration">
+                            <span class="choice-icon">
+                                <i class="fa-solid fa-champagne-glasses"></i>
+                            </span>
+                            <span>
+                                <strong>Святковий — 12 кг</strong>
+                                <small>Для масштабної події</small>
+                            </span>
+                        </button>
+
+                    </div>
+
+                    <div class="selection-note" id="sizeNote">
+                        Обрано середній торт вагою 4 кг.
+                    </div>
+                </div>
+
+                <div class="field-group" id="customDesignGroup" hidden>
+                    <label class="field-label" for="customDescription">
+                        Опиши індивідуальний дизайн
+                    </label>
+                    <textarea
+                        id="customDescription"
+                        class="textarea-field"
+                        placeholder="Опиши форму, оформлення або власну ідею..."
+                    ></textarea>
+                    <p class="hint">
+                        Остаточну вартість нестандартного дизайну уточнить менеджер.
+                    </p>
+                </div>
+            </section>
+
+            <!-- II. БІСКВІТ -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">II</div>
+                    <div>
+                        <h3>Бісквіт</h3>
+                        <p>Можна поєднати до двох смаків.</p>
+                    </div>
+                </div>
+
+                <div class="flavour-grid" id="spongeOptions">
+
+                    <button type="button" class="flavour-card active"
+                        data-group="sponge"
+                        data-name="Ванільний бісквіт"
+                        data-price="0">
+                        <img src="images/vanilla sponge cake.png" alt="Ванільний бісквіт">
+                        <strong>Ванільний</strong>
+                        <small>Ніжний класичний смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="sponge"
+                        data-name="Шоколадний бісквіт"
+                        data-price="250">
+                        <img src="images/chocolate sponge cake.png" alt="Шоколадний бісквіт">
+                        <strong>Шоколадний</strong>
+                        <small>Насичений смак какао</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="sponge"
+                        data-name="Фісташковий бісквіт"
+                        data-price="350">
+                        <img src="images/Pistachio sponge cake.png" alt="Фісташковий бісквіт">
+                        <strong>Фісташковий</strong>
+                        <small>Витончений горіховий смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="sponge"
+                        data-name="Лимонний бісквіт"
+                        data-price="200">
+                        <img src="images/lemon sponge cake.png" alt="Лимонний бісквіт">
+                        <strong>Лимонний</strong>
+                        <small>Свіжий цитрусовий акцент</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="sponge"
+                        data-name="Ягідний бісквіт"
+                        data-price="300">
+                        <img src="images/berry sponge cake.png" alt="Ягідний бісквіт">
+                        <strong>Ягідний</strong>
+                        <small>Ніжні ягідні нотки</small>
+                    </button>
+
+                </div>
+
+                <p class="hint">Можна обрати один або два смаки бісквіта.</p>
+            </section>
+
+            <!-- III. КРЕМ -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">III</div>
+                    <div>
+                        <h3>Крем</h3>
+                        <p>Обери крем, який доповнить бісквіт.</p>
+                    </div>
+                </div>
+
+                <div class="flavour-grid" id="creamOptions">
+
+                    <button type="button" class="flavour-card active"
+                        data-group="cream"
+                        data-name="Ванільний крем"
+                        data-price="0">
+                        <img src="images/vanilla cream.png" alt="Ванільний крем">
+                        <strong>Ванільний</strong>
+                        <small>Ніжний та ароматний</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="cream"
+                        data-name="Маскарпоне"
+                        data-price="350">
+                        <img src="images/Mascarpone cheese cream.png" alt="Крем маскарпоне">
+                        <strong>Маскарпоне</strong>
+                        <small>Вершкова ніжність</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="cream"
+                        data-name="Шоколадний крем"
+                        data-price="250">
+                        <img src="images/chocolate cream.png" alt="Шоколадний крем">
+                        <strong>Шоколадний</strong>
+                        <small>Насичений шоколадний смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="cream"
+                        data-name="Фісташковий крем"
+                        data-price="450">
+                        <img src="images/pistachio cream.png" alt="Фісташковий крем">
+                        <strong>Фісташковий</strong>
+                        <small>Витончений горіховий крем</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="cream"
+                        data-name="Вершковий крем"
+                        data-price="150">
+                        <img src="images/buttercream.png" alt="Вершковий крем">
+                        <strong>Вершковий</strong>
+                        <small>Легкий класичний крем</small>
+                    </button>
+
+                </div>
+
+                <p class="hint">Можна обрати один або два креми.</p>
+            </section>
+
+            <!-- IV. ПРОШАРОК -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">IV</div>
+                    <div>
+                        <h3>Прошарок</h3>
+                        <p>Додай фруктову, ягідну або карамельну нотку.</p>
+                    </div>
+                </div>
+
+                <div class="flavour-grid" id="fillingOptions">
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Карамель"
+                        data-price="150">
+                        <img src="images/caramel filling.png" alt="Карамельний прошарок">
+                        <strong>Карамель</strong>
+                        <small>М'який карамельний смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Манго-маракуя"
+                        data-price="300">
+                        <img src="images/Mango passion fruit filling.png" alt="Манго-маракуя">
+                        <strong>Манго-маракуя</strong>
+                        <small>Екзотичний фруктовий акцент</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Груша"
+                        data-price="200">
+                        <img src="images/pear filling.png" alt="Грушевий прошарок">
+                        <strong>Груша</strong>
+                        <small>Делікатний фруктовий смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Фісташка"
+                        data-price="350">
+                        <img src="images/pistachio filling.png" alt="Фісташковий прошарок">
+                        <strong>Фісташка</strong>
+                        <small>Насичений горіховий смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Малина"
+                        data-price="250">
+                        <img src="images/raspberry filling.png" alt="Малиновий прошарок">
+                        <strong>Малина</strong>
+                        <small>Яскрава ягідна кислинка</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Полуниця"
+                        data-price="200">
+                        <img src="images/strawberry filling.png" alt="Полуничний прошарок">
+                        <strong>Полуниця</strong>
+                        <small>Ніжний ягідний смак</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Білий шоколад"
+                        data-price="250">
+                        <img src="images/White chocolate filling.png" alt="Білий шоколад">
+                        <strong>Білий шоколад</strong>
+                        <small>М'яка шоколадна солодкість</small>
+                    </button>
+
+                    <button type="button" class="flavour-card"
+                        data-group="filling"
+                        data-name="Юзу"
+                        data-price="300">
+                        <img src="images/yuzu filling.png" alt="Юзу">
+                        <strong>Юзу</strong>
+                        <small>Вишуканий цитрусовий акцент</small>
+                    </button>
+
+                </div>
+
+                <p class="hint">Можна обрати до двох прошарків.</p>
+            </section>
+
+            <!-- V. ДЕКОР -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">V</div>
+                    <div>
+                        <h3>Декор торта</h3>
+                        <p>Фотографії оформлення змінюються відповідно до форми.</p>
+                    </div>
+                </div>
+
+                <h4 class="decor-heading" id="decorTitle">Оформлення: круглий торт</h4>
+
+                <p class="decor-description" id="decorDescription">
+                    Обери оформлення, яке тобі до вподоби.
+                </p>
+
+                <div class="decor-grid" id="decorOptions"></div>
+
+                <div class="field-group">
+                    <label class="field-label" for="cakeText">Напис на торті</label>
+                    <input
+                        type="text"
+                        id="cakeText"
+                        class="text-field"
+                        maxlength="70"
+                        placeholder="Наприклад: З любов'ю, ÉLORIA"
+                    >
+                    <p class="hint">
+                        Напис буде враховано під час оформлення замовлення.
+                    </p>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="decorNote">Побажання до декору</label>
+                    <textarea
+                        id="decorNote"
+                        class="textarea-field"
+                        placeholder="Наприклад: ніжно-рожеві квіти, перлинні деталі..."
+                    ></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="decorColor">
+                        Бажаний колір оформлення
+                    </label>
+
+                    <select id="decorColor" class="select-field">
+                        <option value="Колір як на фото" data-price="0">
+                            Колір як на фото
+                        </option>
+                        <option value="Пудрово-рожевий" data-price="200">
+                            Пудрово-рожевий (+200 ₴)
+                        </option>
+                        <option value="Айворі" data-price="200">
+                            Айворі (+200 ₴)
+                        </option>
+                        <option value="Білий із золотом" data-price="350">
+                            Білий із золотом (+350 ₴)
+                        </option>
+                        <option value="Ніжно-бузковий" data-price="250">
+                            Ніжно-бузковий (+250 ₴)
+                        </option>
+                        <option value="За індивідуальним ескізом" data-price="500">
+                            За індивідуальним ескізом (+500 ₴)
+                        </option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- VI. ТЕМАТИКА -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">VI</div>
+                    <div>
+                        <h3>Тематика свята</h3>
+                        <p>Для якої події створюємо твій десерт?</p>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="occasion">Оберіть подію</label>
+
+                    <select id="occasion" class="select-field">
+                        <option value="День народження">День народження</option>
+                        <option value="Весілля">Весілля</option>
+                        <option value="Річниця">Річниця</option>
+                        <option value="Корпоратив">Корпоратив</option>
+                        <option value="Подарунок">Просто подарунок</option>
+                        <option value="Інша подія">Інша подія</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- VII. ЛИСТІВКА -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">VII</div>
+                    <div>
+                        <h3>Листівка</h3>
+                        <p>Додай теплі слова до свого подарунка.</p>
+                    </div>
+                </div>
+
+                <div class="card-grid" id="greetingOptions">
+
+                    <button type="button" class="greeting-card"
+                        data-card="Happy Birthday card"
+                        data-price="120">
+                        <img src="images/Happy Birthday card.png" alt="Листівка Happy Birthday">
+                        <strong>Happy Birthday</strong>
+                        <small>Святкове привітання</small>
+                    </button>
+
+                    <button type="button" class="greeting-card"
+                        data-card="Happy Birthday card 2"
+                        data-price="120">
+                        <img src="images/Happy Birthday card 2.png" alt="Листівка Happy Birthday 2">
+                        <strong>Happy Birthday — варіант 2</strong>
+                        <small>Святкове привітання</small>
+                    </button>
+
+                    <button type="button" class="greeting-card"
+                        data-card="wedding card"
+                        data-price="150">
+                        <img src="images/wedding card.png" alt="Весільна листівка">
+                        <strong>Wedding</strong>
+                        <small>Для особливого дня</small>
+                    </button>
+
+                    <button type="button" class="greeting-card"
+                        data-card="wedding card 2"
+                        data-price="150">
+                        <img src="images/wedding card 2.png" alt="Весільна листівка 2">
+                        <strong>Wedding — варіант 2</strong>
+                        <small>Елегантне привітання</small>
+                    </button>
+
+                    <button type="button" class="greeting-card"
+                        data-card="greeting card"
+                        data-price="100">
+                        <img src="images/greeting card.png" alt="Вітальна листівка">
+                        <strong>Вітальна листівка</strong>
+                        <small>Універсальний варіант</small>
+                    </button>
+
+                </div>
+
+                <label class="custom-card-option">
+                    <input type="checkbox" id="customCard">
+                    <span>
+                        <strong>Створити власну листівку</strong><br>
+                        Поле для тексту з'явиться лише після вибору цього пункту.
+                    </span>
+                </label>
+
+                <div class="field-group" id="customCardTextGroup" hidden>
+                    <label class="field-label" for="cardMessage">Текст листівки</label>
+                    <textarea
+                        id="cardMessage"
+                        class="textarea-field"
+                        maxlength="300"
+                        placeholder="Напиши власне привітання..."
+                    ></textarea>
+                </div>
+            </section>
+
+            <!-- VIII. ДАТА ТА ДОСТАВКА -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">VIII</div>
+                    <div>
+                        <h3>Дата та доставка</h3>
+                        <p>Вкажи, коли та як бажаєш отримати замовлення.</p>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="orderDate">Дата отримання</label>
+                    <input type="date" id="orderDate" class="text-field" required>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="deliveryTime">Бажаний час</label>
+                    <select id="deliveryTime" class="select-field">
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="delivery">Спосіб отримання</label>
+                    <select id="delivery" class="select-field">
+                        <option value="Самовивіз" data-price="0">Самовивіз — безкоштовно</option>
+                        <option value="Доставка по Києву" data-price="250">Доставка по Києву (+250 ₴)</option>
+                        <option value="Термінова доставка" data-price="450">Термінова доставка (+450 ₴)</option>
+                    </select>
+                </div>
+
+                <div class="field-group" id="addressGroup" hidden>
+                    <label class="field-label" for="deliveryAddress">Адреса доставки</label>
+                    <textarea
+                        id="deliveryAddress"
+                        class="textarea-field"
+                        placeholder="Вулиця, номер будинку, квартира..."
+                    ></textarea>
+                </div>
+            </section>
+
+            <!-- IX. КОНТАКТНІ ДАНІ -->
+
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="step">IX</div>
+                    <div>
+                        <h3>Контактні дані</h3>
+                        <p>Заповни дані, щоб ми могли підтвердити замовлення.</p>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="customerName">Ім'я та прізвище</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        class="text-field"
+                        placeholder="Як до тебе звертатися?"
+                        required
+                    >
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="customerPhone">Номер телефону</label>
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        class="text-field"
+                        placeholder="+380..."
+                        required
+                    >
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="customerEmail">Email</label>
+                    <input
+                        type="email"
+                        id="customerEmail"
+                        class="text-field"
+                        placeholder="name@example.com"
+                    >
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="customerNote">Додатковий коментар</label>
+                    <textarea
+                        id="customerNote"
+                        class="textarea-field"
+                        placeholder="Додаткові побажання до замовлення..."
+                    ></textarea>
+                </div>
+
+                <label class="upload-box">
+                    <i class="fa-regular fa-image"></i>
+                    <strong>Маєш референс свого торта?</strong>
+                    <br>
+                    Можеш додати зображення як приклад бажаного дизайну.
+                    <input type="file" id="referenceImage" accept="image/*">
+                </label>
+
+                <p class="hint" id="referenceName">Файл не вибрано.</p>
+            </section>
+
+        </div>
+
+        <!-- ПОПЕРЕДНІЙ ПЕРЕГЛЯД І ЦІНА -->
+
+        <aside class="preview-column">
+
+            <div class="preview-card">
+                <div class="preview-top">
+                    <h3>Твій десерт</h3>
+                    <span class="online">ÉLORIA ATELIER</span>
+                </div>
+
+                <div class="cake-stage">
+                    <img
+                        id="cakePreview"
+                        src="images/Round cake with decor.png"
+                        alt="Попередній перегляд торта"
+                    >
+                    <div class="cake-text-overlay" id="cakeTextOverlay"></div>
+                </div>
+
+                <div class="preview-caption" id="previewCaption">
+                    Круглий торт · 4 кг · Класичне покриття
+                </div>
+            </div>
+
+            <div class="price-card">
+                <span class="eyebrow">VOTRE CRÉATION</span>
+                <h3>Вартість замовлення</h3>
+                <p>Ціна оновлюється автоматично відповідно до вибраних параметрів.</p>
+
+                <div class="price-line">
+                    <span>Бісквіт</span>
+                    <strong id="spongePrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Крем</span>
+                    <strong id="creamPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Прошарок</span>
+                    <strong id="fillingPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Декор та напис</span>
+                    <strong id="decorPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Колір</span>
+                    <strong id="colorPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Листівка</span>
+                    <strong id="cardPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-line">
+                    <span>Доставка</span>
+                    <strong id="deliveryPrice">0 ₴</strong>
+                </div>
+
+                <div class="price-divider"></div>
+
+                <div class="price-total">
+                    <span>Загальна сума</span>
+                    <strong id="totalPrice">0 ₴</strong>
+                </div>
+
+                <label class="check-row">
+                    <input type="checkbox" id="confirmOrder">
+                    <span>
+                        Підтверджую, що перевірив/перевірила вибрані параметри
+                        та контактні дані.
+                    </span>
+                </label>
+
+                <div class="actions">
+                    <button type="button" class="btn" id="reviewBtn">
+                        <i class="fa-regular fa-clipboard"></i>
+                        Переглянути замовлення
+                    </button>
+
+                    <button type="button" class="btn secondary" id="saveBtn">
+                        <i class="fa-regular fa-bookmark"></i>
+                        Зберегти дизайн
+                    </button>
+
+                    <button type="button" class="btn secondary full" id="resetBtn">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Скинути налаштування
+                    </button>
+                </div>
+
+                <p class="hint">
+                    Збережений дизайн зберігається в цьому браузері.
+                    Перегляд замовлення не означає автоматичного надсилання заявки.
+                </p>
+            </div>
+
+        </aside>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <strong>ÉLORIA</strong>
+    <br>
+    PÂTISSERIE & CAFÉ
+    <br>
+    Створено з любов'ю до деталей.
+</footer>
+
+<!-- ВІКНО ПІДСУМКУ ЗАМОВЛЕННЯ -->
+
+<div class="modal" id="orderModal">
+    <div class="modal-card">
+
+        <div class="modal-head">
+            <h2>Твоє замовлення</h2>
+            <button type="button" class="close-modal" id="closeModal" aria-label="Закрити">
+                &times;
+            </button>
+        </div>
+
+        <div id="orderSummary"></div>
+
+        <div class="price-total">
+            <span>Загальна сума</span>
+            <strong id="modalPrice">0 ₴</strong>
+        </div>
+
+        <p class="hint">
+            Це попередній підсумок. Для фактичного оформлення замовлення
+            потрібне підключення до системи приймання заявок.
+        </p>
+
+        <div class="actions">
+            <button type="button" class="btn secondary" id="modalCloseBtn">
+                Повернутися до конструктора
+            </button>
+            <button type="button" class="btn" id="copyOrderBtn">
+                <i class="fa-regular fa-copy"></i>
+                Скопіювати замовлення
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   ДАНІ ФОРМ ТА ДЕКОРУ
+========================================================= */
+
+const SHAPES = {
+    round: {
+        label: "Круглий",
+        base: 3800,
+        image: "images/Round cake with decor.png",
+        decorations: [
+            {
+                name: "Класичне покриття",
+                price: 0,
+                image: "images/Round cake with decor.png"
+            },
+            {
+                name: "Макарони, безе та ягоди",
+                price: 450,
+                image: "images/Round cake with decor 2.png"
+            },
+            {
+                name: "Квіткове оформлення",
+                price: 650,
+                image: "images/Round cake with decor 3.png"
+            },
+            {
+                name: "Напис і вишуканий декор",
+                price: 850,
+                image: "images/Round cake with decor 4.png"
+            },
+            {
+                name: "Напис та святкове оформлення",
+                price: 1100,
+                image: "images/Round cake with decor 5.png"
+            },
+            {
+                name: "Вишуканий декор",
+                price: 1400,
+                image: "images/Round cake with decor 6.png"
+            }
+        ]
+    },
+
+    square: {
+        label: "Квадратний",
+        base: 4000,
+        image: "images/Square decorated cake.png",
+        decorations: [
+            {
+                name: "Класичне покриття",
+                price: 0,
+                image: "images/Square decorated cake.png"
+            },
+            {
+                name: "Макарони, безе та ягоди",
+                price: 500,
+                image: "images/Square decorated cake  2.png"
+            },
+            {
+                name: "Квіткове оформлення",
+                price: 750,
+                image: "images/Square decorated cake  3.png"
+            },
+            {
+                name: "Напис і вишуканий декор",
+                price: 900,
+                image: "images/Square decorated cake  4.png"
+            },
+            {
+                name: "Напис та святкове оформлення",
+                price: 1100,
+                image: "images/Square decorated cake  5.png"
+            },
+            {
+                name: "Вишуканий декор",
+                price: 1500,
+                image: "images/Square decorated cake  6.png"
+            }
+        ]
+    },
+
+    "two-tier": {
+        label: "Два яруси",
+        base: 7000,
+        image: "images/Two-tier cake with decor.png",
+        decorations: [
+            {
+                name: "Класичне покриття",
+                price: 0,
+                image: "images/Two-tier cake with decor.png"
+            },
+            {
+                name: "Макарони, безе та ягоди",
+                price: 750,
+                image: "images/Two-tier cake with decor 2.png"
+            },
+            {
+                name: "Квіткове оформлення",
+                price: 1000,
+                image: "images/Two-tier cake with decor 3.png"
+            },
+            {
+                name: "Напис і вишуканий декор",
+                price: 1300,
+                image: "images/Two-tier cake with decor 4.png"
+            },
+            {
+                name: "Вишуканий декор",
+                price: 1500,
+                image: "images/Two-tier cake with decor 5.png"
+            }
+        ]
+    },
+
+    "three-tier": {
+        label: "Три яруси",
+        base: 12000,
+        image: "images/Three-tier cake with decor.png",
+        decorations: [
+            {
+                name: "Класичне покриття",
+                price: 0,
+                image: "images/Three-tier cake with decor.png"
+            },
+            {
+                name: "Макарони, безе та ягоди",
+                price: 750,
+                image: "images/Three-tier cake with decor 2.png"
+            },
+            {
+                name: "Квіткове оформлення",
+                price: 1000,
+                image: "images/Three-tier cake with decor 3.png"
+            },
+            {
+                name: "Напис і вишуканий декор",
+                price: 1300,
+                image: "images/Three-tier cake with decor 4.png"
+            },
+            {
+                name: "Вишуканий декор",
+                price: 1800,
+                image: "images/Three-tier cake with decor 5.png"
+            }
+        ]
+    },
+
+    custom: {
+        label: "Індивідуальний дизайн",
+        base: 15000,
+        image: "images/Round cake with decor 6.png",
+        decorations: [
+            {
+                name: "Класичне покриття",
+                price: 0,
+                image: "images/Round cake with decor.png"
+            },
+            {
+                name: "Макарони, безе та ягоди",
+                price: 450,
+                image: "images/Round cake with decor 2.png"
+            },
+            {
+                name: "Квіткове оформлення",
+                price: 650,
+                image: "images/Round cake with decor 3.png"
+            },
+            {
+                name: "Напис і вишуканий декор",
+                price: 850,
+                image: "images/Round cake with decor 4.png"
+            },
+            {
+                name: "Вишуканий декор",
+                price: 1400,
+                image: "images/Round cake with decor 6.png"
+            }
+        ]
+    }
+};
+
+/* =========================================================
+   РОЗМІРИ ТОРТА
+========================================================= */
+
+const SIZE_INFO = {
+    small: {
+        label: "Малий",
+        weight: 2,
+        price: 0
+    },
+    medium: {
+        label: "Середній",
+        weight: 4,
+        price: 1200
+    },
+    large: {
+        label: "Великий",
+        weight: 8,
+        price: 4000
+    },
+    celebration: {
+        label: "Святковий",
+        weight: 12,
+        price: 6500
+    }
+};
+
+/* =========================================================
+   СТАН КОНСТРУКТОРА
+========================================================= */
+
+const state = {
+    shape: "round",
+    size: "medium",
+    decorIndex: 0,
+    card: "",
+    customCard: false
+};
+
+const $ = id => document.getElementById(id);
+
+const money = value =>
+    Math.round(value).toLocaleString("uk-UA") + " ₴";
+
+/* =========================================================
+   ПОВІДОМЛЕННЯ
+========================================================= */
+
+function showToast(message) {
+    const toast = $("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3200);
+}
+
+/* =========================================================
+   ОТРИМАННЯ ВИБРАНИХ ПАРАМЕТРІВ
+========================================================= */
+
+function getSize() {
+    return SIZE_INFO[state.size];
+}
+
+function getShape() {
+    return SHAPES[state.shape];
+}
+
+function getDecor() {
+    const shape = getShape();
+
+    return shape.decorations[state.decorIndex] || shape.decorations[0];
+}
+
+function getGroupPrice(groupId) {
+    let sum = 0;
+
+    $(groupId).querySelectorAll("[data-group].active").forEach(button => {
+        sum += Number(button.dataset.price || 0);
+    });
+
+    return sum;
+}
+
+function getGroupNames(groupId) {
+    return [...$(groupId).querySelectorAll("[data-group].active")]
+        .map(button => button.dataset.name);
+}
+
+/* =========================================================
+   РОЗРАХУНОК ЦІНИ
+========================================================= */
+
+function getDecorPrice() {
+    let price = getDecor().price;
+
+    if ($("cakeText").value.trim()) {
+        price += 150;
+    }
+
+    return price;
+}
+
+function getCardPrice() {
+    if (state.customCard) {
+        return 150;
+    }
+
+    if (!state.card) {
+        return 0;
+    }
+
+    const button = [...document.querySelectorAll("[data-card]")]
+        .find(item => item.dataset.card === state.card);
+
+    return button ? Number(button.dataset.price || 0) : 0;
+}
+
+function calculatePrice() {
+    const colorOption = $("decorColor").selectedOptions[0];
+    const deliveryOption = $("delivery").selectedOptions[0];
+
+    const parts = {
+        cake: getShape().base + getSize().price,
+        sponge: getGroupPrice("spongeOptions"),
+        cream: getGroupPrice("creamOptions"),
+        filling: getGroupPrice("fillingOptions"),
+        decor: getDecorPrice(),
+        color: Number(colorOption.dataset.price || 0),
+        card: getCardPrice(),
+        delivery: Number(deliveryOption.dataset.price || 0)
+    };
+
+    const total = Object.values(parts).reduce(
+        (sum, value) => sum + value,
+        0
+    );
+
+    $("spongePrice").textContent = money(parts.sponge);
+    $("creamPrice").textContent = money(parts.cream);
+    $("fillingPrice").textContent = money(parts.filling);
+    $("decorPrice").textContent = money(parts.decor);
+    $("colorPrice").textContent = money(parts.color);
+    $("cardPrice").textContent = money(parts.card);
+    $("deliveryPrice").textContent = money(parts.delivery);
+    $("totalPrice").textContent = money(total);
+    $("modalPrice").textContent = money(total);
+
+    return {
+        parts,
+        total
+    };
+}
+
+/* =========================================================
+   ВІДОБРАЖЕННЯ ДЕКОРУ ВІДПОВІДНО ДО ФОРМИ
+========================================================= */
+
+function renderDecor() {
+    const shape = getShape();
+
+    $("decorTitle").textContent =
+        "Оформлення: " + shape.label.toLowerCase() + " торт";
+
+    $("decorDescription").textContent =
+        "Оберіть оформлення. Усі варіанти нижче відповідають вибраній формі торта.";
+
+    const grid = $("decorOptions");
+
+    grid.innerHTML = "";
+
+    shape.decorations.forEach((decor, index) => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className =
+            "decor-choice" + (index === state.decorIndex ? " active" : "");
+
+        const img = document.createElement("img");
+
+        img.src = decor.image;
+        img.alt = decor.name;
+        img.loading = "lazy";
+
+        const caption = document.createElement("span");
+
+        caption.textContent = decor.name + (
+            decor.price
+                ? " · +" + money(decor.price)
+                : " · Без доплати"
+        );
+
+        img.onerror = function () {
+            this.onerror = null;
+            this.style.display = "none";
+
+            const placeholder = document.createElement("div");
+
+            placeholder.className = "shape-image-placeholder";
+            placeholder.innerHTML =
+                '<i class="fa-solid fa-cake-candles"></i>';
+
+            button.insertBefore(placeholder, caption);
+        };
+
+        button.append(img, caption);
+
+        button.addEventListener("click", () => {
+            state.decorIndex = index;
+
+            renderDecor();
+            updatePreview();
+            calculatePrice();
+        });
+
+        grid.appendChild(button);
+    });
+}
+
+/* =========================================================
+   ОНОВЛЕННЯ ВИБОРУ ФОРМИ
+========================================================= */
+
+function updateShapeSelection() {
+    document.querySelectorAll("[data-shape]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.shape === state.shape
+        );
+    });
+
+    $("customDesignGroup").hidden = state.shape !== "custom";
+}
+
+/* =========================================================
+   ОНОВЛЕННЯ ВИБОРУ РОЗМІРУ
+========================================================= */
+
+function updateSizeSelection() {
+    document.querySelectorAll("[data-size]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.size === state.size
+        );
+    });
+
+    $("sizeNote").textContent =
+        "Обрано " +
+        getSize().label.toLowerCase() +
+        " торт вагою " +
+        getSize().weight +
+        " кг.";
+}
+
+/* =========================================================
+   ВИБІР ЛИСТІВКИ
+========================================================= */
+
+function updateCardSelection() {
+    document.querySelectorAll("[data-card]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            !state.customCard && button.dataset.card === state.card
+        );
+    });
+
+    $("customCard").checked = state.customCard;
+    $("customCardTextGroup").hidden = !state.customCard;
+}
+
+/* =========================================================
+   ПОПЕРЕДНІЙ ПЕРЕГЛЯД
+========================================================= */
+
+function updatePreview() {
+    const decor = getDecor();
+    const preview = $("cakePreview");
+
+    preview.onerror = function () {
+        this.onerror = null;
+        this.src = getShape().image;
+    };
+
+    preview.src = decor.image;
+    preview.alt = getShape().label + " торт — " + decor.name;
+
+    $("cakeTextOverlay").textContent =
+        $("cakeText").value.trim();
+
+    $("previewCaption").textContent =
+        getShape().label +
+        " торт · " +
+        getSize().weight +
+        " кг · " +
+        decor.name;
+}
+
+/* =========================================================
+   ЗАГАЛЬНЕ ОНОВЛЕННЯ
+========================================================= */
+
+function updateAll() {
+    updateShapeSelection();
+    updateSizeSelection();
+    renderDecor();
+    updateCardSelection();
+    updatePreview();
+    calculatePrice();
+}
+
+/* =========================================================
+   ВИБІР ДО ДВОХ СМАКІВ У КОЖНІЙ КАТЕГОРІЇ
+========================================================= */
+
+function setupFlavourGroup(groupId, maxCount) {
+    $(groupId).querySelectorAll("[data-group]").forEach(button => {
+        button.addEventListener("click", () => {
+            const isActive = button.classList.contains("active");
+
+            if (!isActive) {
+                const selected =
+                    $(groupId).querySelectorAll("[data-group].active");
+
+                if (selected.length >= maxCount) {
+                    showToast("Можна обрати не більше двох смаків.");
+                    return;
+                }
+
+                button.classList.add("active");
+            } else {
+                button.classList.remove("active");
+            }
+
+            updatePreview();
+            calculatePrice();
+        });
+    });
+}
+
+/* =========================================================
+   ОБРОБКА ЗМІНИ ФОРМИ
+========================================================= */
+
+document.querySelectorAll("[data-shape]").forEach(button => {
+    button.addEventListener("click", () => {
+        state.shape = button.dataset.shape;
+        state.decorIndex = 0;
+
+        updateAll();
+    });
+});
+
+/* =========================================================
+   ОБРОБКА ЗМІНИ РОЗМІРУ
+========================================================= */
+
+document.querySelectorAll("[data-size]").forEach(button => {
+    button.addEventListener("click", () => {
+        state.size = button.dataset.size;
+
+        updateSizeSelection();
+        updatePreview();
+        calculatePrice();
+    });
+});
+
+/* =========================================================
+   ПІДКЛЮЧЕННЯ ВИБОРУ СМАКІВ
+========================================================= */
+
+setupFlavourGroup("spongeOptions", 2);
+setupFlavourGroup("creamOptions", 2);
+setupFlavourGroup("fillingOptions", 2);
+
+/* =========================================================
+   ВИБІР ГОТОВОЇ ЛИСТІВКИ
+========================================================= */
+
+document.querySelectorAll("[data-card]").forEach(button => {
+    button.addEventListener("click", () => {
+        state.customCard = false;
+        state.card = button.dataset.card;
+
+        $("cardMessage").value = "";
+
+        updateCardSelection();
+        calculatePrice();
+    });
+});
+
+/* =========================================================
+   ВЛАСНА ЛИСТІВКА
+========================================================= */
+
+$("customCard").addEventListener("change", event => {
+    state.customCard = event.target.checked;
+
+    if (state.customCard) {
+        state.card = "";
+
+        document.querySelectorAll("[data-card]").forEach(button => {
+            button.classList.remove("active");
+        });
+    } else {
+        $("cardMessage").value = "";
+    }
+
+    updateCardSelection();
+    calculatePrice();
+});
+
+/* =========================================================
+   ПОКАЗ АДРЕСИ ДЛЯ ДОСТАВКИ
+========================================================= */
+
+$("delivery").addEventListener("change", () => {
+    $("addressGroup").hidden =
+        $("delivery").value === "Самовивіз";
+
+    calculatePrice();
+});
+
+/* =========================================================
+   ОНОВЛЕННЯ ПРИ ЗМІНІ ПОЛІВ
+========================================================= */
+
+[
+    "cakeText",
+    "decorNote",
+    "customDescription",
+    "decorColor",
+    "delivery",
+    "cardMessage",
+    "occasion",
+    "orderDate",
+    "deliveryTime",
+    "deliveryAddress",
+    "customerName",
+    "customerPhone",
+    "customerEmail",
+    "customerNote"
+].forEach(id => {
+    $(id).addEventListener("input", () => {
+        updatePreview();
+        calculatePrice();
+    });
+
+    $(id).addEventListener("change", () => {
+        updatePreview();
+        calculatePrice();
+    });
+});
+
+/* =========================================================
+   ВИБІР ФАЙЛУ-РЕФЕРЕНСУ
+========================================================= */
+
+$("referenceImage").addEventListener("change", event => {
+    const file = event.target.files[0];
+
+    $("referenceName").textContent = file
+        ? "Обраний файл: " + file.name
+        : "Файл не вибрано.";
+});
+
+/* =========================================================
+   ФОРМУВАННЯ ДАНИХ ЗАМОВЛЕННЯ
+========================================================= */
+
+function makeOrderData() {
+    const result = calculatePrice();
+
+    const reference = $("referenceImage").files[0];
+
+    return {
+        id: "ELORIA-" + Date.now(),
+        type: "Індивідуальний торт",
+
+        shape: getShape().label,
+        size: getSize().label,
+        weight: getSize().weight + " кг",
+
+        sponge: getGroupNames("spongeOptions"),
+        cream: getGroupNames("creamOptions"),
+        filling: getGroupNames("fillingOptions"),
+
+        decor: getDecor().name,
+        decorImage: getDecor().image,
+
+        color: $("decorColor").value,
+        cakeText: $("cakeText").value.trim(),
+        decorNote: $("decorNote").value.trim(),
+        customDescription: $("customDescription").value.trim(),
+
+        occasion: $("occasion").value,
+
+        card: state.customCard
+            ? "Власна листівка"
+            : (state.card || "Без листівки"),
+
+        cardMessage: state.customCard
+            ? $("cardMessage").value.trim()
+            : "",
+
+        date: $("orderDate").value,
+        time: $("deliveryTime").value,
+        delivery: $("delivery").value,
+
+        address: $("deliveryAddress").value.trim(),
+
+        name: $("customerName").value.trim(),
+        phone: $("customerPhone").value.trim(),
+        email: $("customerEmail").value.trim(),
+        customerNote: $("customerNote").value.trim(),
+
+        referenceFileName: reference ? reference.name : "",
+
+        price: result.total,
+        createdAt: new Date().toISOString()
+    };
+}
+
+/* =========================================================
+   ФОРМУВАННЯ ТЕКСТОВОГО ПІДСУМКУ
+========================================================= */
+
+function buildOrderSummary(order) {
+    const lines = [
+        "ÉLORIA — ІНДИВІДУАЛЬНИЙ ТОРТ",
+        "",
+        "Номер замовлення: " + order.id,
+        "",
+        "Форма: " + order.shape,
+        "Розмір: " + order.size + " (" + order.weight + ")",
+        "Бісквіт: " + (order.sponge.join(" + ") || "Не обрано"),
+        "Крем: " + (order.cream.join(" + ") || "Не обрано"),
+        "Прошарок: " + (order.filling.join(" + ") || "Не обрано"),
+        "Декор: " + order.decor,
+        "Колір: " + order.color,
+        "Напис на торті: " + (order.cakeText || "Не вказано"),
+        "Побажання до декору: " + (order.decorNote || "Не вказано"),
+        "Тематика: " + order.occasion,
+        "Листівка: " + order.card,
+
+        order.cardMessage
+            ? "Текст листівки: " + order.cardMessage
+            : "",
+
+        order.customDescription
+            ? "Індивідуальний дизайн: " + order.customDescription
+            : "",
+
+        "Дата отримання: " + (order.date || "Не обрано"),
+        "Час: " + order.time,
+        "Отримання: " + order.delivery,
+
+        order.delivery !== "Самовивіз"
+            ? "Адреса: " + (order.address || "Не вказано")
+            : "",
+
+        "Ім'я: " + (order.name || "Не вказано"),
+        "Телефон: " + (order.phone || "Не вказано"),
+        "Email: " + (order.email || "Не вказано"),
+
+        order.customerNote
+            ? "Коментар: " + order.customerNote
+            : "",
+
+        order.referenceFileName
+            ? "Файл-референс: " + order.referenceFileName
+            : "",
+
+        "",
+        "Загальна сума: " + money(order.price)
+    ];
+
+    return lines.filter(Boolean).join("\n");
+}
+
+/* =========================================================
+   ПЕРЕГЛЯД ЗАМОВЛЕННЯ
+========================================================= */
+
+function showOrderSummary() {
+    const order = makeOrderData();
+
+    $("orderSummary").textContent = buildOrderSummary(order);
+    $("modalPrice").textContent = money(order.price);
+
+    $("orderModal").classList.add("open");
+}
+
+$("reviewBtn").addEventListener("click", () => {
+    showOrderSummary();
+});
+
+/* =========================================================
+   ЗАКРИТТЯ ВІКНА
+========================================================= */
+
+function closeModal() {
+    $("orderModal").classList.remove("open");
+}
+
+$("closeModal").addEventListener("click", closeModal);
+$("modalCloseBtn").addEventListener("click", closeModal);
+
+$("orderModal").addEventListener("click", event => {
+    if (event.target === $("orderModal")) {
+        closeModal();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+
+/* =========================================================
+   КОПІЮВАННЯ ПІДСУМКУ
+========================================================= */
+
+$("copyOrderBtn").addEventListener("click", async () => {
+    const text = $("orderSummary").textContent;
+
+    try {
+        await navigator.clipboard.writeText(text);
+        showToast("Підсумок замовлення скопійовано.");
+    } catch (error) {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        const copied = document.execCommand("copy");
+
+        textarea.remove();
+
+        if (copied) {
+            showToast("Підсумок замовлення скопійовано.");
+        } else {
+            showToast("Не вдалося скопіювати. Виділи та скопіюй текст вручну.");
+        }
+    }
+});
+
+/* =========================================================
+   ЗБЕРЕЖЕННЯ ДИЗАЙНУ
+========================================================= */
+
+$("saveBtn").addEventListener("click", () => {
+    const data = {
+        state: {
+            shape: state.shape,
+            size: state.size,
+            decorIndex: state.decorIndex,
+            card: state.card,
+            customCard: state.customCard
+        },
+
+        customDescription: $("customDescription").value,
+        cakeText: $("cakeText").value,
+        decorNote: $("decorNote").value,
+        decorColor: $("decorColor").value,
+        occasion: $("occasion").value,
+
+        cardMessage: $("cardMessage").value,
+
+        orderDate: $("orderDate").value,
+        deliveryTime: $("deliveryTime").value,
+        delivery: $("delivery").value,
+        deliveryAddress: $("deliveryAddress").value,
+
+        customerName: $("customerName").value,
+        customerPhone: $("customerPhone").value,
+        customerEmail: $("customerEmail").value,
+        customerNote: $("customerNote").value,
+
+        activeFlavours: {
+            sponge: getGroupNames("spongeOptions"),
+            cream: getGroupNames("creamOptions"),
+            filling: getGroupNames("fillingOptions")
+        }
+    };
+
+    try {
+        localStorage.setItem("eloriaCakeDesign", JSON.stringify(data));
+
+        showToast("Дизайн збережено в цьому браузері.");
+    } catch (error) {
+        showToast("Не вдалося зберегти дизайн.");
+    }
+});
+
+/* =========================================================
+   ВІДНОВЛЕННЯ ЗБЕРЕЖЕНОГО ДИЗАЙНУ
+========================================================= */
+
+function restoreDesign() {
+    try {
+        const raw = localStorage.getItem("eloriaCakeDesign");
+
+        if (!raw) {
+            return;
+        }
+
+        const data = JSON.parse(raw);
+
+        if (data.state) {
+            if (SHAPES[data.state.shape]) {
+                state.shape = data.state.shape;
+            }
+
+            if (SIZE_INFO[data.state.size]) {
+                state.size = data.state.size;
+            }
+
+            state.decorIndex = Number(data.state.decorIndex || 0);
+            state.card = data.state.card || "";
+            state.customCard = Boolean(data.state.customCard);
+        }
+
+        $("customDescription").value = data.customDescription || "";
+        $("cakeText").value = data.cakeText || "";
+        $("decorNote").value = data.decorNote || "";
+        $("occasion").value = data.occasion || "День народження";
+        $("decorColor").value = data.decorColor || "Колір як на фото";
+
+        $("cardMessage").value = data.cardMessage || "";
+
+        $("orderDate").value = data.orderDate || "";
+        $("deliveryTime").value = data.deliveryTime || "10:00";
+        $("delivery").value = data.delivery || "Самовивіз";
+        $("deliveryAddress").value = data.deliveryAddress || "";
+
+        $("customerName").value = data.customerName || "";
+        $("customerPhone").value = data.customerPhone || "";
+        $("customerEmail").value = data.customerEmail || "";
+        $("customerNote").value = data.customerNote || "";
+
+        const active = data.activeFlavours || {};
+
+        ["sponge", "cream", "filling"].forEach(group => {
+            const id = group + "Options";
+
+            $(id).querySelectorAll("[data-group]").forEach(button => {
+                button.classList.toggle(
+                    "active",
+                    (active[group] || []).includes(button.dataset.name)
+                );
+            });
+        });
+
+        $("addressGroup").hidden =
+            $("delivery").value === "Самовивіз";
+
+    } catch (error) {
+        console.warn("Не вдалося відновити збережений дизайн.", error);
+    }
+}
+
+/* =========================================================
+   СКИДАННЯ НАЛАШТУВАНЬ
+========================================================= */
+
+$("resetBtn").addEventListener("click", () => {
+    state.shape = "round";
+    state.size = "medium";
+    state.decorIndex = 0;
+    state.card = "";
+    state.customCard = false;
+
+    document.querySelectorAll("[data-group]").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document.querySelectorAll("[data-card]").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    const defaultSponge = [
+        ...$("spongeOptions").querySelectorAll("[data-group]")
+    ].find(button => button.dataset.name === "Ванільний бісквіт");
+
+    const defaultCream = [
+        ...$("creamOptions").querySelectorAll("[data-group]")
+    ].find(button => button.dataset.name === "Ванільний крем");
+
+    if (defaultSponge) {
+        defaultSponge.classList.add("active");
+    }
+
+    if (defaultCream) {
+        defaultCream.classList.add("active");
+    }
+
+    $("customDescription").value = "";
+    $("cakeText").value = "";
+    $("decorNote").value = "";
+    $("decorColor").value = "Колір як на фото";
+    $("occasion").value = "День народження";
+
+    $("customCard").checked = false;
+    $("cardMessage").value = "";
+
+    $("orderDate").value = "";
+    $("deliveryTime").value = "10:00";
+    $("delivery").value = "Самовивіз";
+    $("deliveryAddress").value = "";
+
+    $("customerName").value = "";
+    $("customerPhone").value = "";
+    $("customerEmail").value = "";
+    $("customerNote").value = "";
+
+    $("referenceImage").value = "";
+    $("referenceName").textContent = "Файл не вибрано.";
+
+    $("confirmOrder").checked = false;
+
+    $("addressGroup").hidden = true;
+    $("customDesignGroup").hidden = true;
+    $("customCardTextGroup").hidden = true;
+
+    try {
+        localStorage.removeItem("eloriaCakeDesign");
+    } catch (error) {
+        console.warn("Не вдалося очистити збережений дизайн.", error);
+    }
+
+    updateAll();
+
+    showToast("Налаштування конструктора скинуто.");
+});
+
+/* =========================================================
+   ПОЧАТКОВА ІНІЦІАЛІЗАЦІЯ
+========================================================= */
+
+(function init() {
+    const today = new Date();
+    const localDate = new Date(
+        today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().slice(0, 10);
+
+    $("orderDate").min = localDate;
+
+    restoreDesign();
+    updateAll();
+
+    $("addressGroup").hidden =
+        $("delivery").value === "Самовивіз";
+
+    $("customCardTextGroup").hidden =
+        !state.customCard;
+})();
+</script>
+
+<script>
+    
+function renderDecor() {
+    const shape = getShape();
+
+    $("decorTitle").textContent =
+        "Оформлення: " + shape.label.toLowerCase() + " торт";
+
+    $("decorDescription").textContent =
+        "Оберіть оформлення та перегляньте відео торта у форматі 360°.";
+
+    const grid = $("decorOptions");
+    grid.innerHTML = "";
+
+    shape.decorations.forEach((decor, index) => {
+        const card = document.createElement("div");
+        card.className = "decor-option-card";
+
+        // Стара кнопка вибору декору — її логіка збережена
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className =
+            "decor-choice" +
+            (index === state.decorIndex ? " active" : "");
+
+        const img = document.createElement("img");
+        img.src = decor.image;
+        img.alt = decor.name;
+        img.loading = "lazy";
+
+        const caption = document.createElement("span");
+        caption.textContent = decor.name + (
+            decor.price ? " · +" + money(decor.price) : " · Без доплати"
+        );
+
+        img.onerror = function () {
+            this.onerror = null;
+            this.style.display = "none";
+
+            const placeholder = document.createElement("div");
+            placeholder.className = "shape-image-placeholder";
+            placeholder.innerHTML =
+                '<i class="fa-solid fa-cake-candles"></i>';
+
+            button.insertBefore(placeholder, caption);
+        };
+
+        button.append(img, caption);
+
+        button.addEventListener("click", () => {
+            state.decorIndex = index;
+            renderDecor();
+            updatePreview();
+            calculatePrice();
+        });
+
+        // Окрема кнопка відео 360°
+        const videoButton = document.createElement("button");
+        videoButton.type = "button";
+        videoButton.className = "view-360-button";
+        videoButton.innerHTML =
+            videoButton.innerHTML =
+    '<i class="fa-solid fa-rotate"></i> Переглянути в 360°';
+
+        videoButton.addEventListener("click", () => {
+            const fileName = decor.image
+                .split("/")
+                .pop()
+                .replace(/\.(png|jpe?g|webp)$/i, ".mp4")
+                .replace(/\s+/g, " ");
+
+            openCake360("video/" + fileName, decor.name);
+        });
+
+        card.append(button, videoButton);
+        grid.appendChild(card);
+    });
+}
+
+function openCake360(videoPath, cakeName) {
+    let modal = document.getElementById("cake360Modal");
+
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "cake360Modal";
+        modal.className = "cake360-modal";
+
+        modal.innerHTML = `
+            <div class="cake360-window" role="dialog" aria-modal="true">
+                <button type="button" class="cake360-close"
+                        aria-label="Закрити">&times;</button>
+                <span class="eyebrow">ÉLORIA ATELIER</span>
+                <h2 class="cake360-title"></h2>
+                <p>Огляд оформлення торта</p>
+                <video controls playsinline preload="metadata">
+                    Ваш браузер не підтримує відео.
+                </video>
+                <p class="cake360-error" hidden>
+                    Не вдалося завантажити відео.
+                    Перевірте назву MP4-файлу в папці images.
+                </p>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        modal.querySelector(".cake360-close").addEventListener(
+            "click", closeCake360
+        );
+
+        modal.addEventListener("click", event => {
+            if (event.target === modal) closeCake360();
+        });
+    }
+
+    const video = modal.querySelector("video");
+    const error = modal.querySelector(".cake360-error");
+
+    modal.querySelector(".cake360-title").textContent = cakeName;
+    error.hidden = true;
+
+    video.pause();
+    video.src = videoPath;
+    video.load();
+
+    video.onerror = () => {
+        error.hidden = false;
+    };
+
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    // Відео запускається після натискання кнопки користувачем
+    video.play().catch(() => {
+        // Якщо браузер не запускає автоматично — натисніть Play.
+    });
+}
+
+function closeCake360() {
+    const modal = document.getElementById("cake360Modal");
+    if (!modal) return;
+
+    const video = modal.querySelector("video");
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeCake360();
+});
+
+</script>
+
+</body>
+</html>

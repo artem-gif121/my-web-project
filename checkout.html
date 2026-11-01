@@ -1,0 +1,2757 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Оформлення замовлення</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 5% 5%,
+                    rgba(190,155,95,.09),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 95% 90%,
+                    rgba(220,190,150,.10),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #fffefa,
+                    #f7f1e8
+                );
+
+            color: #302a24;
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+        }
+
+
+        button,
+        input,
+        select,
+        textarea {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 22px 6%;
+
+            background:
+                rgba(255,255,255,.94);
+
+            backdrop-filter:
+                blur(16px);
+
+            border-bottom:
+                1px solid rgba(120,90,50,.12);
+        }
+
+
+        .logo {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 36px;
+
+            letter-spacing: 7px;
+
+            color: #9c7947;
+        }
+
+
+        .back-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 11px 19px;
+
+            border:
+                1px solid #d7c2a1;
+
+            border-radius: 30px;
+
+            background: #fffdf9;
+
+            color: #625548;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+
+        .back-btn:hover {
+
+            background: #9b7844;
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .checkout-page {
+
+            width:
+                min(1250px, 92%);
+
+            margin:
+                55px auto 100px;
+        }
+
+
+        .page-heading {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .small-title {
+
+            color: #a18154;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            font-size: 10px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .page-heading h1 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(45px, 7vw, 72px);
+
+            font-weight: 500;
+
+            line-height: .95;
+
+            color: #302a24;
+        }
+
+
+        .page-heading p {
+
+            margin-top: 17px;
+
+            color: #82786e;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .checkout-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                390px;
+
+            gap: 30px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
+
+        .checkout-form {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 22px;
+        }
+
+
+        .form-card {
+
+            background:
+                rgba(255,255,255,.90);
+
+            border:
+                1px solid rgba(160,130,90,.16);
+
+            border-radius: 28px;
+
+            padding: 32px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70,50,30,.06);
+        }
+
+
+        .form-card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .form-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f1e7d9;
+
+            color: #9b7844;
+
+            font-size: 16px;
+        }
+
+
+        .form-card-title h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 31px;
+
+            font-weight: 500;
+
+            color: #3a322b;
+        }
+
+
+        .form-card-title span {
+
+            display: block;
+
+            color: #94877a;
+
+            font-size: 10px;
+
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 17px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .form-group label {
+
+            color: #62584f;
+
+            font-size: 11px;
+
+            letter-spacing: .4px;
+        }
+
+
+        .required {
+
+            color: #aa8250;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #ded2c1;
+
+            border-radius: 13px;
+
+            background: #fffdf9;
+
+            color: #3d352e;
+
+            padding: 14px 15px;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition: .25s;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color:
+                #b59465;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(181,148,101,.10);
+        }
+
+
+        .form-group textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+
+        /* =====================================================
+           DELIVERY OPTIONS
+        ===================================================== */
+
+        .delivery-options {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+        }
+
+
+        .delivery-option {
+
+            position: relative;
+        }
+
+
+        .delivery-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .delivery-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 17px;
+
+            border:
+                1px solid #ded2c1;
+
+            border-radius: 15px;
+
+            background: #fffdf9;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+
+        .delivery-label i {
+
+            color: #9b7844;
+
+            font-size: 17px;
+        }
+
+
+        .delivery-label strong {
+
+            display: block;
+
+            color: #443b33;
+
+            font-size: 12px;
+
+            font-weight: 500;
+        }
+
+
+        .delivery-label small {
+
+            display: block;
+
+            color: #968a7d;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+
+        .delivery-option input:checked
+        + .delivery-label {
+
+            border-color:
+                #aa8756;
+
+            background:
+                #faf4eb;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(170,135,86,.08);
+        }
+
+
+        /* =====================================================
+           PAYMENT
+        ===================================================== */
+
+        .payment-options {
+
+            display: grid;
+
+            gap: 11px;
+        }
+
+
+        .payment-option {
+
+            position: relative;
+        }
+
+
+        .payment-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .payment-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 16px 18px;
+
+            border:
+                1px solid #ded2c1;
+
+            border-radius: 15px;
+
+            background: #fffdf9;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+
+        .payment-label i {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f1e7d9;
+
+            color: #9b7844;
+        }
+
+
+        .payment-label strong {
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            color: #443b33;
+        }
+
+
+        .payment-label small {
+
+            display: block;
+
+            color: #968a7d;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+
+        .payment-option input:checked
+        + .payment-label {
+
+            border-color:
+                #aa8756;
+
+            background:
+                #faf4eb;
+        }
+
+
+        /* =====================================================
+           CARD FIELDS
+        ===================================================== */
+
+        #cardFields {
+
+            display: none;
+
+            margin-top: 17px;
+
+            padding-top: 17px;
+
+            border-top:
+                1px solid #e7ddd0;
+        }
+
+
+        #cardFields.show {
+
+            display: block;
+        }
+
+
+        .card-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 13px;
+        }
+
+
+        .card-grid .full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        /* =====================================================
+           ORDER SUMMARY
+        ===================================================== */
+
+        .order-summary {
+
+            position: sticky;
+
+            top: 105px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid rgba(160,130,90,.18);
+
+            border-radius: 30px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 55px
+                rgba(70,50,30,.08);
+        }
+
+
+        .summary-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-bottom: 22px;
+
+            border-bottom:
+                1px solid #e4d9ca;
+        }
+
+
+        .summary-heading h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 34px;
+
+            font-weight: 500;
+        }
+
+
+        .summary-count {
+
+            color: #9b7844;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           ORDER ITEMS
+        ===================================================== */
+
+        .order-items {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            padding: 22px 0;
+        }
+
+
+        .order-item {
+
+            display: grid;
+
+            grid-template-columns:
+                65px 1fr auto;
+
+            gap: 12px;
+
+            align-items: center;
+        }
+
+
+        .order-item-image {
+
+            width: 65px;
+
+            height: 65px;
+
+            object-fit: cover;
+
+            border-radius: 13px;
+
+            background: #eee5d9;
+        }
+
+
+        .order-item-info h3 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 19px;
+
+            font-weight: 600;
+
+            color: #3e352d;
+
+            line-height: 1.05;
+        }
+
+
+        .order-item-category {
+
+            margin-top: 5px;
+
+            color: #a08358;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-size: 8px;
+        }
+
+
+        .order-item-quantity {
+
+            margin-top: 5px;
+
+            color: #8b8177;
+
+            font-size: 9px;
+        }
+
+
+        .order-item-price {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 19px;
+
+            color: #947143;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           SUMMARY LINES
+        ===================================================== */
+
+        .summary-lines {
+
+            border-top:
+                1px solid #e4d9ca;
+
+            padding-top: 12px;
+        }
+
+
+        .summary-line {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 10px 0;
+
+            color: #766c62;
+
+            font-size: 11px;
+        }
+
+
+        .summary-line strong {
+
+            color: #4b4138;
+
+            font-weight: 500;
+        }
+
+
+        .summary-total {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-top: 19px;
+
+            margin-top: 7px;
+
+            border-top:
+                1px solid #dfd3c3;
+        }
+
+
+        .summary-total span {
+
+            font-size: 13px;
+
+            color: #41382f;
+        }
+
+
+        .summary-total strong {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            color: #9b7844;
+
+            font-size: 31px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ===================================================== */
+
+        .submit-btn {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 30px;
+
+            padding: 17px 20px;
+
+            margin-top: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #aa8756,
+                    #806038
+                );
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            letter-spacing: .3px;
+
+            transition: .3s;
+
+            box-shadow:
+                0 12px 25px
+                rgba(130,100,55,.20);
+        }
+
+
+        .submit-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 18px 32px
+                rgba(130,100,55,.28);
+        }
+
+
+        .secure-info {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            margin-top: 15px;
+
+            color: #9a8e81;
+
+            font-size: 9px;
+        }
+
+
+        .secure-info i {
+
+            color: #a58455;
+        }
+
+
+        /* =====================================================
+           SUCCESS
+        ===================================================== */
+
+        .success-screen {
+
+            display: none;
+
+            max-width: 650px;
+
+            margin: 30px auto 100px;
+
+            padding: 65px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid rgba(160,130,90,.18);
+
+            border-radius: 35px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(70,50,30,.08);
+        }
+
+
+        .success-screen.show {
+
+            display: block;
+        }
+
+
+        .success-icon {
+
+            width: 90px;
+
+            height: 90px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #eee6d8;
+
+            color: #9b7844;
+
+            font-size: 34px;
+        }
+
+
+        .success-screen h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 50px;
+
+            font-weight: 500;
+
+            color: #352d26;
+        }
+
+
+        .success-screen p {
+
+            max-width: 470px;
+
+            margin: 15px auto 28px;
+
+            color: #7d7369;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        .order-number {
+
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            background: #f4ede4;
+
+            color: #927044;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .success-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 14px 25px;
+
+            border-radius: 30px;
+
+            background: #9b7844;
+
+            color: white;
+
+            font-size: 12px;
+
+            transition: .3s;
+        }
+
+
+        .success-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background: #806038;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-checkout {
+
+            max-width: 600px;
+
+            margin: 60px auto;
+
+            padding: 70px 30px;
+
+            text-align: center;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid rgba(160,130,90,.18);
+
+            border-radius: 30px;
+        }
+
+
+        .empty-checkout i {
+
+            font-size: 45px;
+
+            color: #aa8756;
+
+            margin-bottom: 20px;
+        }
+
+
+        .empty-checkout h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 42px;
+
+            font-weight: 500;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty-checkout p {
+
+            color: #80766d;
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .empty-checkout a {
+
+            display: inline-flex;
+
+            padding: 13px 24px;
+
+            border-radius: 25px;
+
+            background: #9b7844;
+
+            color: white;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        .input-error {
+
+            border-color:
+                #b66b5d !important;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(182,107,93,.08) !important;
+        }
+
+
+        .error-text {
+
+            color: #a45d50;
+
+            font-size: 9px;
+
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .checkout-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .order-summary {
+
+                position: static;
+
+                order: -1;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .header {
+
+                padding: 18px 4%;
+            }
+
+
+            .logo {
+
+                font-size: 27px;
+
+                letter-spacing: 4px;
+            }
+
+
+            .checkout-page {
+
+                width: 94%;
+
+                margin-top: 35px;
+            }
+
+
+            .form-card {
+
+                padding: 23px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
+            }
+
+
+            .delivery-options {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .card-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .card-grid .full {
+
+                grid-column: auto;
+            }
+
+
+            .order-summary {
+
+                padding: 23px;
+            }
+
+
+            .page-heading h1 {
+
+                font-size: 48px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <a
+        href="index.html"
+        class="logo">
+
+        ÉLORIA
+
+    </a>
+
+
+    <a
+        href="cart.html"
+        class="back-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Повернутися до кошика
+
+    </a>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="checkout-page">
+
+
+    <!-- PAGE HEADING -->
+
+    <div
+        class="page-heading"
+        id="pageHeading">
+
+        <div class="small-title">
+
+            ÉLORIA PÂTISSERIE
+
+        </div>
+
+
+        <h1>
+
+            Оформлення
+
+        </h1>
+
+
+        <p>
+
+            Завершіть оформлення вашого замовлення
+
+        </p>
+
+    </div>
+
+
+
+    <!-- CHECKOUT -->
+
+    <div
+        class="checkout-layout"
+        id="checkoutLayout">
+
+
+        <!-- =================================================
+             LEFT
+        ================================================= -->
+
+        <form
+            class="checkout-form"
+            id="checkoutForm">
+
+
+            <!-- CUSTOMER -->
+
+            <section class="form-card">
+
+
+                <div class="form-card-title">
+
+                    <div class="form-icon">
+
+                        <i class="fa-regular fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Ваші дані
+                        </h2>
+
+                        <span>
+                            Контактна інформація
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Ім'я
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="Ваше ім'я"
+                            autocomplete="given-name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Прізвище
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            placeholder="Ваше прізвище"
+                            autocomplete="family-name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Телефон
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+380 XX XXX XX XX"
+                            autocomplete="tel">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Email
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@email.com"
+                            autocomplete="email">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- DELIVERY -->
+
+            <section class="form-card">
+
+
+                <div class="form-card-title">
+
+                    <div class="form-icon">
+
+                        <i class="fa-solid fa-truck"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Отримання
+                        </h2>
+
+                        <span>
+                            Оберіть зручний спосіб
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="delivery-options">
+
+
+                    <div class="delivery-option">
+
+                        <input
+                            type="radio"
+                            name="delivery"
+                            id="deliveryCourier"
+                            value="delivery"
+                            checked>
+
+                        <label
+                            for="deliveryCourier"
+                            class="delivery-label">
+
+                            <i class="fa-solid fa-truck"></i>
+
+                            <div>
+
+                                <strong>
+                                    Доставка
+                                </strong>
+
+                                <small>
+                                    Кур'єром ÉLORIA
+                                </small>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="delivery-option">
+
+                        <input
+                            type="radio"
+                            name="delivery"
+                            id="deliveryPickup"
+                            value="pickup">
+
+                        <label
+                            for="deliveryPickup"
+                            class="delivery-label">
+
+                            <i class="fa-solid fa-store"></i>
+
+                            <div>
+
+                                <strong>
+                                    Самовивіз
+                                </strong>
+
+                                <small>
+                                    Із кондитерської ÉLORIA
+                                </small>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="form-grid"
+                    style="margin-top:17px;">
+
+
+                    <div
+                        class="form-group"
+                        id="cityGroup">
+
+                        <label>
+
+                            Місто
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Наприклад, Київ">
+
+                    </div>
+
+
+                    <div
+                        class="form-group"
+                        id="addressGroup">
+
+                        <label>
+
+                            Адреса доставки
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="Вулиця, будинок, квартира">
+
+                    </div>
+
+
+                    <div
+                        class="form-group full"
+                        id="pickupInfo"
+                        style="display:none;">
+
+                        <div
+                            style="
+                                padding:15px;
+                                border-radius:13px;
+                                background:#f7f0e6;
+                                color:#766b60;
+                                font-size:11px;
+                                line-height:1.6;
+                            ">
+
+                            <i
+                                class="fa-solid fa-store"
+                                style="color:#9b7844;margin-right:6px;">
+                            </i>
+
+                            Після підтвердження замовлення
+                            ми повідомимо час, коли його можна
+                            буде забрати з кондитерської ÉLORIA.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Коментар до замовлення
+                        </label>
+
+                        <textarea
+                            id="comment"
+                            placeholder="Наприклад: доставити після 18:00..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PAYMENT -->
+
+            <section class="form-card">
+
+
+                <div class="form-card-title">
+
+                    <div class="form-icon">
+
+                        <i class="fa-regular fa-credit-card"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Оплата
+                        </h2>
+
+                        <span>
+                            Оберіть спосіб оплати
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="payment-options">
+
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="paymentCard"
+                            value="card"
+                            checked>
+
+                        <label
+                            for="paymentCard"
+                            class="payment-label">
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                            <div>
+
+                                <strong>
+                                    Банківська картка
+                                </strong>
+
+                                <small>
+                                    Оплата карткою онлайн
+                                </small>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="paymentCash"
+                            value="cash">
+
+                        <label
+                            for="paymentCash"
+                            class="payment-label">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                            <div>
+
+                                <strong>
+                                    Оплата при отриманні
+                                </strong>
+
+                                <small>
+                                    Готівкою або карткою
+                                </small>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD FIELDS -->
+
+                <div id="cardFields">
+
+
+                    <div class="card-grid">
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Номер картки
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                placeholder="0000 0000 0000 0000"
+                                maxlength="19"
+                                inputmode="numeric">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Термін дії
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardExpiry"
+                                placeholder="MM / YY"
+                                maxlength="7"
+                                inputmode="numeric">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                CVV
+                            </label>
+
+                            <input
+                                type="password"
+                                id="cardCvv"
+                                placeholder="•••"
+                                maxlength="3"
+                                inputmode="numeric">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             RIGHT — ORDER
+        ================================================= -->
+
+        <aside class="order-summary">
+
+
+            <div class="summary-heading">
+
+                <h2>
+                    Ваше замовлення
+                </h2>
+
+                <span
+                    class="summary-count"
+                    id="summaryCount">
+
+                    0 позицій
+
+                </span>
+
+            </div>
+
+
+            <div
+                class="order-items"
+                id="orderItems">
+
+            </div>
+
+
+            <div class="summary-lines">
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Товари
+                    </span>
+
+                    <strong
+                        id="subtotal">
+
+                        0 ₴
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Доставка
+                    </span>
+
+                    <strong
+                        id="deliveryPrice">
+
+                        Безкоштовно
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span>
+                    Разом
+                </span>
+
+                <strong
+                    id="totalPrice">
+
+                    0 ₴
+
+                </strong>
+
+            </div>
+
+
+            <button
+                type="submit"
+                form="checkoutForm"
+                class="submit-btn">
+
+                <i class="fa-solid fa-check"></i>
+
+                Підтвердити замовлення
+
+            </button>
+
+
+            <div class="secure-info">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Ваші дані захищені
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUCCESS
+    ===================================================== -->
+
+    <div
+        class="success-screen"
+        id="successScreen">
+
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h2>
+            Дякуємо за замовлення!
+        </h2>
+
+
+        <p>
+
+            Ваше замовлення успішно оформлено.
+            Команда ÉLORIA зв'яжеться з вами
+            для підтвердження деталей замовлення.
+
+        </p>
+
+
+        <div
+            class="order-number"
+            id="orderNumber">
+
+            ЗАМОВЛЕННЯ № EL-000000
+
+        </div>
+
+
+        <br>
+
+
+        <a
+            href="index.html"
+            class="success-btn">
+
+            <i class="fa-solid fa-house"></i>
+
+            Повернутися до каталогу
+
+        </a>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     PRODUCT SYSTEM
+========================================================= -->
+
+<script src="product.js"></script>
+
+
+<script>
+
+    /* =====================================================
+       MONEY
+    ===================================================== */
+
+    function checkoutMoney(value) {
+
+        const number = Number(value);
+
+        if (!Number.isFinite(number)) {
+            return "0 ₴";
+        }
+
+        return number.toLocaleString("uk-UA") + " ₴";
+    }
+
+
+    /* =====================================================
+       RENDER ORDER
+    ===================================================== */
+
+    function renderCheckout() {
+
+        const cart = getCart();
+
+        const layout =
+            document.getElementById("checkoutLayout");
+
+        const heading =
+            document.getElementById("pageHeading");
+
+        const orderItems =
+            document.getElementById("orderItems");
+
+
+        if (!cart.length) {
+
+            layout.innerHTML = `
+
+                <div class="empty-checkout"
+                     style="grid-column:1/-1;">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <h2>
+                        Ваш кошик порожній
+                    </h2>
+
+                    <p>
+                        Спочатку додайте товари до кошика,
+                        а потім поверніться для оформлення замовлення.
+                    </p>
+
+                    <a href="index.html">
+
+                        Перейти до каталогу
+
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        let subtotal = 0;
+
+        let totalQuantity = 0;
+
+        let html = "";
+
+
+        cart.forEach(item => {
+
+            const product =
+                getProductById(item.id);
+
+            if (!product) {
+                return;
+            }
+
+
+            const price =
+                Number(product.price);
+
+            const quantity =
+                Number(item.qty);
+
+
+            if (
+                !Number.isFinite(price) ||
+                !Number.isFinite(quantity)
+            ) {
+                return;
+            }
+
+
+            const itemTotal =
+                price * quantity;
+
+
+            subtotal += itemTotal;
+
+            totalQuantity += quantity;
+
+
+            html += `
+
+                <div class="order-item">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        class="order-item-image"
+                        onerror="this.src='images/dessert.png.png'">
+
+                    <div class="order-item-info">
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <div class="order-item-category">
+                            ${product.category}
+                        </div>
+
+                        <div class="order-item-quantity">
+                            Кількість: ${quantity}
+                        </div>
+
+                    </div>
+
+                    <div class="order-item-price">
+
+                        ${checkoutMoney(itemTotal)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+        orderItems.innerHTML = html;
+
+
+        document.getElementById("summaryCount")
+            .textContent =
+            totalQuantity +
+            (
+                totalQuantity === 1
+                    ? " позиція"
+                    : " позицій"
+            );
+
+
+        document.getElementById("subtotal")
+            .textContent =
+            checkoutMoney(subtotal);
+
+
+        document.getElementById("totalPrice")
+            .textContent =
+            checkoutMoney(subtotal);
+
+    }
+
+
+    /* =====================================================
+       DELIVERY SWITCH
+    ===================================================== */
+
+    function updateDeliveryFields() {
+
+        const delivery =
+            document.querySelector(
+                'input[name="delivery"]:checked'
+            )?.value;
+
+
+        const cityGroup =
+            document.getElementById("cityGroup");
+
+        const addressGroup =
+            document.getElementById("addressGroup");
+
+        const pickupInfo =
+            document.getElementById("pickupInfo");
+
+
+        if (delivery === "pickup") {
+
+            cityGroup.style.display = "none";
+
+            addressGroup.style.display = "none";
+
+            pickupInfo.style.display = "block";
+
+        } else {
+
+            cityGroup.style.display = "flex";
+
+            addressGroup.style.display = "flex";
+
+            pickupInfo.style.display = "none";
+        }
+
+    }
+
+
+    document
+        .querySelectorAll(
+            'input[name="delivery"]'
+        )
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                updateDeliveryFields
+            );
+
+        });
+
+
+    /* =====================================================
+       PAYMENT SWITCH
+    ===================================================== */
+
+    function updatePaymentFields() {
+
+        const payment =
+            document.querySelector(
+                'input[name="payment"]:checked'
+            )?.value;
+
+
+        const cardFields =
+            document.getElementById("cardFields");
+
+
+        if (payment === "card") {
+
+            cardFields.classList.add("show");
+
+        } else {
+
+            cardFields.classList.remove("show");
+
+        }
+
+    }
+
+
+    document
+        .querySelectorAll(
+            'input[name="payment"]'
+        )
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                updatePaymentFields
+            );
+
+        });
+
+
+    /* =====================================================
+       CARD NUMBER FORMAT
+    ===================================================== */
+
+    document
+        .getElementById("cardNumber")
+        .addEventListener(
+            "input",
+            function() {
+
+                let value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 16);
+
+
+                let result = "";
+
+
+                for (
+                    let i = 0;
+                    i < value.length;
+                    i++
+                ) {
+
+                    if (
+                        i > 0 &&
+                        i % 4 === 0
+                    ) {
+
+                        result += " ";
+
+                    }
+
+                    result += value[i];
+                }
+
+
+                this.value = result;
+
+            }
+        );
+
+
+    /* =====================================================
+       EXPIRY FORMAT
+    ===================================================== */
+
+    document
+        .getElementById("cardExpiry")
+        .addEventListener(
+            "input",
+            function() {
+
+                let value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 4);
+
+
+                if (value.length >= 3) {
+
+                    value =
+                        value.substring(0, 2)
+                        + " / "
+                        + value.substring(2);
+
+                }
+
+
+                this.value = value;
+
+            }
+        );
+
+
+    /* =====================================================
+       CVV
+    ===================================================== */
+
+    document
+        .getElementById("cardCvv")
+        .addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 3);
+
+            }
+        );
+
+
+    /* =====================================================
+       VALIDATION
+    ===================================================== */
+
+    function clearErrors() {
+
+        document
+            .querySelectorAll(".input-error")
+            .forEach(input => {
+
+                input.classList.remove(
+                    "input-error"
+                );
+
+            });
+    }
+
+
+    function markError(element) {
+
+        element.classList.add(
+            "input-error"
+        );
+
+        element.focus();
+    }
+
+
+    function validateForm() {
+
+        clearErrors();
+
+
+        const firstName =
+            document.getElementById("firstName");
+
+
+        const lastName =
+            document.getElementById("lastName");
+
+
+        const phone =
+            document.getElementById("phone");
+
+
+        const email =
+            document.getElementById("email");
+
+
+        const delivery =
+            document.querySelector(
+                'input[name="delivery"]:checked'
+            )?.value;
+
+
+        const city =
+            document.getElementById("city");
+
+
+        const address =
+            document.getElementById("address");
+
+
+        const payment =
+            document.querySelector(
+                'input[name="payment"]:checked'
+            )?.value;
+
+
+        if (
+            firstName.value.trim().length < 2
+        ) {
+
+            markError(firstName);
+
+            return false;
+        }
+
+
+        if (
+            lastName.value.trim().length < 2
+        ) {
+
+            markError(lastName);
+
+            return false;
+        }
+
+
+        if (
+            phone.value.trim().length < 10
+        ) {
+
+            markError(phone);
+
+            return false;
+        }
+
+
+        if (
+            !email.value.includes("@") ||
+            !email.value.includes(".")
+        ) {
+
+            markError(email);
+
+            return false;
+        }
+
+
+        if (delivery === "delivery") {
+
+            if (
+                city.value.trim().length < 2
+            ) {
+
+                markError(city);
+
+                return false;
+            }
+
+
+            if (
+                address.value.trim().length < 3
+            ) {
+
+                markError(address);
+
+                return false;
+            }
+
+        }
+
+
+        if (payment === "card") {
+
+            const cardNumber =
+                document.getElementById(
+                    "cardNumber"
+                );
+
+
+            const cardExpiry =
+                document.getElementById(
+                    "cardExpiry"
+                );
+
+
+            const cardCvv =
+                document.getElementById(
+                    "cardCvv"
+                );
+
+
+            const cleanCard =
+                cardNumber.value
+                    .replace(/\D/g, "");
+
+
+            const cleanExpiry =
+                cardExpiry.value
+                    .replace(/\D/g, "");
+
+
+            if (
+                cleanCard.length !== 16
+            ) {
+
+                markError(cardNumber);
+
+                return false;
+            }
+
+
+            if (
+                cleanExpiry.length !== 4
+            ) {
+
+                markError(cardExpiry);
+
+                return false;
+            }
+
+
+            if (
+                cardCvv.value.length !== 3
+            ) {
+
+                markError(cardCvv);
+
+                return false;
+            }
+
+        }
+
+
+        return true;
+    }
+
+
+    /* =====================================================
+       SUBMIT
+    ===================================================== */
+
+    document
+        .getElementById("checkoutForm")
+        .addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                if (!validateForm()) {
+
+                    return;
+                }
+
+
+                const cart =
+                    getCart();
+
+
+                if (!cart.length) {
+
+                    alert(
+                        "Ваш кошик порожній."
+                    );
+
+                    window.location.href =
+                        "cart.html";
+
+                    return;
+                }
+
+
+                /*
+                 * Генеруємо номер замовлення.
+                 */
+
+                const orderNumber =
+                    "EL-" +
+                    Math.floor(
+                        100000 +
+                        Math.random() * 900000
+                    );
+
+
+                document.getElementById(
+                    "orderNumber"
+                ).textContent =
+                    "ЗАМОВЛЕННЯ № " +
+                    orderNumber;
+
+
+                /*
+                 * Тут можна було б
+                 * відправити замовлення
+                 * на сервер.
+                 *
+                 * Для навчального
+                 * HTML-проєкту просто
+                 * показуємо успішне
+                 * оформлення.
+                 */
+
+
+                localStorage.removeItem(
+                    "eloriaCart"
+                );
+
+
+                if (
+                    typeof updateCartCount ===
+                    "function"
+                ) {
+
+                    updateCartCount();
+
+                }
+
+
+                document.getElementById(
+                    "checkoutLayout"
+                ).style.display =
+                    "none";
+
+
+                document.getElementById(
+                    "pageHeading"
+                ).style.display =
+                    "none";
+
+
+                document.getElementById(
+                    "successScreen"
+                ).classList.add("show");
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+    /* =====================================================
+       INIT
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            renderCheckout();
+
+            updateDeliveryFields();
+
+            updatePaymentFields();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

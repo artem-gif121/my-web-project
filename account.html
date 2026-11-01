@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ÉLORIA — Мій кабінет</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background: #fff7fa;
+            color: #5b4650;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+    
+        /* ==============================
+           PAGE
+        ============================== */
+
+        .account-page {
+            width: min(1180px, 92%);
+            margin: 55px auto 80px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .page-heading small {
+            display: block;
+            color: #c9a46a;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .page-heading h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 52px;
+            font-weight: 500;
+            color: #765563;
+        }
+
+        .page-heading p {
+            margin-top: 8px;
+            color: #a5828d;
+            font-size: 13px;
+        }
+
+        /* ==============================
+           LAYOUT
+        ============================== */
+
+        .account-layout {
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* ==============================
+           SIDEBAR
+        ============================== */
+
+        .sidebar {
+            background: #ffffff;
+            border: 1px solid #f0d9e2;
+            border-radius: 22px;
+            padding: 28px 20px;
+            box-shadow: 0 15px 40px rgba(198, 137, 157, 0.09);
+        }
+
+        .profile-mini {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f4e4e9;
+        }
+
+        .avatar {
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f8dce6, #f3c5d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a96880;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(214, 142, 165, 0.18);
+        }
+
+        .profile-mini h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+            font-weight: 600;
+            color: #765563;
+        }
+
+        .profile-mini p {
+            font-size: 11px;
+            color: #ae8e99;
+            margin-top: 4px;
+        }
+
+        .account-menu {
+            padding-top: 20px;
+        }
+
+        .account-menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 13px 14px;
+            border-radius: 12px;
+            text-align: left;
+            color: #806773;
+            font-family: "Montserrat", sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .account-menu button i {
+            width: 23px;
+            color: #d597ab;
+        }
+
+        .account-menu button:hover {
+            background: #fff1f5;
+            color: #b66e87;
+        }
+
+        .account-menu button.active {
+            background: #fbe3eb;
+            color: #ad6880;
+            font-weight: 600;
+        }
+
+        /* ==============================
+           CONTENT
+        ============================== */
+
+        .account-content {
+            min-width: 0;
+        }
+
+        .tab-section {
+            display: none;
+        }
+
+        .tab-section.active {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #f0d9e2;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 15px 40px rgba(198, 137, 157, 0.07);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-title-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: #fbe4eb;
+            color: #bd7790;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: #765563;
+        }
+
+        /* ==============================
+           PROFILE
+        ============================== */
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-box {
+            padding: 18px;
+            background: #fff8fa;
+            border: 1px solid #f4e0e7;
+            border-radius: 15px;
+        }
+
+        .info-box.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-box label {
+            display: block;
+            color: #c193a1;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 7px;
+        }
+
+        .info-box span {
+            font-size: 13px;
+            color: #654e58;
+        }
+
+        /* ==============================
+           ORDERS
+        ============================== */
+
+        .empty-state {
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .empty-icon {
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #fff0f5;
+            color: #d18ca4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 29px;
+            color: #765563;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 12px;
+            color: #aa8a95;
+            max-width: 430px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .catalog-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 22px;
+            padding: 13px 23px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #e9aabd, #d68da5);
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 22px rgba(211, 133, 158, 0.22);
+            transition: 0.3s;
+        }
+
+        .catalog-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(211, 133, 158, 0.28);
+        }
+
+        /* ==============================
+           FAVORITES
+        ============================== */
+
+        .favorite-placeholder {
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .favorite-placeholder i {
+            font-size: 38px;
+            color: #e4a5b8;
+            margin-bottom: 15px;
+        }
+
+        .favorite-placeholder h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            color: #765563;
+            margin-bottom: 8px;
+        }
+
+        .favorite-placeholder p {
+            color: #aa8a95;
+            font-size: 12px;
+        }
+
+        /* ==============================
+           CLUB
+        ============================== */
+
+        .club-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff0f5, #ffe6ee);
+            border: 1px solid #efcbd8;
+        }
+
+        .club-card::after {
+            content: "É";
+            position: absolute;
+            right: 25px;
+            bottom: -28px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 150px;
+            color: rgba(211, 139, 162, 0.08);
+        }
+
+        .club-label {
+            color: #c9a46a;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .club-card h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 38px;
+            font-weight: 500;
+            color: #795764;
+            margin: 5px 0 8px;
+        }
+
+        .club-card p {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #9b7884;
+            max-width: 580px;
+        }
+
+        .club-level {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 22px;
+            padding: 9px 17px;
+            background: #fff;
+            border: 1px solid #e8ccd6;
+            border-radius: 30px;
+            color: #ae778a;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .club-level i {
+            color: #c9a46a;
+        }
+
+        .points-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.75);
+            border-radius: 16px;
+            border: 1px solid #efd8e0;
+        }
+
+        .points-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .points-top span:first-child {
+            font-size: 11px;
+            color: #9d7d88;
+        }
+
+        .points-number {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+            color: #b16f84;
+        }
+
+        .progress {
+            width: 100%;
+            height: 7px;
+            border-radius: 10px;
+            background: #f3dfe6;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #e9aabd, #c9a46a);
+            transition: width 0.7s ease;
+        }
+
+        .club-levels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .level-box {
+            padding: 20px;
+            border-radius: 16px;
+            background: #fffafd;
+            border: 1px solid #f0dce3;
+            text-align: center;
+        }
+
+        .level-box i {
+            color: #c9a46a;
+            margin-bottom: 9px;
+            font-size: 20px;
+        }
+
+        .level-box h4 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            color: #765563;
+            margin-bottom: 4px;
+        }
+
+        .level-box span {
+            font-size: 10px;
+            color: #ad8d97;
+        }
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            .account-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .account-menu {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            .account-menu button {
+                margin: 0;
+            }
+
+            .page-heading h1 {
+                font-size: 43px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .account-header {
+                height: 70px;
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .back-link {
+                font-size: 0;
+            }
+
+            .back-link i {
+                font-size: 16px;
+            }
+
+            .account-page {
+                width: 94%;
+                margin-top: 35px;
+            }
+
+            .page-heading {
+                margin-bottom: 28px;
+            }
+
+            .page-heading h1 {
+                font-size: 38px;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-box.full {
+                grid-column: auto;
+            }
+
+            .section-card {
+                padding: 21px;
+                border-radius: 18px;
+            }
+
+            .club-levels {
+                grid-template-columns: 1fr;
+            }
+
+            .account-menu {
+                grid-template-columns: 1fr;
+            }
+
+            .club-card h2 {
+                font-size: 33px;
+            }
+        }
+.edit-profile-btn {
+    margin-left: auto;
+    border: 1px solid #edcbd6;
+    background: #fff7fa;
+    color: #b9788e;
+    border-radius: 25px;
+    padding: 10px 16px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-profile-btn:hover {
+    background: #fbe3eb;
+    border-color: #e3afbf;
+    transform: translateY(-1px);
+}
+
+
+/* Форма редагування */
+
+.profile-edit-form {
+    display: none;
+    margin-top: 22px;
+    padding: 22px;
+    background: #fff8fa;
+    border: 1px solid #f2dce4;
+    border-radius: 16px;
+}
+
+.profile-edit-form.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #a77b88;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    width: 100%;
+    border: 1px solid #ead3dc;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #654e58;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #d99aad;
+    box-shadow: 0 0 0 3px rgba(225, 167, 185, 0.12);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.save-profile-btn,
+.cancel-profile-btn {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-profile-btn {
+    background: linear-gradient(135deg, #e9aabd, #d68da5);
+    color: white;
+}
+
+.save-profile-btn:hover {
+    transform: translateY(-1px);
+}
+
+.cancel-profile-btn {
+    background: #ffffff;
+    border: 1px solid #ead3dc;
+    color: #9c7582;
+}
+
+.cancel-profile-btn:hover {
+    background: #fff1f5;
+}
+
+/* ==========================================
+   ORDERS
+========================================== */
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+.order-card {
+    border: 1px solid #f0d9e2;
+    border-radius: 17px;
+    background: #fff9fb;
+    overflow: hidden;
+}
+
+
+.order-card-header {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff1f5;
+    border-bottom: 1px solid #f2dce4;
+}
+
+
+.order-number {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 23px;
+    color: #795764;
+}
+
+
+.order-date {
+    font-size: 10px;
+    color: #aa8a95;
+    margin-top: 3px;
+}
+
+
+.order-status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #f8dce6;
+    color: #ae6e84;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.order-products {
+    padding: 16px 20px;
+}
+
+
+.order-product {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f4e4e9;
+}
+
+
+.order-product:last-child {
+    border-bottom: none;
+}
+
+
+.order-product-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #f8e9ed;
+}
+
+
+.order-product-info {
+    flex: 1;
+}
+
+
+.order-product-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px;
+    color: #765563;
+}
+
+
+.order-product-quantity {
+    font-size: 10px;
+    color: #aa8a95;
+    margin-top: 2px;
+}
+
+
+.order-product-price {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    color: #a76d80;
+}
+
+
+.order-card-footer {
+    padding: 17px 20px;
+    background: #ffffff;
+    border-top: 1px solid #f2dce4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.order-total-label {
+    font-size: 10px;
+    color: #a98b95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.order-total {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    color: #765563;
+}
+
+
+.no-orders {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+
+.no-orders-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff0f5;
+    color: #d18ca4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+
+.no-orders h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 29px;
+    color: #765563;
+    margin-bottom: 8px;
+}
+
+
+.no-orders p {
+    font-size: 12px;
+    color: #aa8a95;
+}
+
+
+@media (max-width: 600px) {
+
+    .order-card-header {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .order-card-footer {
+        align-items: flex-start;
+        gap: 5px;
+        flex-direction: column;
+    }
+
+}
+
+.account-menu .account-menu-link {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 13px 14px;
+    border-radius: 12px;
+    text-align: left;
+    color: #806773;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.account-menu .account-menu-link i {
+    display: inline-block;
+    width: 23px;
+    color: #d597ab;
+}
+
+.account-menu .account-menu-link:hover {
+    background: #fff1f5;
+    color: #b66e87;
+}
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <!-- Ліва навігація -->
+        <nav class="nav-left">
+            <a href="index.html">Про кондитерську</a>
+            <a href="chef.html">Про шефа</a>
+        </nav>
+
+        <!-- Логотип -->
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE & CAFÉ</span>
+        </a>
+
+        <!-- Гамбургер -->
+        <button class="hamburger" aria-label="Меню">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Права навігація -->
+        <nav class="nav-right">
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </nav>
+
+        <!-- Мобільне меню -->
+        <div class="mobile-menu">
+
+            <a href="index.html">Головна</a>
+            <a href="menu.html">Каталог</a>
+            <a href="celebrations.html">Святкові колекції</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="account-page">
+
+    <div class="page-heading">
+
+        <small>ESPACE PERSONNEL</small>
+
+        <h1>Мій кабінет</h1>
+
+        <p>
+            Ваш особистий простір у світі ÉLORIA
+        </p>
+
+    </div>
+
+
+    <div class="account-layout">
+
+        <!-- ==============================
+             SIDEBAR
+        ============================== -->
+
+        <aside class="sidebar">
+
+            <div class="profile-mini">
+
+                <div class="avatar">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+
+                <h3 id="miniName">
+                    Гість ÉLORIA
+                </h3>
+
+                <p id="miniEmail">
+                    Не вказано
+                </p>
+
+            </div>
+
+
+            <nav class="account-menu">
+
+                <button class="active" data-section="profile">
+                    <i class="fa-regular fa-user"></i>
+                    Мій профіль
+                </button>
+
+                <button data-section="orders">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Мої замовлення
+                </button>
+
+                  <a href="track-order.html" class="account-menu-link">
+        <i class="fa-solid fa-location-dot"></i>
+        Відстеження замовлення
+    </a>
+
+                <button data-section="favorites">
+                    <i class="fa-regular fa-heart"></i>
+                    Улюблені
+                </button>
+
+                <button data-section="club">
+                    <i class="fa-solid fa-crown"></i>
+                    ÉLORIA Club
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- ==============================
+             CONTENT
+        ============================== -->
+
+        <div class="account-content">
+
+
+            <!-- PROFILE -->
+
+            <section class="tab-section active" id="profile">
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+    <div class="section-title-icon">
+        <i class="fa-regular fa-user"></i>
+    </div>
+
+    <h2>Особисті дані</h2>
+
+    <button class="edit-profile-btn" id="editProfileBtn">
+        <i class="fa-solid fa-pen"></i>
+        Редагувати
+    </button>
+
+</div>
+
+
+                    <div class="profile-grid">
+
+                        <div class="profile-edit-form" id="profileEditForm">
+
+    <div class="form-group">
+
+        <label for="editName">
+            Ім'я
+        </label>
+
+        <input
+            type="text"
+            id="editName"
+            placeholder="Ваше ім'я">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="editEmail">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="editEmail"
+            placeholder="example@gmail.com">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="editPhone">
+            Телефон
+        </label>
+
+        <input
+            type="tel"
+            id="editPhone"
+            placeholder="+380 XX XXX XX XX">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="editAddress">
+            Адреса доставки
+        </label>
+
+        <input
+            type="text"
+            id="editAddress"
+            placeholder="Ваша адреса">
+
+    </div>
+
+
+    <div class="form-buttons">
+
+        <button
+            type="button"
+            class="save-profile-btn"
+            id="saveProfileBtn">
+
+            <i class="fa-solid fa-check"></i>
+            Зберегти
+
+        </button>
+
+
+        <button
+            type="button"
+            class="cancel-profile-btn"
+            id="cancelProfileBtn">
+
+            Скасувати
+
+        </button>
+
+    </div>
+
+</div>
+
+                        <div class="info-box">
+
+                            <label>Ім'я</label>
+
+                            <span id="userName">
+                                Гість ÉLORIA
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <label>Email</label>
+
+                            <span id="userEmail">
+                                Не вказано
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <label>Телефон</label>
+
+                            <span id="userPhone">
+                                Не вказано
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <label>Місто</label>
+
+                            <span>
+                                Київ
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-box full">
+
+                            <label>Адреса доставки</label>
+
+                            <span id="userAddress">
+                                Не вказано
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="section-card club-card">
+
+                    <span class="club-label">
+                        ÉLORIA CLUB
+                    </span>
+
+                    <h2>
+                        Ваші привілеї
+                    </h2>
+
+                    <p>
+                        Накопичуйте бали з кожного замовлення,
+                        відкривайте нові рівні та отримуйте особливі
+                        пропозиції від ÉLORIA.
+                    </p>
+
+                    <div class="club-level">
+                        <i class="fa-solid fa-crown"></i>
+                        <span id="profileClubLevel">
+                            Silver
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ORDERS -->
+
+       <section class="tab-section" id="orders">
+
+    <div class="section-card">
+
+        <div class="section-title">
+
+            <div class="section-title-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+
+            <h2>Мої замовлення</h2>
+
+        </div>
+
+
+        <div id="ordersContainer"></div>
+
+    </div>
+
+</section>
+            <!-- FAVORITES -->
+
+            <section class="tab-section" id="favorites">
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+
+                        <h2>Улюблені</h2>
+
+                    </div>
+
+
+                    <div class="favorite-placeholder">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        <h3>
+                            Ваші улюблені десерти
+                        </h3>
+
+                        <p>
+                            Додавайте товари до улюблених,
+                            щоб швидко знаходити їх знову.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CLUB -->
+
+            <section class="tab-section" id="club">
+
+                <div class="section-card club-card">
+
+                    <span class="club-label">
+                        ÉLORIA CLUB
+                    </span>
+
+                    <h2>
+                        Клуб ÉLORIA
+                    </h2>
+
+                    <p>
+                        Особлива програма для наших постійних гостей.
+                        Отримуйте бали за замовлення та переходьте
+                        на нові рівні привілеїв.
+                    </p>
+
+
+                    <div class="club-level">
+
+                        <i class="fa-solid fa-crown"></i>
+
+                        <span id="clubLevel">
+                            Silver
+                        </span>
+
+                    </div>
+
+
+                    <div class="points-box">
+
+                        <div class="points-top">
+
+                            <span>
+                                Ваші бали
+                            </span>
+
+                            <span class="points-number"
+                                  id="pointsNumber">
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div class="progress-bar"
+                                 id="progressBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+
+                        <h2>
+                            Рівні ÉLORIA Club
+                        </h2>
+
+                    </div>
+
+
+                    <div class="club-levels">
+
+                        <div class="level-box">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <h4>
+                                Silver
+                            </h4>
+
+                            <span>
+                                0–5000 балів
+                            </span>
+
+                        </div>
+
+
+                        <div class="level-box">
+
+                            <i class="fa-solid fa-gem"></i>
+
+                            <h4>
+                                Gold
+                            </h4>
+
+                            <span>
+                                5000-10000 балів
+                            </span>
+
+                        </div>
+
+
+                        <div class="level-box">
+
+                            <i class="fa-solid fa-crown"></i>
+
+                            <h4>
+                                Platinum
+                            </h4>
+
+                            <span>
+                                10 000+ балів
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    /* ==========================================
+       USER DATA
+    ========================================== */
+
+    const defaultUser = {
+
+        name: "Гість ÉLORIA",
+
+        email: "Не вказано",
+
+        phone: "Не вказано",
+
+        address: "Не вказано",
+
+        points: 0
+
+    };
+
+
+    let user;
+
+    try {
+
+        user = JSON.parse(
+            localStorage.getItem("eloriaUser")
+        ) || defaultUser;
+
+    } catch (error) {
+
+        user = defaultUser;
+
+    }
+
+
+    /* ==========================================
+       PROFILE
+    ========================================== */
+
+    document.getElementById("miniName").textContent =
+        user.name;
+
+    document.getElementById("miniEmail").textContent =
+        user.email;
+
+    document.getElementById("userName").textContent =
+        user.name;
+
+    document.getElementById("userEmail").textContent =
+        user.email;
+
+    document.getElementById("userPhone").textContent =
+        user.phone;
+
+    document.getElementById("userAddress").textContent =
+        user.address;
+
+
+    /* ==========================================
+       CLUB
+    ========================================== */
+
+    const points = Number(user.points) || 0;
+
+    let level = "Silver";
+
+    let progress = 0;
+
+
+    if (points >= 1500) {
+
+        level = "Platinum";
+
+        progress = 100;
+
+    } else if (points >= 500) {
+
+        level = "Gold";
+
+        progress =
+            ((points - 500) / 1000) * 100;
+
+    } else {
+
+        level = "Silver";
+
+        progress =
+            (points / 500) * 100;
+
+    }
+
+
+    document.getElementById("pointsNumber").textContent =
+        points;
+
+
+    document.getElementById("clubLevel").textContent =
+        level;
+
+
+    document.getElementById("profileClubLevel").textContent =
+        level;
+
+
+    document.getElementById("progressBar").style.width =
+        Math.min(progress, 100) + "%";
+
+
+    /* ==========================================
+       TABS
+    ========================================== */
+
+    const menuButtons =
+        document.querySelectorAll(
+            ".account-menu button"
+        );
+
+    const sections =
+        document.querySelectorAll(
+            ".tab-section"
+        );
+
+
+    menuButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            menuButtons.forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+
+            sections.forEach(section => {
+
+                section.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            const target =
+                button.dataset.section;
+
+
+            document
+                .getElementById(target)
+                .classList.add("active");
+
+        });
+
+    });
+
+</script>
+
+<script>
+    /* ==========================================
+   EDIT PROFILE
+========================================== */
+
+const editProfileBtn =
+    document.getElementById("editProfileBtn");
+
+const profileEditForm =
+    document.getElementById("profileEditForm");
+
+const saveProfileBtn =
+    document.getElementById("saveProfileBtn");
+
+const cancelProfileBtn =
+    document.getElementById("cancelProfileBtn");
+
+
+const editName =
+    document.getElementById("editName");
+
+const editEmail =
+    document.getElementById("editEmail");
+
+const editPhone =
+    document.getElementById("editPhone");
+
+const editAddress =
+    document.getElementById("editAddress");
+
+
+/* Відкрити редагування */
+
+editProfileBtn.addEventListener("click", () => {
+
+    editName.value = user.name;
+    editEmail.value = user.email;
+    editPhone.value = user.phone;
+    editAddress.value = user.address;
+
+    profileEditForm.classList.add("active");
+
+});
+
+
+/* Скасувати */
+
+cancelProfileBtn.addEventListener("click", () => {
+
+    profileEditForm.classList.remove("active");
+
+});
+
+
+/* Зберегти */
+
+saveProfileBtn.addEventListener("click", () => {
+
+    const newName =
+        editName.value.trim();
+
+    const newEmail =
+        editEmail.value.trim();
+
+    const newPhone =
+        editPhone.value.trim();
+
+    const newAddress =
+        editAddress.value.trim();
+
+
+    if (!newName) {
+
+        alert("Будь ласка, введіть ім'я.");
+
+        return;
+
+    }
+
+
+    user.name =
+        newName;
+
+    user.email =
+        newEmail || "Не вказано";
+
+    user.phone =
+        newPhone || "Не вказано";
+
+    user.address =
+        newAddress || "Не вказано";
+
+
+    localStorage.setItem(
+        "eloriaUser",
+        JSON.stringify(user)
+    );
+
+
+    /* Оновлюємо інформацію */
+
+    document.getElementById("miniName").textContent =
+        user.name;
+
+    document.getElementById("miniEmail").textContent =
+        user.email;
+
+    document.getElementById("userName").textContent =
+        user.name;
+
+    document.getElementById("userEmail").textContent =
+        user.email;
+
+    document.getElementById("userPhone").textContent =
+        user.phone;
+
+    document.getElementById("userAddress").textContent =
+        user.address;
+
+
+    profileEditForm.classList.remove("active");
+
+
+    alert("Профіль успішно оновлено.");
+
+});
+</script>
+
+<script>
+    /* ==========================================
+   МОЇ ЗАМОВЛЕННЯ
+========================================== */
+
+function getEloriaOrders() {
+
+    try {
+
+        const orders =
+            JSON.parse(
+                localStorage.getItem("eloriaOrders")
+            );
+
+        return Array.isArray(orders)
+            ? orders
+            : [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+function formatOrderDate(dateString) {
+
+    const date =
+        new Date(dateString);
+
+    return date.toLocaleDateString(
+        "uk-UA",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+function renderOrders() {
+
+    const container =
+        document.getElementById(
+            "ordersContainer"
+        );
+
+
+    if (!container) return;
+
+
+    const orders =
+        getEloriaOrders();
+
+
+    /* Якщо замовлень немає */
+
+    if (!orders.length) {
+
+        container.innerHTML = `
+
+            <div class="no-orders">
+
+                <div class="no-orders-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+
+                <h3>
+                    Тут поки порожньо
+                </h3>
+
+                <p>
+                    Ваші замовлення з ÉLORIA
+                    з'являться тут після оформлення.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* Замовлення є */
+
+    container.innerHTML = `
+
+        <div class="orders-list">
+
+            ${orders.map(order => {
+
+                const productsHTML =
+                    order.items.map(item => {
+
+                        const itemTotal =
+                            Number(item.price || 0) *
+                            Number(item.quantity || 1);
+
+
+                        return `
+
+                            <div class="order-product">
+
+                                <img
+                                    class="order-product-image"
+                                    src="${item.image}"
+                                    alt="${item.name}"
+                                    onerror="this.style.display='none'"
+                                >
+
+                                <div class="order-product-info">
+
+                                    <div class="order-product-name">
+                                        ${item.name}
+                                    </div>
+
+                                    <div class="order-product-quantity">
+                                        Кількість: ${item.quantity}
+                                    </div>
+
+                                </div>
+
+                                <div class="order-product-price">
+                                    ${itemTotal.toLocaleString("uk-UA")} грн
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }).join("");
+
+
+                return `
+
+                    <article class="order-card">
+
+                        <div class="order-card-header">
+
+                            <div>
+
+                                <div class="order-number">
+                                    ${order.id}
+                                </div>
+
+                                <div class="order-date">
+                                    ${formatOrderDate(order.date)}
+                                </div>
+
+                            </div>
+
+
+                            <div class="order-status">
+                                ${order.status}
+                            </div>
+
+                        </div>
+
+
+                        <div class="order-products">
+
+                            ${productsHTML}
+
+                        </div>
+
+
+                        <div class="order-card-footer">
+
+                            <span class="order-total-label">
+                                Загальна сума
+                            </span>
+
+                            <strong class="order-total">
+                                ${Number(order.total).toLocaleString("uk-UA")} грн
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+renderOrders();
+</script>
+
+</body>
+</html>
+

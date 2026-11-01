@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Контакти — ÉLORIA</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================================
+           CONTACTS PAGE
+        ========================================================= */
+
+        .contacts-page {
+            background: #fffafb;
+            color: #5d4149;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .contacts-hero {
+            min-height: 430px;
+            padding: 100px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7f9 0%,
+                    #fdecef 50%,
+                    #fffafb 100%
+                );
+        }
+
+        .contacts-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .contacts-eyebrow {
+            margin-bottom: 18px;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #b17b89;
+            font-weight: 600;
+        }
+
+        .contacts-hero h1 {
+            margin: 0;
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.05;
+            color: #674650;
+            font-weight: 500;
+        }
+
+        .contacts-hero h1 em {
+            color: #b8798b;
+            font-family: Georgia, serif;
+            font-weight: 400;
+        }
+
+        .contacts-hero p {
+            max-width: 600px;
+            margin-top: 25px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #84636c;
+        }
+
+        .contacts-hero-decoration {
+            position: absolute;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+
+            font-family: Georgia, serif;
+            font-size: 300px;
+            line-height: 1;
+
+            color: rgba(190, 125, 143, 0.08);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           CONTACT CARDS
+        ========================================================= */
+
+        .contacts-info-section {
+            width: min(1180px, calc(100% - 40px));
+            margin: 85px auto;
+        }
+
+        .contacts-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .contact-card {
+            position: relative;
+            min-height: 285px;
+
+            padding: 38px 35px 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff 0%,
+                    #fff8fa 100%
+                );
+
+            border: 1px solid #efd9df;
+            border-radius: 26px;
+
+            box-shadow:
+                0 18px 50px rgba(150, 90, 105, 0.07);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .contact-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d49aaa,
+                    #efd0d8
+                );
+        }
+
+        .contact-card::after {
+            content: "";
+
+            position: absolute;
+
+            right: -55px;
+            bottom: -65px;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background: rgba(222, 170, 184, 0.10);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #e3bbc6;
+
+            box-shadow:
+                0 25px 60px rgba(150, 90, 105, 0.12);
+        }
+
+        .contact-card-number {
+            position: relative;
+            z-index: 2;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 43px;
+            height: 43px;
+
+            margin-bottom: 27px;
+
+            border-radius: 50%;
+
+            background: #f9e6eb;
+
+            color: #b8798b;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            font-weight: 700;
+        }
+
+        .contact-card h2 {
+            position: relative;
+            z-index: 2;
+
+            margin: 0 0 23px;
+
+            color: #684750;
+
+            font-size: 27px;
+
+            font-weight: 500;
+
+            letter-spacing: -0.3px;
+        }
+
+        .contact-card p {
+            position: relative;
+            z-index: 2;
+
+            margin: 10px 0;
+
+            color: #876771;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .contact-card a {
+            color: #a05f74;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+            transition: 0.25s ease;
+        }
+
+        .contact-card a:hover {
+            color: #704450;
+        }
+
+        .contact-card-address {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            margin-top: 5px;
+        }
+
+        .contact-address-item {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 11px;
+
+            color: #80616a;
+
+            font-size: 14px;
+
+            line-height: 1.55;
+        }
+
+        .contact-address-dot {
+            width: 7px;
+            height: 7px;
+
+            margin-top: 7px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #c88b9d;
+        }
+
+        .contact-email-item {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        /* =========================================================
+           CONTACT FORM
+        ========================================================= */
+
+        .contact-form-section {
+            width: min(1100px, calc(100% - 40px));
+
+            margin: 90px auto 110px;
+
+            padding: 65px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3f6,
+                    #ffe7ee
+                );
+
+            border: 1px solid #f1ccd7;
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 20px 55px rgba(170, 100, 120, 0.10);
+        }
+
+        .contact-form-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .contact-form-heading span {
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #b77b8d;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            font-weight: 600;
+        }
+
+        .contact-form-heading h2 {
+            margin: 0;
+
+            color: #6e4351;
+
+            font-size: 45px;
+
+            font-weight: 500;
+        }
+
+        .contact-form-heading h2 em {
+            color: #b97689;
+
+            font-family: Georgia, serif;
+
+            font-weight: 400;
+        }
+
+        .contact-form-heading p {
+            max-width: 650px;
+
+            margin: 18px auto 0;
+
+            color: #87636d;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+        .eloria-contact-form {
+            width: 100%;
+        }
+
+        .contact-form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 24px;
+        }
+
+        .form-field {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .form-field-full {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            margin-bottom: 9px;
+
+            color: #704b57;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border: 1px solid #e6bdc9;
+
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, 0.85);
+
+            padding: 15px 17px;
+
+            color: #674650;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.25s ease;
+        }
+
+        .form-field input,
+        .form-field select {
+            height: 52px;
+        }
+
+        .form-field textarea {
+            min-height: 150px;
+
+            resize: vertical;
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: #b798a1;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: #c9899b;
+
+            background: #fff;
+
+            box-shadow:
+                0 0 0 4px rgba(201, 137, 155, 0.10);
+        }
+
+
+        /* =========================================================
+           CONSENT
+        ========================================================= */
+
+        .form-consent {
+            margin-top: 25px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            cursor: pointer;
+
+            color: #80616a;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .form-consent input {
+            width: 18px;
+            height: 18px;
+
+            margin-top: 2px;
+
+            accent-color: #b8788b;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .form-buttons {
+            margin-top: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .form-submit,
+        .form-clear {
+            min-height: 52px;
+
+            padding: 0 30px;
+
+            border-radius: 30px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .form-submit {
+            border: 1px solid #b97689;
+
+            background: #b97689;
+
+            color: #fff;
+        }
+
+        .form-submit:hover {
+            background: #a9677a;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(170, 100, 120, 0.18);
+        }
+
+        .form-clear {
+            border: 1px solid #d9aebb;
+
+            background: rgba(255,255,255,0.7);
+
+            color: #956273;
+        }
+
+        .form-clear:hover {
+            background: #fff;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           SUCCESS MESSAGE
+        ========================================================= */
+
+        .form-success {
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px 24px;
+
+            align-items: center;
+
+            gap: 16px;
+
+            border: 1px solid #d8b6c0;
+
+            border-radius: 17px;
+
+            background: rgba(255,255,255,0.75);
+
+            color: #704b57;
+        }
+
+        .form-success.show {
+            display: flex;
+        }
+
+        .success-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #c88b9d;
+
+            color: #fff;
+
+            font-size: 19px;
+        }
+
+        .form-success strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 15px;
+        }
+
+        .form-success p {
+            margin: 0;
+
+            font-size: 13px;
+
+            color: #886772;
+        }
+
+
+        /* =========================================================
+           ONLINE MANAGER
+        ========================================================= */
+
+        .eloria-manager-widget {
+            position: fixed;
+
+            right: 28px;
+            bottom: 28px;
+
+            z-index: 9999;
+        }
+
+        .manager-mini-card {
+            width: 340px;
+
+            padding: 14px 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            background: #fff;
+
+            border: 1px solid #efd2da;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 15px 40px rgba(120, 70, 85, 0.18);
+
+            cursor: pointer;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 0.4s ease,
+                visibility 0.4s ease,
+                transform 0.4s ease;
+        }
+
+        .manager-mini-card.show {
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+        .manager-mini-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 18px 45px rgba(120, 70, 85, 0.22);
+        }
+
+        .manager-mini-photo {
+            width: 58px;
+            height: 58px;
+
+            position: relative;
+
+            flex-shrink: 0;
+        }
+
+        .manager-mini-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 2px solid #efd0d8;
+        }
+
+        .manager-online {
+            position: absolute;
+
+            right: 1px;
+            bottom: 2px;
+
+            width: 12px;
+            height: 12px;
+
+            border-radius: 50%;
+
+            background: #76b68a;
+
+            border: 2px solid #fff;
+        }
+
+        .manager-mini-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            flex: 1;
+        }
+
+        .manager-mini-info strong {
+            color: #694650;
+
+            font-size: 14px;
+        }
+
+        .manager-mini-info span {
+            color: #9a747e;
+
+            font-size: 11px;
+        }
+
+        .manager-mini-arrow {
+            color: #b8788b;
+
+            font-size: 30px;
+
+            line-height: 1;
+        }
+
+
+        /* =========================================================
+           MANAGER MODAL
+        ========================================================= */
+
+        .manager-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 10000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(80, 45, 55, 0.25);
+
+            backdrop-filter: blur(5px);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: 0.3s ease;
+        }
+
+        .manager-modal.open {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .manager-chat-window {
+            width: 410px;
+
+            max-width: 100%;
+
+            max-height: 720px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: #fffafb;
+
+            border: 1px solid #efd2da;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 30px 80px rgba(90, 50, 65, 0.25);
+
+            transform:
+                translateY(20px)
+                scale(0.97);
+
+            transition: 0.3s ease;
+        }
+
+        .manager-modal.open .manager-chat-window {
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+        .manager-chat-header {
+            padding: 18px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f9e1e7,
+                    #fceef1
+                );
+
+            border-bottom: 1px solid #efd2da;
+        }
+
+        .manager-chat-person {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .manager-chat-photo {
+            width: 50px;
+            height: 50px;
+
+            position: relative;
+        }
+
+        .manager-chat-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 2px solid #fff;
+        }
+
+        .manager-chat-photo span {
+            position: absolute;
+
+            right: 0;
+            bottom: 1px;
+
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #76b68a;
+
+            border: 2px solid #fff;
+        }
+
+        .manager-chat-person-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+        .manager-chat-person-info strong {
+            color: #67434d;
+
+            font-size: 14px;
+        }
+
+        .manager-chat-person-info small {
+            color: #96727c;
+
+            font-size: 11px;
+        }
+
+        .manager-close {
+            width: 38px;
+            height: 38px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.7);
+
+            color: #93606f;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+       
+
+        /* =========================================================
+           MANAGER MESSAGES
+        ========================================================= */
+
+        .manager-chat-messages {
+            height: 245px;
+
+            overflow-y: auto;
+
+            padding: 20px;
+
+            background: #fffafb;
+        }
+
+        .manager-message {
+            max-width: 88%;
+
+            margin-bottom: 14px;
+
+            padding: 12px 14px;
+
+            border-radius: 16px;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+        }
+
+        .manager-message-manager {
+            margin-right: auto;
+
+            background: #f8e8ed;
+
+            color: #704c57;
+
+            border-bottom-left-radius: 5px;
+        }
+
+        .manager-message-user {
+            margin-left: auto;
+
+            background: #c88a9c;
+
+            color: #fff;
+
+            border-bottom-right-radius: 5px;
+        }
+
+        .manager-message-name {
+            margin-bottom: 4px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            opacity: 0.75;
+        }
+
+        .manager-message-text {
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           MANAGER QUESTIONS
+        ========================================================= */
+
+        .manager-questions {
+            max-height: 260px;
+
+            overflow-y: auto;
+
+            padding: 15px 20px;
+
+            border-top: 1px solid #f0dce1;
+
+            background: #fff;
+        }
+
+        .manager-questions-title {
+            margin-bottom: 10px;
+
+            color: #805966;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        .manager-question {
+            width: 100%;
+
+            margin-bottom: 7px;
+
+            padding: 10px 12px;
+
+            text-align: left;
+
+            border: 1px solid #ecd3da;
+
+            border-radius: 10px;
+
+            background: #fff7f9;
+
+            color: #76515d;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .manager-question:hover {
+            background: #f8e3e9;
+
+            border-color: #d8a6b4;
+        }
+
+
+        /* =========================================================
+           MANAGER CUSTOM QUESTION
+        ========================================================= */
+
+        .manager-custom-question {
+            display: flex;
+
+            gap: 8px;
+
+            padding: 14px;
+
+            border-top: 1px solid #efdce2;
+
+            background: #fff;
+        }
+
+        .manager-custom-question input {
+            min-width: 0;
+
+            flex: 1;
+
+            height: 43px;
+
+            padding: 0 14px;
+
+            border: 1px solid #e6c6cf;
+
+            border-radius: 22px;
+
+            background: #fff8fa;
+
+            color: #694751;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 12px;
+        }
+
+        .manager-custom-question input:focus {
+            border-color: #c88a9c;
+        }
+
+        .manager-custom-question button {
+            width: 43px;
+            height: 43px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #c88a9c;
+
+            color: #fff;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .manager-custom-question button:hover {
+            background: #ae6f82;
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .contacts-info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-card:last-child {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .contacts-hero {
+                padding: 75px 25px;
+
+                min-height: 380px;
+            }
+
+            .contacts-hero-decoration {
+                right: -20px;
+
+                font-size: 220px;
+            }
+
+            .contact-form-section {
+                padding: 40px 25px;
+            }
+
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-field-full {
+                grid-column: auto;
+            }
+
+            .contact-form-heading h2 {
+                font-size: 36px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .contacts-hero {
+                padding: 65px 20px;
+            }
+
+            .contacts-hero h1 {
+                font-size: 44px;
+            }
+
+            .contacts-hero p {
+                font-size: 15px;
+            }
+
+            .contacts-info-section {
+                width: calc(100% - 30px);
+
+                margin: 55px auto;
+            }
+
+            .contacts-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card:last-child {
+                grid-column: auto;
+            }
+
+            .contact-card {
+                padding: 30px 25px;
+            }
+
+            .contact-form-section {
+                width: calc(100% - 30px);
+
+                margin: 60px auto 80px;
+
+                padding: 35px 20px;
+
+                border-radius: 22px;
+            }
+
+            .contact-form-heading h2 {
+                font-size: 32px;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .form-submit,
+            .form-clear {
+                width: 100%;
+            }
+
+            .form-success {
+                align-items: flex-start;
+            }
+
+            .eloria-manager-widget {
+                right: 10px;
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .manager-mini-card {
+                width: 100%;
+
+                box-sizing: border-box;
+            }
+
+            .manager-modal {
+                padding: 10px;
+            }
+
+            .manager-chat-window {
+                width: 100%;
+
+                max-height: 88vh;
+            }
+
+            .manager-chat-messages {
+                height: 220px;
+            }
+
+            .manager-questions {
+                max-height: 230px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <nav class="nav-left">
+
+            <a href="index.html">
+                Про кондитерську
+            </a>
+
+            <a href="chef.html">
+                Про шефа
+            </a>
+              <a href="career.html">Наша команда</a>
+
+        </nav>
+
+
+        <a href="index.html" class="logo">
+
+            ÉLORIA
+
+            <span>
+                PÂTISSERIE & CAFÉ
+            </span>
+
+        </a>
+
+
+        <button
+            class="hamburger"
+            aria-label="Меню"
+            type="button">
+
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+
+        </button>
+
+
+        <nav class="nav-right">
+
+            <a href="menu.html">
+                Каталог
+            </a>
+
+            <a href="drinks.html">
+                Кава та напої
+            </a>
+
+            <a href="price.html">
+                Прайс-лист
+            </a>
+
+        </nav>
+
+
+        <div class="mobile-menu">
+
+            <a href="index.html">
+                Головна
+            </a>
+
+            <a href="chef.html">
+                Про шефа
+            </a>
+              <a href="career.html">Наша команда</a>
+
+            <a href="menu.html">
+                Каталог
+            </a>
+
+            <a href="celebrations.html">
+                Святкові колекції
+            </a>
+
+            <a href="bakery.html">Випічка</a>
+
+            <a href="drinks.html">
+                Кава та напої
+            </a>
+
+            <a href="price.html">
+                Прайс-лист
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="contacts-page">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="contacts-hero">
+
+        <div class="contacts-hero-content">
+
+            <div class="contacts-eyebrow">
+                ÉLORIA PÂTISSERIE & CAFÉ
+            </div>
+
+            <h1>
+                Зв'яжіться з
+                <em>ÉLORIA</em>
+            </h1>
+
+            <p>
+                Ми завжди раді відповісти на ваші запитання
+                та допомогти створити особливе замовлення.
+            </p>
+
+        </div>
+
+
+        <div class="contacts-hero-decoration">
+            É
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT INFORMATION
+    ====================================================== -->
+
+    <section class="contacts-info-section">
+
+        <div class="contacts-info-grid">
+
+
+            <!-- =================================================
+                 PHONE
+            ================================================= -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    01
+                </div>
+
+                <h2>
+                    Телефон
+                </h2>
+
+                <div class="contact-email-item">
+
+                    <p>
+                        <a href="tel:+380994400011">
+                            +380 (99) 440-00-11
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="tel:+380674400011">
+                            +380 (67) 440-00-11
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EMAIL
+            ================================================= -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    02
+                </div>
+
+                <h2>
+                    Email
+                </h2>
+
+                <div class="contact-email-item">
+
+                    <p>
+                        <a href="mailto:orders@eloria.ua">
+                            orders@eloria.ua
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="mailto:consierge@eloria.ua">
+                            consierge@eloria.ua
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADDRESSES
+            ================================================= -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    03
+                </div>
+
+                <h2>
+                    Наші адреси
+                </h2>
+
+                <div class="contact-card-address">
+
+                    <div class="contact-address-item">
+
+                        <span class="contact-address-dot"></span>
+
+                        <span>
+                            вул. Хрещатик, 15, Київ
+                        </span>
+
+                    </div>
+
+
+                    <div class="contact-address-item">
+
+                        <span class="contact-address-dot"></span>
+
+                        <span>
+                            вул. Велика Васильківська, 23, Київ
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT FORM
+    ====================================================== -->
+
+    <section class="contact-form-section">
+
+
+        <div class="contact-form-heading">
+
+            <span>
+                ÉLORIA CONTACT
+            </span>
+
+            <h2>
+                Форма <em>зв'язку</em>
+            </h2>
+
+            <p>
+                Залиште свої дані, і наш менеджер зв'яжеться
+                з вами для уточнення деталей замовлення.
+            </p>
+
+        </div>
+
+
+        <form
+            class="eloria-contact-form"
+            id="eloriaContactForm">
+
+
+            <div class="contact-form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="form-field">
+
+                    <label for="contactName">
+                        Ім'я та прізвище
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contactName"
+                        name="name"
+                        placeholder="Ваше ім'я та прізвище"
+                        required>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-field">
+
+                    <label for="contactPhone">
+                        Телефон
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="contactPhone"
+                        name="phone"
+                        placeholder="+380 (__) ___-__-__"
+                        required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-field">
+
+                    <label for="contactEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="contactEmail"
+                        name="email"
+                        placeholder="your@email.com"
+                        required>
+
+                </div>
+
+
+                <!-- SUBJECT -->
+
+                <div class="form-field">
+
+                    <label for="contactSubject">
+                        Тема
+                    </label>
+
+                    <select
+                        id="contactSubject"
+                        name="subject"
+                        required>
+
+                        <option value="">
+                            Оберіть тему
+                        </option>
+
+                        <option value="Замовлення торта">
+                            Замовлення торта
+                        </option>
+
+                        <option value="Індивідуальне замовлення">
+                            Індивідуальне замовлення
+                        </option>
+
+                        <option value="Святкова колекція">
+                            Святкова колекція
+                        </option>
+
+                        <option value="Замовлення напоїв">
+                            Замовлення напоїв
+                        </option>
+
+                        <option value="Інше питання">
+                            Інше питання
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-field form-field-full">
+
+                    <label for="contactMessage">
+                        Повідомлення
+                    </label>
+
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="6"
+                        placeholder="Напишіть ваше повідомлення..."
+                        required></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- CONSENT -->
+
+            <label class="form-consent">
+
+                <input
+                    type="checkbox"
+                    id="contactConsent"
+                    required>
+
+                <span>
+                    Я дозволяю обробку моїх персональних даних
+                    для зв'язку зі мною щодо мого запиту.
+                </span>
+
+            </label>
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-buttons">
+
+                <button
+                    type="submit"
+                    class="form-submit">
+
+                    Надіслати запит
+
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="form-clear">
+
+                    Очистити
+
+                </button>
+
+            </div>
+
+
+            <!-- SUCCESS -->
+
+            <div
+                class="form-success"
+                id="formSuccess">
+
+                <span class="success-icon">
+                    ✓
+                </span>
+
+                <div>
+
+                    <strong>
+                        Запит успішно надіслано!
+                    </strong>
+
+                    <p>
+                        Дякуємо! Менеджер ÉLORIA зв'яжеться
+                        з вами найближчим часом.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     ÉLORIA — ONLINE MANAGER
+========================================================= -->
+
+<div class="eloria-manager-widget">
+
+
+    <!-- MINI CARD -->
+
+    <div
+        class="manager-mini-card"
+        id="managerMiniCard">
+
+
+        <div class="manager-mini-photo">
+
+            <img
+                src="images/Eloria_meneger2.png"
+                alt="Менеджер ÉLORIA">
+
+            <span class="manager-online"></span>
+
+        </div>
+
+
+        <div class="manager-mini-info">
+
+            <strong>
+                Потрібна допомога?
+            </strong>
+
+            <span>
+                Менеджер ÉLORIA • Онлайн
+            </span>
+
+        </div>
+
+
+        <span class="manager-mini-arrow">
+            ›
+        </span>
+
+    </div>
+
+
+    <!-- CHAT MODAL -->
+
+    <div
+        class="manager-modal"
+        id="managerModal">
+
+
+        <div class="manager-chat-window">
+
+
+            <!-- HEADER -->
+
+            <div class="manager-chat-header">
+
+                <div class="manager-chat-person">
+
+
+                    <div class="manager-chat-photo">
+
+                        <img
+                            src="images/Eloria_meneger2.png"
+                            alt="Менеджер ÉLORIA">
+
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="manager-chat-person-info">
+
+                        <strong>
+                            Менеджер ÉLORIA
+                        </strong>
+
+                        <small>
+                            Онлайн • готова допомогти
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="manager-close"
+                    id="managerClose"
+                    aria-label="Закрити">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGES -->
+
+            <div
+                class="manager-chat-messages"
+                id="managerChatMessages">
+
+
+                <div
+                    class="manager-message manager-message-manager">
+
+                    <div class="manager-message-name">
+                        Менеджер ÉLORIA
+                    </div>
+
+                    <div class="manager-message-text">
+                        Вітаю! Я допоможу вам з вибором десертів,
+                        напоїв та святкових колекцій.
+                        Оберіть питання нижче ✨
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- QUESTIONS -->
+
+            <div class="manager-questions">
+
+
+                <div class="manager-questions-title">
+                    Популярні питання
+                </div>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Які десерти є в каталозі?"
+                    data-answer="У каталозі ÉLORIA представлені авторські торти, тарталетки, макарони, канеле, шу, міні-десерти та інші вишукані солодощі.">
+
+                    Які десерти є в каталозі?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Які у вас є напої?"
+                    data-answer="У ÉLORIA можна обрати каву, чай, гарячий шоколад, лимонади та фірмові напої. Кожен напій має власну подачу та стиль.">
+
+                    Які у вас є напої?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Чи можна замовити торт?"
+                    data-answer="Так, у ÉLORIA можна замовити торт. Ви можете обрати готовий варіант із каталогу або звернутися до менеджера щодо індивідуального замовлення.">
+
+                    Чи можна замовити торт?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Скільки коштують торти?"
+                    data-answer="Вартість залежить від виду, розміру та оформлення торта. Актуальні ціни можна переглянути в каталозі ÉLORIA.">
+
+                    Скільки коштують торти?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Чи можна замовити індивідуальний торт?"
+                    data-answer="Так. Ми можемо обговорити індивідуальний дизайн, смак, розмір та оформлення торта відповідно до вашого свята.">
+
+                    Чи можна замовити індивідуальний торт?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Чи можна замовити набір макаронів?"
+                    data-answer="Так, у ÉLORIA доступні набори макаронів у різних смаках. Також можна підібрати набір для подарунка або святкової події.">
+
+                    Чи можна замовити набір макаронів?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Які у вас є види кави?"
+                    data-answer="У меню є класичні та авторські кавові напої, зокрема еспресо, капучино, латте та фірмові варіанти з ніжними десертними нотами.">
+
+                    Які у вас є види кави?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Чи є у вас святкові колекції?"
+                    data-answer="Так. ÉLORIA створює сезонні та святкові колекції десертів, які можна обрати для особливих подій та подарунків.">
+
+                    Чи є у вас святкові колекції?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Чи можна оформити доставку?"
+                    data-answer="Так, для замовлень можна уточнити можливість доставки у ваш район. Деталі можна погодити з менеджером ÉLORIA.">
+
+                    Чи можна оформити доставку?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="manager-question"
+                    data-question="Де знаходиться ÉLORIA?"
+                    data-answer="ÉLORIA — преміальна кондитерська в самому серці Києва. Точну адресу та актуальну інформацію можна переглянути на сторінці контактів.">
+
+                    Де знаходиться ÉLORIA?
+
+                </button>
+
+
+            </div>
+
+
+            <!-- CUSTOM QUESTION -->
+
+            <div class="manager-custom-question">
+
+                <input
+                    type="text"
+                    id="managerCustomQuestion"
+                    placeholder="Напишіть своє питання..."
+                    autocomplete="off">
+
+                <button
+                    type="button"
+                    id="managerSendQuestion"
+                    aria-label="Надіслати">
+
+                    ➤
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const hamburger =
+        document.querySelector(".hamburger");
+
+    const mobileMenu =
+        document.querySelector(".mobile-menu");
+
+
+    if (hamburger && mobileMenu) {
+
+        hamburger.addEventListener(
+            "click",
+            function () {
+
+                hamburger.classList.toggle("active");
+
+                mobileMenu.classList.toggle("active");
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       CONTACT FORM
+    ========================================================= */
+
+    const contactForm =
+        document.getElementById("eloriaContactForm");
+
+    const formSuccess =
+        document.getElementById("formSuccess");
+
+
+    if (contactForm && formSuccess) {
+
+        contactForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                if (!contactForm.checkValidity()) {
+
+                    contactForm.reportValidity();
+
+                    return;
+
+                }
+
+
+                formSuccess.classList.add("show");
+
+                contactForm.reset();
+
+
+                setTimeout(
+                    function () {
+
+                        formSuccess.classList.remove("show");
+
+                    },
+                    7000
+                );
+
+            }
+        );
+
+
+        contactForm.addEventListener(
+            "reset",
+            function () {
+
+                setTimeout(
+                    function () {
+
+                        formSuccess.classList.remove("show");
+
+                    },
+                    0
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       ONLINE MANAGER
+       ПОКАЗУЄТЬСЯ ПІСЛЯ КОЖНОГО ОНОВЛЕННЯ
+    ========================================================= */
+
+    const miniCard =
+        document.getElementById("managerMiniCard");
+
+    const modal =
+        document.getElementById("managerModal");
+
+    const closeBtn =
+        document.getElementById("managerClose");
+
+    const messages =
+        document.getElementById("managerChatMessages");
+
+    const customInput =
+        document.getElementById("managerCustomQuestion");
+
+    const sendButton =
+        document.getElementById("managerSendQuestion");
+
+    const questions =
+        document.querySelectorAll(".manager-question");
+
+
+    if (
+        !miniCard ||
+        !modal ||
+        !closeBtn ||
+        !messages ||
+        !customInput ||
+        !sendButton
+    ) {
+
+        console.error(
+            "ÉLORIA Manager: елементи менеджера не знайдені."
+        );
+
+        return;
+
+    }
+
+
+    /* =========================================================
+       SHOW AFTER 3 SECONDS
+    ========================================================= */
+
+    setTimeout(
+        function () {
+
+            miniCard.classList.add("show");
+
+        },
+        3000
+    );
+
+
+    /* =========================================================
+       OPEN MANAGER
+    ========================================================= */
+
+    miniCard.addEventListener(
+        "click",
+        function () {
+
+            miniCard.classList.remove("show");
+
+            modal.classList.add("open");
+
+            document.body.style.overflow = "hidden";
+
+        }
+    );
+
+
+    /* =========================================================
+       CLOSE MANAGER
+    ========================================================= */
+
+    function closeManager() {
+
+        modal.classList.remove("open");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    closeBtn.addEventListener(
+        "click",
+        closeManager
+    );
+
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === modal) {
+
+                closeManager();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("open")
+            ) {
+
+                closeManager();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       ADD MESSAGE
+    ========================================================= */
+
+    function addMessage(text, type) {
+
+        const message =
+            document.createElement("div");
+
+        message.className =
+            "manager-message manager-message-" + type;
+
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "manager-message-name";
+
+        name.textContent =
+            type === "user"
+                ? "Ви"
+                : "Менеджер ÉLORIA";
+
+
+        const messageText =
+            document.createElement("div");
+
+        messageText.className =
+            "manager-message-text";
+
+        messageText.textContent =
+            text;
+
+
+        message.appendChild(name);
+
+        message.appendChild(messageText);
+
+        messages.appendChild(message);
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    }
+
+
+    /* =========================================================
+       PRESET QUESTIONS
+    ========================================================= */
+
+    questions.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const question =
+                        button.getAttribute(
+                            "data-question"
+                        );
+
+                    const answer =
+                        button.getAttribute(
+                            "data-answer"
+                        );
+
+
+                    if (!question || !answer) {
+
+                        return;
+
+                    }
+
+
+                    addMessage(
+                        question,
+                        "user"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            addMessage(
+                                answer,
+                                "manager"
+                            );
+
+                        },
+                        500
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       CUSTOM QUESTION
+    ========================================================= */
+
+    function sendCustomQuestion() {
+
+        const question =
+            customInput.value.trim();
+
+
+        if (!question) {
+
+            customInput.focus();
+
+            return;
+
+        }
+
+
+        addMessage(
+            question,
+            "user"
+        );
+
+
+        customInput.value = "";
+
+
+        setTimeout(
+            function () {
+
+                addMessage(
+                    "Дякуємо за ваше питання! Для цього запиту радимо скористатися формою контакту на сторінці. Менеджер ÉLORIA допоможе підібрати найкращий варіант.",
+                    "manager"
+                );
+
+            },
+            500
+        );
+
+    }
+
+
+    sendButton.addEventListener(
+        "click",
+        sendCustomQuestion
+    );
+
+
+    /* ENTER */
+
+    customInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                sendCustomQuestion();
+
+            }
+
+        }
+    );
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

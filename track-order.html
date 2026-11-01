@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track My ÉLORIA — Відстеження замовлення</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --pink: #c1848e;
+            --pink-dark: #a96875;
+            --pink-light: #f9e9eb;
+            --powder: #fff7f6;
+            --gold: #b89a69;
+            --text: #59464a;
+            --muted: #9b8588;
+            --line: #ead9d9;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(193, 132, 142, .13),
+                    transparent 30%
+                ),
+                linear-gradient(135deg, #fffdfb, #fbf0ef);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .topbar {
+            min-height: 88px;
+            padding: 18px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            background: rgba(255, 255, 255, .85);
+            border-bottom: 1px solid rgba(193, 132, 142, .18);
+        }
+
+        .brand {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 34px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            color: var(--pink-dark);
+        }
+
+        .brand-subtitle {
+            display: block;
+            margin-top: 2px;
+
+            font-family: "Montserrat", sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--gold);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 12px 18px;
+
+            border: 1px solid #e8d1d2;
+            border-radius: 30px;
+
+            background: var(--white);
+            color: var(--pink-dark);
+            font-size: 12px;
+
+            transition: .25s;
+        }
+
+        .back-link:hover {
+            background: var(--pink-light);
+            transform: translateY(-2px);
+        }
+
+        .page {
+            width: min(1000px, 92%);
+            margin: 55px auto 80px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 14px;
+
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .intro h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(42px, 7vw, 66px);
+            font-weight: 500;
+            line-height: 1;
+            color: #76545a;
+        }
+
+        .intro p {
+            max-width: 540px;
+            margin: 17px auto 0;
+
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .tracking-card {
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, .93);
+            border: 1px solid #ecdada;
+            border-radius: 28px;
+
+            box-shadow: 0 22px 65px rgba(125, 75, 82, .09);
+        }
+
+        .tracking-top {
+            padding: 32px 36px;
+
+            background: linear-gradient(
+                135deg,
+                #fff8f7,
+                #f9e9eb
+            );
+
+            border-bottom: 1px solid #f0dede;
+        }
+
+        .tracking-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tracking-icon {
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+            background: white;
+            color: var(--pink);
+            font-size: 23px;
+
+            box-shadow: 0 6px 20px rgba(150, 90, 100, .08);
+        }
+
+        .tracking-title h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: #76545a;
+        }
+
+        .tracking-title p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .search-area {
+            padding: 30px 36px;
+        }
+
+        .search-area label {
+            display: block;
+            margin-bottom: 12px;
+
+            color: #8d6d71;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-row input {
+            width: 100%;
+            min-width: 0;
+            height: 52px;
+            padding: 0 18px;
+
+            color: var(--text);
+            background: #fffdfc;
+
+            border: 1px solid #e7d2d3;
+            border-radius: 12px;
+            outline: none;
+
+            transition: .25s;
+        }
+
+        .search-row input:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 4px rgba(193, 132, 142, .1);
+        }
+
+        .search-row input::placeholder {
+            color: #c0abad;
+        }
+
+        .track-button {
+            min-height: 52px;
+            padding: 0 25px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-shrink: 0;
+
+            border: 0;
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #c98e98,
+                #b77380
+            );
+
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+
+            box-shadow: 0 8px 20px rgba(183, 115, 128, .18);
+            transition: .25s;
+        }
+
+        .track-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(183, 115, 128, .25);
+        }
+
+        .search-hint {
+            margin-top: 12px;
+            color: #ad999b;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .message {
+            display: none;
+            margin: 0 36px 25px;
+            padding: 14px 16px;
+
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .message.error {
+            display: block;
+            color: #a34f5d;
+            background: #fff0f1;
+            border: 1px solid #f0d1d5;
+        }
+
+        .result {
+            display: none;
+            padding: 0 36px 38px;
+        }
+
+        .result.visible {
+            display: block;
+            animation: appear .4s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+
+            padding: 23px;
+            margin-bottom: 30px;
+
+            border: 1px solid #f0dede;
+            border-radius: 17px;
+            background: #fffaf9;
+        }
+
+        .summary-label {
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .order-number {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 29px;
+            font-weight: 600;
+            color: #76545a;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 9px 12px;
+            border-radius: 30px;
+
+            background: #f8e8eb;
+            color: var(--pink-dark);
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .progress-heading {
+            margin-bottom: 25px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: #76545a;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 4px;
+        }
+
+        .timeline-step {
+            position: relative;
+            display: flex;
+            gap: 17px;
+            min-height: 91px;
+        }
+
+        .timeline-step:last-child {
+            min-height: auto;
+        }
+
+        .step-visual {
+            width: 30px;
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .step-circle {
+            position: relative;
+            z-index: 2;
+
+            width: 29px;
+            height: 29px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid #e8d8d8;
+            border-radius: 50%;
+
+            background: #fff;
+            color: #c4adaf;
+            font-size: 11px;
+        }
+
+        .timeline-step.completed .step-circle {
+            border-color: var(--pink);
+            background: var(--pink);
+            color: white;
+        }
+
+        .timeline-step.current .step-circle {
+            border: 2px solid var(--pink);
+            background: #fff7f7;
+            color: var(--pink-dark);
+            box-shadow: 0 0 0 5px rgba(193, 132, 142, .12);
+        }
+
+        .step-line {
+            width: 2px;
+            min-height: 60px;
+            flex: 1;
+            margin: 4px 0;
+            background: #eadcdd;
+        }
+
+        .timeline-step.completed .step-line {
+            background: #d9a5ad;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 3px 0 25px;
+        }
+
+        .step-content h3 {
+            margin-bottom: 7px;
+            color: #a18c8e;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .timeline-step.completed .step-content h3,
+        .timeline-step.current .step-content h3 {
+            color: #76545a;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #b09d9e;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .timeline-step.current .step-content p {
+            color: #9b8588;
+        }
+
+        .demo-note {
+            margin-top: 30px;
+            padding: 15px 17px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+
+            border-radius: 13px;
+            background: #fcf5eb;
+            color: #8e7956;
+
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .demo-note i {
+            margin-top: 3px;
+            color: var(--gold);
+        }
+
+        .demo-orders {
+            margin-top: 25px;
+            padding: 25px;
+
+            border: 1px solid #ecdada;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .8);
+        }
+
+        .demo-orders h2 {
+            margin-bottom: 8px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #76545a;
+        }
+
+        .demo-orders > p {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .demo-order-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .demo-order-button {
+            padding: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+
+            border: 1px solid #eedcdd;
+            border-radius: 12px;
+
+            background: #fffaf9;
+            color: var(--text);
+
+            cursor: pointer;
+            text-align: left;
+            transition: .25s;
+        }
+
+        .demo-order-button:hover {
+            border-color: var(--pink);
+            background: #fff2f3;
+            transform: translateY(-2px);
+        }
+
+        .demo-order-button strong {
+            color: #865d64;
+            font-size: 12px;
+        }
+
+        .demo-order-button span {
+            color: #a18c8e;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            padding: 28px 20px;
+            text-align: center;
+            color: #b09b9d;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .footer span {
+            color: var(--gold);
+        }
+
+        @media (max-width: 600px) {
+            .topbar {
+                min-height: 75px;
+                padding: 15px 5%;
+            }
+
+            .brand {
+                font-size: 26px;
+                letter-spacing: 4px;
+            }
+
+            .brand-subtitle {
+                font-size: 8px;
+                letter-spacing: 2px;
+            }
+
+            .back-link {
+                padding: 10px 12px;
+                font-size: 10px;
+            }
+
+            .page {
+                width: 94%;
+                margin: 35px auto 50px;
+            }
+
+            .intro h1 {
+                font-size: 43px;
+            }
+
+            .tracking-card {
+                border-radius: 21px;
+            }
+
+            .tracking-top {
+                padding: 24px 20px;
+            }
+
+            .tracking-title h2 {
+                font-size: 25px;
+            }
+
+            .search-area {
+                padding: 25px 20px;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .track-button {
+                width: 100%;
+            }
+
+            .message {
+                margin: 0 20px 22px;
+            }
+
+            .result {
+                padding: 0 20px 27px;
+            }
+
+            .order-summary {
+                padding: 17px;
+                flex-direction: column;
+                gap: 13px;
+            }
+
+            .order-number {
+                font-size: 26px;
+            }
+
+            .progress-heading {
+                font-size: 27px;
+            }
+
+            .timeline-step {
+                gap: 13px;
+                min-height: 100px;
+            }
+
+            .step-content h3 {
+                font-size: 12px;
+            }
+
+            .step-content p {
+                font-size: 10px;
+            }
+
+            .demo-orders {
+                padding: 20px;
+            }
+
+            .demo-order-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="brand">
+        ÉLORIA
+        <span class="brand-subtitle">PÂTISSERIE & CAFÉ</span>
+    </a>
+
+    <a href="index.html" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        На головну
+    </a>
+</header>
+
+
+<main class="page">
+
+    <section class="intro">
+        <span class="eyebrow">ÉLORIA DELIVERY SERVICE</span>
+        <h1>Track My ÉLORIA</h1>
+        <p>
+            Кожен десерт створюється з любов’ю.
+            Відстежуйте шлях вашого замовлення —
+            від нашої кондитерської до ваших дверей.
+        </p>
+    </section>
+
+    <section class="tracking-card">
+
+        <div class="tracking-top">
+            <div class="tracking-title">
+                <div class="tracking-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div>
+                    <h2>Де ваш десерт?</h2>
+                    <p>Введіть номер замовлення, щоб переглянути його статус.</p>
+                </div>
+            </div>
+        </div>
+
+        <form class="search-area" id="trackingForm">
+            <label for="orderInput">НОМЕР ЗАМОВЛЕННЯ</label>
+
+            <div class="search-row">
+                <input
+                    type="text"
+                    id="orderInput"
+                    name="orderNumber"
+                    placeholder="Наприклад, EL-2026-001"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit" class="track-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Відстежити
+                </button>
+            </div>
+
+            <p class="search-hint">
+                Введіть номер замовлення, щоб дізнатися його поточний статус.
+            </p>
+        </form>
+
+        <div
+            id="trackingMessage"
+            class="message"
+            role="status"
+            aria-live="polite">
+        </div>
+
+        <section
+            class="result"
+            id="trackingResult"
+            aria-live="polite">
+
+            <div class="order-summary">
+                <div>
+                    <p class="summary-label">ВАШЕ ЗАМОВЛЕННЯ</p>
+                    <div class="order-number" id="resultOrderNumber">
+                        EL-2026-001
+                    </div>
+                </div>
+
+                <span class="status-badge" id="statusBadge">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Десерт готується
+                </span>
+            </div>
+
+            <h2 class="progress-heading">
+                Шлях вашого замовлення
+            </h2>
+
+            <div class="timeline" id="trackingTimeline"></div>
+
+            <div class="demo-note">
+                <i class="fa-solid fa-heart"></i>
+                <p>
+                    ÉLORIA дбає про кожну деталь вашого замовлення,
+                    щоб ваш десерт прибув до вас красивим і свіжим.
+                </p>
+            </div>
+
+        </section>
+    </section>
+
+</main>
+
+<footer class="footer">
+    MADE WITH <i class="fa-solid fa-heart"></i> BY ÉLORIA PÂTISSERIE & CAFÉ
+</footer>
+
+<script>
+    const orders = {
+        "EL-2026-001": {
+            currentStep: 1,
+            status: "Десерт готується"
+        },
+
+        "EL-2026-002": {
+            currentStep: 2,
+            status: "Оформлення"
+        },
+
+        "EL-2026-003": {
+            currentStep: 3,
+            status: "Передано кур'єру"
+        },
+
+        "EL-2026-004": {
+            currentStep: 0,
+            status: "Замовлення прийнято"
+        },
+
+        "EL-2026-005": {
+            currentStep: 2,
+            status: "Оформлення"
+        },
+
+        "EL-2026-006": {
+            currentStep: 3,
+            status: "Передано кур'єру"
+        },
+
+        "EL-2026-007": {
+            currentStep: 4,
+            status: "Доставлено"
+        },
+
+        "EL-2026-008": {
+            currentStep: 1,
+            status: "Десерт готується"
+        },
+
+        "EL-2026-009": {
+            currentStep: 2,
+            status: "Оформлення"
+        },
+
+        "EL-2026-010": {
+            currentStep: 4,
+            status: "Доставлено"
+        }
+    };
+
+    const steps = [
+        {
+            title: "Замовлення прийнято",
+            description:
+                "Ми отримали ваше замовлення та передали його в роботу."
+        },
+        {
+            title: "Десерт готується",
+            description:
+                "Наші кондитери створюють ваш десерт із турботою про деталі."
+        },
+        {
+            title: "Оформлення",
+            description:
+                "Фінальне оформлення та підготовка замовлення до відправлення."
+        },
+        {
+            title: "Передано кур'єру",
+            description:
+                "Ваше замовлення вирушає до вас."
+        },
+        {
+            title: "Доставлено",
+            description:
+                "Ваш десерт уже у вас. Нехай момент буде особливим!"
+        }
+    ];
+
+    const trackingForm = document.getElementById("trackingForm");
+    const orderInput = document.getElementById("orderInput");
+    const trackingMessage = document.getElementById("trackingMessage");
+    const trackingResult = document.getElementById("trackingResult");
+    const resultOrderNumber = document.getElementById("resultOrderNumber");
+    const statusBadge = document.getElementById("statusBadge");
+    const trackingTimeline = document.getElementById("trackingTimeline");
+
+    function showMessage(text, type) {
+        trackingMessage.textContent = text;
+        trackingMessage.className = "message " + type;
+    }
+
+    function renderTimeline(currentStep) {
+        trackingTimeline.innerHTML = "";
+
+        steps.forEach(function(step, index) {
+            const isCompleted = index < currentStep;
+            const isCurrent = index === currentStep;
+
+            const stepElement = document.createElement("div");
+            stepElement.className = "timeline-step";
+
+            if (isCompleted) {
+                stepElement.classList.add("completed");
+            }
+
+            if (isCurrent) {
+                stepElement.classList.add("current");
+            }
+
+            let iconContent = String(index + 1);
+
+            if (isCompleted) {
+                iconContent = '<i class="fa-solid fa-check"></i>';
+            } else if (isCurrent) {
+                iconContent = '<i class="fa-solid fa-heart"></i>';
+            }
+
+            stepElement.innerHTML = `
+                <div class="step-visual">
+                    <div class="step-circle">${iconContent}</div>
+                    ${index < steps.length - 1
+                        ? '<div class="step-line"></div>'
+                        : ''
+                    }
+                </div>
+
+                <div class="step-content">
+                    <h3>${step.title}</h3>
+                    <p>${step.description}</p>
+                </div>
+            `;
+
+            trackingTimeline.appendChild(stepElement);
+        });
+    }
+
+    function trackOrder(orderNumber) {
+        const normalizedNumber = orderNumber.trim().toUpperCase();
+        const order = orders[normalizedNumber];
+
+        if (!order) {
+            trackingResult.classList.remove("visible");
+
+            showMessage(
+                "Замовлення не знайдено. Перевірте правильність номера.",
+                "error"
+            );
+
+            return;
+        }
+
+        resultOrderNumber.textContent = normalizedNumber;
+
+        statusBadge.innerHTML = `
+            <i class="fa-solid fa-circle-check"></i>
+            ${order.status}
+        `;
+
+        renderTimeline(order.currentStep);
+
+        trackingMessage.className = "message";
+        trackingResult.classList.add("visible");
+    }
+
+    trackingForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        trackOrder(orderInput.value);
+    });
+
+    orderInput.value = "EL-2026-001";
+    trackOrder("EL-2026-001");
+</script>
+
+</body>
+</html>

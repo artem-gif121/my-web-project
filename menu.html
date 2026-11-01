@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог десертів — ÉLORIA PÂTISSERIE & CAFÉ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Сердечко поруч із ціною — зберігаємо стиль карток */
+        .drink-card {
+            position: relative;
+        }
+
+        .eloria-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .eloria-card-bottom .drink-price {
+            margin: 0;
+        }
+
+        .eloria-favorite-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            flex: 0 0 34px;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #e8b9c5;
+            border-radius: 50%;
+            background: #fffafa;
+            color: #bd7189;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .eloria-favorite-btn:hover,
+        .eloria-favorite-btn.is-favorite {
+            background: #f5dce4;
+            color: #b34f70;
+        }
+
+        .favorites-nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        [data-favorites-count] {
+            display: inline-flex;
+            min-width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: #f3dbe3;
+            color: #9f4e68;
+            font-size: 11px;
+        }
+
+        /* Кнопка «Улюблене» біля кнопки повернення нагору */
+        .eloria-floating-favorites {
+            position: fixed;
+            right: 82px;
+            bottom: 28px;
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 15px;
+            border: 1px solid #e8b9c5;
+            border-radius: 30px;
+            background: #fffafa;
+            color: #985b6c;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            box-shadow: 0 4px 16px rgba(174, 111, 132, .14);
+            transition: .2s ease;
+        }
+
+        .eloria-floating-favorites:hover {
+            background: #f8e5eb;
+            color: #87495d;
+            transform: translateY(-2px);
+        }
+
+        .eloria-floating-favorites > i {
+            color: #bd7189;
+            font-size: 17px;
+        }
+
+        @media (max-width: 576px) {
+            .eloria-floating-favorites {
+                right: 68px;
+                bottom: 22px;
+                min-height: 44px;
+                padding: 0 12px;
+                font-size: 12px;
+            }
+
+            .eloria-favorite-btn {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                flex-basis: 32px;
+            }
+        }
+/* Нижній рядок картки: ціна + сердечко */
+.drink-card .eloria-card-bottom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    width: auto !important;
+    margin: 0 18px 18px !important;
+    padding: 0 !important;
+    gap: 12px;
+
+    box-sizing: border-box;
+    margin-top: auto !important;
+}
+
+/* Ціна залишається зліва, у своєму початковому стилі */
+.drink-card .eloria-card-bottom .drink-price {
+    margin: 0 !important;
+    flex-shrink: 0;
+}
+
+/* Сердечко — кругле, всередині картки */
+.drink-card .eloria-card-bottom .eloria-favorite-btn {
+    position: static !important;
+    transform: none !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    flex: 0 0 36px;
+
+    margin: 0 !important;
+    padding: 0;
+
+    border: 1px solid #e8b9c5;
+    border-radius: 50%;
+    background: #fffafa;
+    color: #bd7189;
+
+    box-sizing: border-box;
+}
+
+.drink-card .eloria-card-bottom .eloria-favorite-btn:hover,
+.drink-card .eloria-card-bottom .eloria-favorite-btn.is-favorite {
+    background: #f5dce4;
+    color: #b34f70;
+}
+
+/* Відступи для вузьких екранів */
+@media (max-width: 576px) {
+    .drink-card .eloria-card-bottom {
+        margin: 0 14px 14px !important;
+    }
+}
+    </style>
+</head>
+
+<body id="top">
+
+<header class="site-header">
+    <div class="header-inner">
+        <nav class="nav-left">
+            <a href="index.html">Про кондитерську</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="career.html">Наша команда</a>
+        </nav>
+
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE & CAFÉ</span>
+        </a>
+
+        <button class="hamburger" aria-label="Меню">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-right">
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="favorite.html" class="favorites-nav-link">
+        </nav>
+
+        <div class="mobile-menu">
+            <a href="index.html">Головна</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="career.html">Наша команда</a>
+            <a href="celebrations.html">Святкові колекції</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="bakery.html">Випічка</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="favorite.html" class="favorites-nav-link">
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="drinks-page">
+
+<section class="eloria-hero">
+    <div class="eloria-hero-content">
+        <div class="eloria-logo">ÉLORIA</div>
+        <h1>Каталог<br><span>десертів</span></h1>
+        <p>
+            Вишукана колекція авторських десертів ÉLORIA,
+            створених із преміальних інгредієнтів та увагою
+            до кожної деталі.
+        </p>
+    </div>
+
+    <div class="eloria-cake">
+        <img src="images/Eloria_cake1.png" alt="Десерти ÉLORIA">
+    </div>
+
+    <a href="#catalog" class="scroll-circle">
+        <span>↓</span>
+    </a>
+</section>
+
+<!-- КЛАСИЧНІ ТОРТИ -->
+<section class="drink-category" id="catalog">
+    <h2 class="category-title">
+        <i class="fa-solid fa-cake-candles"></i>
+        Класичні торти
+    </h2>
+
+    <div class="drink-grid">
+        <article class="drink-card" data-id="mont-blanc-rose">
+            <img src="images/Mont Blanc Rose (Рожевий Монблан).png" alt="Рожевий Монблан">
+            <span class="drink-number">01</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Mont Blanc Rose</h3>
+            <p class="ukrainian-name">Рожевий Монблан</p>
+            <p>Каштановий крем-пате з нотами коньяку, соковита чорна смородина та ніжний мус із дамаської троянди на мигдалевій основі.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">3600 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="opera-noir">
+            <img src="images/Opéra Noir (Затемнена Опера).png" alt="Затемнена Опера">
+            <span class="drink-number">02</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Opéra Noir</h3>
+            <p class="ukrainian-name">Затемнена Опера</p>
+            <p>Класичне прочитання з тонкими мигдалевими коржами Joconde, насиченим ганашем із гіркого какао та кавовим крем-брюле.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">3400 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="symphonie-figue-romarin">
+            <img src="images/Symphonie de Figue & Romarin (Симфонія Інжиру та Розмарину).png" alt="Симфонія Інжиру та Розмарину">
+            <span class="drink-number">03</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Symphonie de Figue & Romarin</h3>
+            <p class="ukrainian-name">Симфонія Інжиру та Розмарину</p>
+            <p>Карамелізований свіжий інжир у поєднанні з мусом із козячого вершкового сиру та тонкою нотою розмарину на коржі Сабле.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">3650 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- АВТОРСЬКІ ТОРТИ -->
+<section class="drink-category">
+    <h2 class="category-title"><i class="fa-solid fa-cake-candles"></i> Авторські торти</h2>
+
+    <div class="drink-grid">
+        <article class="drink-card" data-id="saint-germain">
+            <img src="images/cake.png.png" alt="Сен-Жермен">
+            <span class="drink-number">01</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Saint-Germain</h3>
+            <p class="ukrainian-name">Сен-Жермен</p>
+            <p>Мусовий торт із бергамоту, білого французького шоколаду та прошарком із лісової суниці.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">3800 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="velours-cerise">
+            <img src="images/Velours Cerise (Оксамитова Черешня).png" alt="Оксамитова Черешня">
+            <span class="drink-number">02</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Velours Cerise</h3>
+            <p class="ukrainian-name">Оксамитова Черешня</p>
+            <p>Ніжний ванільно-бісквітний торт із кулі зі стиглої черешні та кремом із бурбонської ванілі.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">3200 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="pistache-fleur">
+            <img src="images/Pistache & Fleur d'Oranger (Фісташка та Флердоранж).png" alt="Фісташка та Флердоранж">
+            <span class="drink-number">03</span>
+            <div class="drink-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3>Pistache & Fleur d'Oranger</h3>
+            <p class="ukrainian-name">Фісташка та Флердоранж</p>
+            <p>Фісташковий бісквіт із хрустким праліне, мусом із сицилійської фісташки та ароматом квітів апельсина.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">4200 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- МІНІ-ДЕСЕРТИ -->
+<section class="drink-category">
+    <h2 class="category-title"><i class="fa-solid fa-cookie-bite"></i> Міні-десерти</h2>
+
+    <div class="drink-grid">
+        <article class="drink-card" data-id="pavlova-mini">
+            <img src="images/dessert.png.png" alt="Міні-Павлова">
+            <span class="drink-number">01</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Pavlova Mini</h3>
+            <p class="ukrainian-name">Міні-Павлова</p>
+            <p>Невагоме безе з хрусткою скоринкою, ніжним вершковим центром та свіжими сезонними ягодами.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">360 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="perle-poire-saffron">
+            <img src="images/Perle de Poire & Saffron (Шафранова Груша).png" alt="Шафранова Груша">
+            <span class="drink-number">02</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Perle de Poire & Saffron</h3>
+            <p class="ukrainian-name">Шафранова Груша</p>
+            <p>Міні-сфери з груші в сиропі з іранським шафраном, кремом із білого шоколаду та мигдалевою крихтою.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">820 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="macarons-luxe">
+            <img src="images/Set de Macarons Luxe (Колекція Макаронів).png" alt="Колекція Макаронів">
+            <span class="drink-number">03</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Set de Macarons Luxe</h3>
+            <p class="ukrainian-name">Колекція Макаронів</p>
+            <p>Колекція макаронів із вишуканими смаками: чорний трюфель, дорблю-груша, малина-роза та матча-лайм.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">450 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="canele-bordeaux">
+            <img src="images/Canelé de Bordeaux (Канеле Бордо).png" alt="Канеле Бордо">
+            <span class="drink-number">04</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Canelé de Bordeaux</h3>
+            <p class="ukrainian-name">Канеле Бордо</p>
+            <p>Традиційна хрустка карамелізована скоринка, ніжне заварне серце з ароматом рому та натуральної ванілі.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">550 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="choux-pistache">
+            <img src="images/Choux à la Crème Pistache (Шу з фісташкою).png" alt="Шу з фісташкою">
+            <span class="drink-number">05</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Choux à la Crème Pistache</h3>
+            <p class="ukrainian-name">Шу з фісташкою</p>
+            <p>Повітряні тістечка шу з хрустким кракеліном та шовковистим кремом із сицилійської фісташки.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">480 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="diamant-cerise">
+            <img src="images/dessert 2.png.png" alt="Червоний Діамант">
+            <span class="drink-number">06</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Diamant de Cerise</h3>
+            <p class="ukrainian-name">Червоний Діамант</p>
+            <p>Мікро-десерт у формі огранованого каменя з вишневою глазур’ю та рідкою серцевиною з вишні.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">700 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="madeleine-rose">
+            <img src="images/Madeleine à la Rose & Framboise (Мадлен Роза-Малина).png" alt="Мадлен Роза-Малина">
+            <span class="drink-number">07</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Madeleine à la Rose & Framboise</h3>
+            <p class="ukrainian-name">Мадлен Роза-Малина</p>
+            <p>Традиційне бісквітне печиво з ароматом дамаської троянди, малиновим кулі та рожевою глазур’ю.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">450 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="mille-feuille-mini">
+            <img src="images/Mille-Feuille Mini Vanille-Pistache (Міні-Мільфей).png" alt="Міні-Мільфей">
+            <span class="drink-number">08</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Mille-Feuille Mini</h3>
+            <p class="ukrainian-name">Міні-Мільфей</p>
+            <p>Карамелізоване листкове тісто з кремом дипломат із сицилійської фісташки та мадагаскарської ванілі.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">700 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- КЛАСИЧНІ ПИРОГИ -->
+<section class="drink-category">
+    <h2 class="category-title"><i class="fa-solid fa-pie-chart"></i> Класичні пироги</h2>
+
+    <div class="drink-grid">
+        <article class="drink-card" data-id="tarte-abricots">
+            <img src="images/Tarte aux Abricots & Romarin (Абрикосово-Розмариновий Тарт).png" alt="Абрикосово-Розмариновий Тарт">
+            <span class="drink-number">01</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tarte aux Abricots & Romarin</h3>
+            <p class="ukrainian-name">Абрикосово-Розмариновий Тарт</p>
+            <p>Хрустке пісочне тісто з лавандовим франжипаном, соковитим абрикосом та свіжим розмарином.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">1500 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="tarte-poire-roquefort">
+            <img src="images/Tarte aux Poire, Roquefort & Noix (Тарт із Грушею та Рокфором).png" alt="Тарт із Грушею та Рокфором">
+            <span class="drink-number">02</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tarte aux Poire, Roquefort & Noix</h3>
+            <p class="ukrainian-name">Тарт із Грушею та Рокфором</p>
+            <p>Горіхова пісочна основа з карамелізованою грушею, сиром Roquefort та листочками чебрецю.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">1600 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="tarte-pommes">
+            <img src="images/Tarte Fine aux Pommes & Beurre Noisette (Яблучний Тарт).png" alt="Яблучний Тарт">
+            <span class="drink-number">03</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tarte Fine aux Pommes</h3>
+            <p class="ukrainian-name">Яблучний Тарт</p>
+            <p>Хрустке листкове тісто на паленому маслі з яблуками Гренні Сміт, каштановим медом і кальвадосом.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">1450 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="tartelette-yuzu">
+            <img src="images/Tartelette Yuzu & Merengue (Тартлетка Юдзу-Меренга).png" alt="Тартлетка Юдзу-Меренга">
+            <span class="drink-number">04</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tartelette Yuzu & Merengue</h3>
+            <p class="ukrainian-name">Тартлетка Юдзу-Меренга</p>
+            <p>Пісочна основа Сабле, освіжаючий курд із юдзу та обпалена шовковиста меренга.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">380 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="tarte-myrtille">
+            <img src="images/Tarte Myrtille & Amande Sauvage (Чорничний Франжипан).png" alt="Чорничний Франжипан">
+            <span class="drink-number">05</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tarte Myrtille & Amande Sauvage</h3>
+            <p class="ukrainian-name">Чорничний Франжипан</p>
+            <p>Пісочний тарт із мигдалевим кремом Франжипан, амаретто та дикою карпатською чорницею.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">1550 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="tarte-rhubarbe">
+            <img src="images/Tarte Rhubarbe & Fraise des Bois (Тарт Ревінь-Полуниця).png" alt="Тарт Ревінь-Полуниця">
+            <span class="drink-number">06</span>
+            <div class="drink-icon"><i class="fa-solid fa-pie-chart"></i></div>
+            <h3>Tarte Rhubarbe & Fraise des Bois</h3>
+            <p class="ukrainian-name">Тарт Ревінь-Полуниця</p>
+            <p>Мигдалева основа з томленим ревенем, лісовою полуницею та прозорою ягідною глазур’ю.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">1520 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- МУСОВІ ДЕСЕРТИ -->
+<section class="drink-category">
+    <h2 class="category-title"><i class="fa-solid fa-cookie-bite"></i> Мусові десерти</h2>
+
+    <div class="drink-grid">
+        <article class="drink-card" data-id="eclair-marron">
+            <img src="images/Éclair Marron & Cacao (Еклер Каштан-Какао).png" alt="Еклер Каштан-Какао">
+            <span class="drink-number">01</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Éclair Marron & Cacao</h3>
+            <p class="ukrainian-name">Еклер Каштан-Какао</p>
+            <p>Заварне тісто з кракеліном, кремом із каштанового пате та темним шоколадом.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">340 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="goyave-rose">
+            <img src="images/Goyave Rose & Piment d'Espelette (Рожева Ґуава & Баскський Перець).png" alt="Рожева Ґуава">
+            <span class="drink-number">02</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Goyave Rose</h3>
+            <p class="ukrainian-name">Рожева Ґуава & Баскський Перець</p>
+            <p>Мус із рожевої ґуави, серцевина з червоного апельсина та легкий акорд перцю Еспелет.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">420 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="mango-passion">
+            <img src="images/Mango-Passion Éclat (Манго & Маракуйя).png" alt="Манго та Маракуйя">
+            <span class="drink-number">03</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Mango-Passion Éclat</h3>
+            <p class="ukrainian-name">Манго & Маракуйя</p>
+            <p>Тропічний мус із маракуйї, центр зі стиглого манго та кокосовий бісквіт Dacquoise.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">400 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="matcha-fleur">
+            <img src="images/Matcha & Fleur d'Oranger (Матча & Флердоранж).png" alt="Матча та Флердоранж">
+            <span class="drink-number">04</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Matcha & Fleur d'Oranger</h3>
+            <p class="ukrainian-name">Матча & Флердоранж</p>
+            <p>Мус із церемоніальної японської матчі, гелеве серце з апельсинового цвіту та хрусткий кунжут.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">410 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="nuage-vanille">
+            <img src="images/Nuage de Vanille (Ванільна Хмара).png" alt="Ванільна Хмара">
+            <span class="drink-number">05</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Nuage de Vanille</h3>
+            <p class="ukrainian-name">Ванільна Хмара</p>
+            <p>Порційний мусовий десерт із мадагаскарською ваніллю та рідким центром із солоної карамелі.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">420 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="pamplemousse-rose">
+            <img src="images/Pamplemousse & Rose (Грейпфрут & Троянда).png" alt="Грейпфрут та Троянда">
+            <span class="drink-number">06</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Pamplemousse & Rose</h3>
+            <p class="ukrainian-name">Грейпфрут & Троянда</p>
+            <p>Мус із білого шоколаду та дамаської троянди, соковитий рожевий грейпфрут і хрустке сабле.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">470 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="perle-mure">
+            <img src="images/Perle de Mûre (Ожина & Шампанське).png" alt="Ожина та Шампанське">
+            <span class="drink-number">07</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Perle de Mûre</h3>
+            <p class="ukrainian-name">Ожина & Шампанське</p>
+            <p>Мус на основі ігристого вина, начинка з лісової ожини та бісквіт із цедрою бергамоту.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">410 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+
+        <article class="drink-card" data-id="soleil-agrumes">
+            <img src="images/Soleil d'Agrumes & Estragon (Сонячний Цитрус & Естрагон).png" alt="Сонячний Цитрус та Естрагон">
+            <span class="drink-number">08</span>
+            <div class="drink-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Soleil d'Agrumes & Estragon</h3>
+            <p class="ukrainian-name">Сонячний Цитрус & Естрагон</p>
+            <p>Мус із рожевого грейпфрута, лимонний курд з естрагоном та соковитий бісквіт із маком.</p>
+            <div class="eloria-card-bottom">
+                <span class="drink-price">450 ₴</span>
+                <button type="button" class="eloria-favorite-btn" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+            </div>
+        </article>
+    </div>
+</section>
+
+</main>
+
+<!-- Інформація про замовлення -->
+<section class="eloria-order">
+    <div class="eloria-order-heading">
+        <span>ÉLORIA · SERVICE</span>
+        <h2>Як зробити замовлення</h2>
+        <i></i>
+    </div>
+
+    <div class="eloria-order-steps">
+        <div class="eloria-step">
+            <div class="eloria-step-number">I</div>
+            <div class="eloria-step-text">
+                <h3>Оберіть десерти</h3>
+                <p>Ознайомтеся з нашою колекцією та виберіть позиції, що відповідають стилю вашої події.</p>
+            </div>
+        </div>
+
+        <div class="eloria-step">
+            <div class="eloria-step-number">II</div>
+            <div class="eloria-step-text">
+                <h3>Уточніть деталі</h3>
+                <p>Укажіть побажання щодо смакового профілю, персонального декору та розміру.</p>
+            </div>
+        </div>
+
+        <div class="eloria-step">
+            <div class="eloria-step-number">III</div>
+            <div class="eloria-step-text">
+                <h3>Підтвердіть замовлення</h3>
+                <p>Узгодьте фінальну концепцію та зручний спосіб оплати з нашим менеджером.</p>
+            </div>
+        </div>
+
+        <div class="eloria-step">
+            <div class="eloria-step-number">IV</div>
+            <div class="eloria-step-text">
+                <h3>Доставка та подача</h3>
+                <p>Оберіть делікатну персональну доставку або самовивіз у зручний для вас час.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="eloria-dictionary">
+    <div class="eloria-dictionary-heading">
+        <span>ÉLORIA · PATISSERIE</span>
+        <h2>Кондитерський словник</h2>
+        <i></i>
+    </div>
+
+    <div class="eloria-terms">
+        <div class="eloria-term">
+            <div class="eloria-term-name">Ганаш</div>
+            <div class="eloria-term-description">Кремова суміш шоколаду та вершків, яка використовується для начинок і покриття тортів.</div>
+        </div>
+
+        <div class="eloria-term">
+            <div class="eloria-term-name">Мус</div>
+            <div class="eloria-term-description">Легка десертна маса з ніжною та повітряною текстурою.</div>
+        </div>
+
+        <div class="eloria-term">
+            <div class="eloria-term-name">Макарон</div>
+            <div class="eloria-term-description">Французький мигдальний десерт із двох половинок та кремової начинки.</div>
+        </div>
+
+        <div class="eloria-term">
+            <div class="eloria-term-name">Декор</div>
+            <div class="eloria-term-description">Оформлення торта або десерту для створення потрібного зовнішнього вигляду.</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© ÉLORIA. Усі права захищено.</p>
+</footer>
+
+<!-- Кнопка «Улюблене» -->
+<a href="favorite.html"
+   class="eloria-floating-favorites"
+   aria-label="Перейти до улюблених товарів">
+    <i class="fa-regular fa-heart"></i>
+    <span>Улюблене</span>
+    <span data-favorites-count>0</span>
+</a>
+
+<!-- Повернутися нагору -->
+<a href="#top" class="top-button" aria-label="На початок">
+    <i class="fa-solid fa-chevron-up"></i>
+</a>
+
+<script>
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+/* Відкриття сторінки товару */
+const productCards = document.querySelectorAll('.drink-card');
+
+productCards.forEach(function (card) {
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', function (event) {
+        if (event.target.closest('[data-favorite-toggle]')) return;
+
+        const productId = card.getAttribute('data-id');
+        window.location.href = 'product.html?id=' + productId;
+    });
+});
+</script>
+
+<script src="product.js"></script>
+<script src="favorite.js"></script>
+
+</body>
+</html>

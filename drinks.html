@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Напої — ÉLORIA PÂTISSERIE & CAFÉ</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           ÉLORIA — оформлення каталогу напоїв
+        ========================================= */
+
+        .drinks-page {
+            background: #fffaf9;
+            padding-bottom: 70px;
+        }
+
+        .drinks-hero {
+            padding: 75px 20px 55px;
+            text-align: center;
+        }
+
+        .drinks-hero-icon {
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #f8e8ed;
+            color: #a85f75;
+            font-size: 25px;
+        }
+
+        .drinks-hero h1 {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(38px, 5vw, 58px);
+            color: #75434f;
+            margin-bottom: 15px;
+        }
+
+        .drinks-hero h1 span {
+            color: #b77a8c;
+        }
+
+        .drinks-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #88777a;
+            line-height: 1.8;
+        }
+
+        .drink-category {
+            width: min(1200px, calc(100% - 48px));
+            margin: 0 auto 75px;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 0 0 35px;
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(28px, 3vw, 38px);
+            text-align: center;
+        }
+
+        .category-title i {
+            color: #ad6a7f;
+            font-size: 25px;
+        }
+
+        .drink-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 32px;
+        }
+
+        .drink-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            border: 1px solid #f0d9df;
+            border-radius: 29px;
+            background: #fffafa;
+            box-shadow: 0 12px 35px rgba(111, 68, 79, 0.07);
+            transition: box-shadow .25s ease, transform .25s ease;
+            cursor: pointer;
+        }
+
+        .drink-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 38px rgba(111, 68, 79, 0.12);
+        }
+
+        .drink-card > img {
+            display: block;
+            width: 100%;
+            height: 350px;
+            flex-shrink: 0;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .drink-number {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 250, 250, .96);
+            color: #b77a8c;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 17px;
+            box-shadow: 0 5px 18px rgba(100, 65, 74, .07);
+        }
+
+       
+/* Оригінальне розташування значка напою */
+.drink-card .drink-icon {
+    position: absolute;
+    top: 310px;
+    left: 28px;
+    bottom: auto;
+    z-index: 4;
+}
+
+/* Ціна та сердечко — внизу картки */
+.drink-card .eloria-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: auto 22px 22px !important;
+    position: relative;
+    z-index: 3;
+}
+
+.drink-card .eloria-favorite-btn {
+    position: static !important;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e8b9c5;
+    border-radius: 50%;
+    background: #fffafa;
+    color: #bd7189;
+    box-sizing: border-box;
+}
+
+
+        /* Ціна та сердечко — спільний нижній рядок */
+        .eloria-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: auto;
+            margin: auto 18px 18px !important;
+            padding-top: 18px;
+            box-sizing: border-box;
+        }
+
+        .eloria-card-bottom .drink-price {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 1 auto;
+            min-height: 54px;
+            margin: 0;
+            padding: 10px 28px;
+            border-radius: 999px;
+            background: #f8e6eb;
+            color: #a85f75;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 23px;
+            line-height: 1.2;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        .eloria-favorite-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 36px;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #e8b9c5;
+            border-radius: 50%;
+            background: #fffafa;
+            color: #bd7189;
+            font-size: 17px;
+            line-height: 1;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .eloria-favorite-btn:hover {
+            background: #f8e5eb;
+            color: #a94f6d;
+            transform: scale(1.05);
+        }
+
+        .eloria-favorite-btn.is-favorite {
+            background: #f5dce4;
+            color: #b34f70;
+        }
+
+        .drinks-footer {
+            padding: 40px 20px;
+            background: #fbf0f2;
+            text-align: center;
+            color: #85666e;
+        }
+
+        .footer-logo {
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 34px;
+            letter-spacing: 5px;
+        }
+
+        .drinks-footer p {
+            margin: 8px 0 0;
+        }
+
+        /* Кнопки внизу праворуч */
+        .eloria-floating-actions {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .eloria-floating-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            border: 1px solid #e6b5c2;
+            border-radius: 999px;
+            background: rgba(255, 250, 250, .97);
+            color: #a85f75;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(100, 65, 74, .09);
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .eloria-floating-actions a:hover {
+            background: #f8e5eb;
+            transform: translateY(-2px);
+        }
+
+        .eloria-favorites-link {
+            padding: 0 19px;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .eloria-favorites-link [data-favorites-count] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: #f2d8e1;
+            color: #934c63;
+            font-size: 11px;
+        }
+
+        .eloria-back-to-top {
+            width: 54px;
+            height: 54px;
+            font-size: 21px;
+        }
+
+        @media (max-width: 1000px) {
+            .drink-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px;
+            }
+
+            .drink-card > img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .drink-category {
+                width: calc(100% - 28px);
+                margin-bottom: 52px;
+            }
+
+            .drink-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .drink-card > img {
+                height: 290px;
+            }
+
+            .drink-card h3 {
+                margin-left: 22px;
+                margin-right: 22px;
+                font-size: 26px;
+            }
+
+            .drink-card > p {
+                margin-left: 22px;
+                margin-right: 22px;
+            }
+
+            .drink-icon {
+                margin-left: 20px;
+            }
+
+            .eloria-card-bottom {
+                margin: auto 14px 14px !important;
+            }
+
+            .eloria-card-bottom .drink-price {
+                min-height: 48px;
+                padding: 9px 22px;
+                font-size: 21px;
+            }
+
+            .eloria-favorite-btn {
+                flex-basis: 34px;
+                width: 34px;
+                height: 34px;
+                min-width: 34px;
+            }
+
+            .eloria-floating-actions {
+                right: 12px;
+                bottom: 12px;
+                gap: 8px;
+            }
+
+            .eloria-floating-actions a {
+                min-height: 46px;
+            }
+
+            .eloria-back-to-top {
+                width: 46px;
+                height: 46px;
+            }
+
+            .eloria-favorites-link {
+                padding: 0 13px;
+                font-size: 13px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+
+        <nav class="nav-left">
+            <a href="index.html">Про кондитерську</a>
+            <a href="chef.html">Про шефа</a>
+        </nav>
+
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE &amp; CAFÉ</span>
+        </a>
+
+        <button class="hamburger" aria-label="Відкрити меню" type="button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-right">
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </nav>
+
+        <div class="mobile-menu">
+            <a href="index.html">Головна</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="menu.html">Каталог десертів</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="bakery.html">Випічка</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </div>
+
+    </div>
+</header>
+
+<main class="drinks-page">
+
+    <section class="drinks-hero">
+        <div class="drinks-hero-icon">
+            <i class="fa-solid fa-mug-hot"></i>
+        </div>
+
+        <h1>Напої <span>ÉLORIA</span></h1>
+
+        <p>
+            Авторські кавові напої, освіжаючі лимонади
+            та ароматні чаї, створені для приємних
+            моментів в атмосфері ÉLORIA.
+        </p>
+    </section>
+
+    <!-- ===================== КАВА ===================== -->
+    <section class="drink-category">
+        <h2 class="category-title">
+            <i class="fa-solid fa-mug-hot"></i>
+            Кава
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="tiramisu-velours-latte">
+                <img src="images/Tiramisu Velours Latte.png" alt="Tiramisu Velours Latte">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Tiramisu Velours Latte</h3>
+                <p>Ніжне лате зі смаком тірамісу та легкою ноткою какао.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">195 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="eclat-de-caramel-latte">
+                <img src="images/Éclat de Caramel Latte.png" alt="Éclat de Caramel Latte">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Éclat de Caramel Latte</h3>
+                <p>Ароматне лате з насиченим карамельним смаком і ніжною молочною піною.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">170 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="cinnamon-latte">
+                <img src="images/Cinnamon Latte.png" alt="Cinnamon Latte">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Cinnamon Latte</h3>
+                <p>Ніжне лате з теплою корицею та ароматом свіжоспеченого синабону.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">220 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="hazelnut-creme-latte">
+                <img src="images/Hazelnut Crème Latte.png" alt="Hazelnut Crème Latte">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Hazelnut Crème Latte</h3>
+                <p>Вершкове лате з ніжним смаком обсмаженого фундука.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">210 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="pear-ginger-flat-white">
+                <img src="images/Pear & Ginger Flat White.jpg" alt="Pear & Ginger Flat White">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Pear &amp; Ginger Flat White</h3>
+                <p>Флэт-вайт із соковитою грушею та легкою пряною ноткою імбиру.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">175 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="peche-creme-espresso">
+                <img src="images/Pêche & Crème Espresso.jpg" alt="Pêche & Crème Espresso">
+                <span class="drink-number">06</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Pêche &amp; Crème Espresso</h3>
+                <p>Еспресо з ніжною молочною піною та ароматним персиковим кремом.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">155 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="pistache-flat-white">
+                <img src="images/Pistache Flat White.jpg" alt="Pistache Flat White">
+                <span class="drink-number">07</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Pistache Flat White</h3>
+                <p>Ніжний флэт-вайт із молочною піною та делікатним фісташковим смаком.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">175 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="cacao-marshmallow-latte">
+                <img src="images/Cacao Marshmallow Latte.jpg" alt="Cacao Marshmallow Latte">
+                <span class="drink-number">08</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Cacao Marshmallow Latte</h3>
+                <p>Лате з насиченим какао та маленькими ніжними маршмелоу.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">185 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="white-chocolate-yuzu-latte">
+                <img src="images/White Chocolate &  Yuzu Latte.jpg" alt="White Chocolate & Yuzu Latte">
+                <span class="drink-number">09</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>White Chocolate &amp; Yuzu Latte</h3>
+                <p>Лате з білим шоколадом і яскравою свіжою цитрусовою нотою юдзу.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">155 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="delice-ananas-coco">
+                <img src="images/Délice d’Ananas & Coco.jpg" alt="Délice d’Ananas & Coco">
+                <span class="drink-number">10</span>
+                <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Délice d’Ananas &amp; Coco</h3>
+                <p>Шоколадна кава з ніжним кокосом та соковитим ананасом.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">175 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="ivoire-affogato">
+                <img src="images/Ivoire Affogato.jpg" alt="Ivoire Affogato">
+                <span class="drink-number">11</span>
+                <div class="drink-icon"><i class="fa-solid fa-ice-cream"></i></div>
+                <h3>Ivoire Affogato</h3>
+                <p>Вершкове морозиво з гарячим еспресо, какао та білим шоколадом.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">210 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ===================== ЧАЇ ===================== -->
+    <section class="drink-category">
+        <h2 class="category-title">
+            <i class="fa-solid fa-leaf"></i>
+            Чаї
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="bergamote-royale">
+                <img src="images/Bergamote Royale.png" alt="Bergamote Royale">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Bergamote Royale</h3>
+                <p>Чорний чай із ароматним бергамотом та свіжою апельсиновою ноткою.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">145 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="eclat-ananas">
+                <img src="images/Éclat d’Ananas.png" alt="Éclat d’Ananas">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Éclat d’Ananas</h3>
+                <p>Зелений чай із соковитим ананасом та ніжним тропічним ароматом.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">175 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="eclat-litchi">
+                <img src="images/Éclat de Litchi.png" alt="Éclat de Litchi">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Éclat de Litchi</h3>
+                <p>Зелений чай із ніжним фруктовим смаком ароматного лічі.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">195 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="eclat-peche">
+                <img src="images/Éclat de Pêche.png" alt="Éclat de Pêche">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Éclat de Pêche</h3>
+                <p>Зелений чай із соковитим персиком та легкою фруктовою солодкістю.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">170 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="fleur-de-miel">
+                <img src="images/Fleur de Miel.png" alt="Fleur de Miel">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Fleur de Miel</h3>
+                <p>Ніжний ромашковий чай із натуральним медом та м'яким квітковим ароматом.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">155 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="fleur-de-tilleul">
+                <img src="images/Fleur de Tilleul.png" alt="Fleur de Tilleul">
+                <span class="drink-number">06</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Fleur de Tilleul</h3>
+                <p>Ароматний липовий чай із ніжним квітковим смаком.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">155 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="passion-lumiere">
+                <img src="images/Passion Lumière.png" alt="Passion Lumière">
+                <span class="drink-number">07</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Passion Lumière</h3>
+                <p>Зелений чай із маракуєю та свіжою лимонною ноткою.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">175 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="verger-citronne">
+                <img src="images/Verger Citronné.png" alt="Verger Citronné">
+                <span class="drink-number">08</span>
+                <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Verger Citronné</h3>
+                <p>Зелений чай із лемонграсом, лаймом та соковитим яблуком.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">185 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ===================== ЛИМОНАДИ ===================== -->
+    <section class="drink-category">
+        <h2 class="category-title">
+            <i class="fa-solid fa-lemon"></i>
+            Лимонади
+        </h2>
+
+        <div class="drink-grid">
+
+            <article class="drink-card" data-id="fraicheur-emeraude">
+                <img src="images/Fraîcheur d’Émeraude.png" alt="Fraîcheur d’Émeraude">
+                <span class="drink-number">01</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Fraîcheur d’Émeraude</h3>
+                <p>Освіжаюче поєднання соковитого ківі, лайма та свіжої м'яти.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">220 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="fraise-rosee">
+                <img src="images/Fraise Rosée.png" alt="Fraise Rosée">
+                <span class="drink-number">02</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Fraise Rosée</h3>
+                <p>Ніжний лимонад із полуницею та соковитим білим персиком.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">235 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="lueur-citron">
+                <img src="images/Lueur de Citron.png" alt="Lueur de Citron">
+                <span class="drink-number">03</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Lueur de Citron</h3>
+                <p>Класичний лимонад із яскравим лимонним смаком та свіжою м'ятою.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">210 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="passion-abricot">
+                <img src="images/Passion d'Abricot.png" alt="Passion d’Abricot">
+                <span class="drink-number">04</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Passion d’Abricot</h3>
+                <p>Ароматне поєднання стиглого абрикоса та екзотичної маракуї.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">245 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="peche-blanche">
+                <img src="images/Pêche Blanche.png" alt="Pêche Blanche">
+                <span class="drink-number">05</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Pêche Blanche</h3>
+                <p>Легкий та освіжаючий лимонад із ніжним смаком білого персика.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">215 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="perle-melon">
+                <img src="images/Perle de Melon.png" alt="Perle de Melon">
+                <span class="drink-number">06</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Perle de Melon</h3>
+                <p>Соковита диня з освіжаючою цитрусовою ноткою лайма.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">225 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="perle-poire">
+                <img src="images/Perle de Poire.png" alt="Perle de Poire">
+                <span class="drink-number">07</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Perle de Poire</h3>
+                <p>Ніжне поєднання соковитої груші та солодкого білого винограду.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">220 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="rose-eclipse">
+                <img src="images/Rose Éclipse.png" alt="Rose Éclipse">
+                <span class="drink-number">08</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Rose Éclipse</h3>
+                <p>Ароматний лимонад із малиною та ніжним екзотичним лічі.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">245 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="rosee-agrumes">
+                <img src="images/Rosée d’Agrumes.png" alt="Rosée d’Agrumes">
+                <span class="drink-number">09</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Rosée d’Agrumes</h3>
+                <p>Яскраве цитрусове поєднання грейпфрута та свіжого лайма.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">220 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="rosee-nectarine">
+                <img src="images/Rosée de Nectarine.png" alt="Rosée de Nectarine">
+                <span class="drink-number">10</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Rosée de Nectarine</h3>
+                <p>Ніжний фруктовий лимонад із соковитим нектарином та полуницею.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">215 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="soleil-tropiques">
+                <img src="images/Soleil des Tropiques.png" alt="Soleil des Tropiques">
+                <span class="drink-number">11</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Soleil des Tropiques</h3>
+                <p>Тропічне поєднання соковитого ананаса та свіжого лайма.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">235 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+            <article class="drink-card" data-id="velours-figue">
+                <img src="images/Velours de Figue.png" alt="Velours de Figue">
+                <span class="drink-number">12</span>
+                <div class="drink-icon"><i class="fa-solid fa-glass-water"></i></div>
+                <h3>Velours de Figue</h3>
+                <p>Незвичайне поєднання солодкого інжиру, яблука та свіжого лимона.</p>
+                <div class="eloria-card-bottom">
+                    <span class="drink-price">215 ₴</span>
+                    <button class="eloria-favorite-btn" type="button" data-favorite-toggle aria-label="Додати в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="drinks-footer">
+    <div class="footer-logo">ÉLORIA</div>
+    <p>Авторські десерти та напої</p>
+    <p>© 2026 ÉLORIA</p>
+</footer>
+
+<div class="eloria-floating-actions">
+    <a href="favorite.html" class="eloria-favorites-link" aria-label="Перейти до улюблених товарів">
+        <i class="fa-regular fa-heart"></i>
+        <span>Улюблене</span>
+        <span data-favorites-count>0</span>
+    </a>
+
+    <a href="#top" class="eloria-back-to-top" aria-label="Повернутися нагору">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
+</div>
+
+<script>
+    const hamburger = document.querySelector(".hamburger");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener("click", function () {
+            hamburger.classList.toggle("active");
+            mobileMenu.classList.toggle("active");
+            document.body.style.overflow =
+                mobileMenu.classList.contains("active") ? "hidden" : "";
+        });
+    }
+
+    document.querySelectorAll(".drink-card").forEach(function (card) {
+        card.addEventListener("click", function (event) {
+            if (event.target.closest("[data-favorite-toggle]")) return;
+
+            const productId = card.getAttribute("data-id");
+            if (productId) {
+                window.location.href =
+                    "product.html?id=" + encodeURIComponent(productId);
+            }
+        });
+    });
+
+    document.querySelector(".eloria-back-to-top").addEventListener("click", function (event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
+
+<script src="product.js"></script>
+<script src="favorite.js"></script>
+
+</body>
+</html>

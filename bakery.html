@@ -1,0 +1,1314 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Випічка — ÉLORIA PÂTISSERIE & CAFÉ</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           ÉLORIA — КОЛЕКЦІЯ ВИПІЧКИ
+           Попередній дизайн збережено
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #fffaf9;
+            color: #67464e;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .pastry-page {
+            background:
+                radial-gradient(ellipse at top, rgba(248, 228, 234, .42), transparent 42%),
+                #fffaf9;
+            padding-bottom: 55px;
+        }
+
+        .pastry-hero {
+            padding: 76px 20px 52px;
+            text-align: center;
+        }
+
+        .pastry-hero-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            border: 1px solid #efd1da;
+            border-radius: 50%;
+            background: #f8e8ed;
+            color: #a85f75;
+            font-size: 24px;
+        }
+
+        .pastry-hero h1 {
+            margin: 0;
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(40px, 5vw, 62px);
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        .pastry-hero h1 span {
+            color: #b77a8c;
+        }
+
+        .pastry-category {
+            width: min(1200px, calc(100% - 48px));
+            margin: 0 auto 78px;
+            scroll-margin-top: 30px;
+        }
+
+        .pastry-category-heading {
+            margin-bottom: 31px;
+            text-align: center;
+        }
+
+        .pastry-category-heading .eyebrow {
+            display: block;
+            margin-bottom: 5px;
+            color: #b58a95;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .pastry-category-heading h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+            margin: 0;
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(29px, 3.2vw, 40px);
+            font-weight: 500;
+        }
+
+        .pastry-category-heading h2 i {
+            color: #b77a8c;
+            font-size: 22px;
+        }
+
+        .pastry-category-heading p {
+            max-width: 620px;
+            margin: 9px auto 0;
+            color: #927e82;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .pastry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 28px;
+        }
+
+        .pastry-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid #efdce1;
+            border-radius: 25px;
+            background: #fffdfc;
+            box-shadow: 0 10px 32px rgba(111, 68, 79, .065);
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .pastry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 17px 38px rgba(111, 68, 79, .12);
+        }
+
+        .pastry-image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #f6e9e9;
+        }
+
+        .pastry-card > .pastry-image-wrap img {
+            display: block;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform .45s ease;
+        }
+
+        .pastry-card:hover > .pastry-image-wrap img {
+            transform: scale(1.035);
+        }
+
+        .pastry-number {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 47px;
+            height: 36px;
+            padding: 0 10px;
+            border: 1px solid rgba(237, 210, 218, .8);
+            border-radius: 999px;
+            background: rgba(255, 250, 250, .95);
+            color: #ad7182;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 17px;
+        }
+
+        .pastry-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            margin: -21px 0 0 22px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid #f0d6de;
+            border-radius: 50%;
+            background: #fff8f8;
+            color: #b16e82;
+            font-size: 16px;
+        }
+
+        .pastry-card-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 4px 23px 22px;
+        }
+
+        .pastry-card h3 {
+            margin: 9px 0 4px;
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .pastry-subtitle {
+            margin-bottom: 12px;
+            color: #b17a89;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .5px;
+        }
+
+        .pastry-description {
+            margin: 0 0 19px;
+            color: #88777a;
+            font-size: 12px;
+            line-height: 1.85;
+        }
+
+        .pastry-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid #f3e6e9;
+        }
+
+        /* Ціна замість напису «Порція» */
+
+        .pastry-price {
+            color: #a26a7b;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .pastry-price small {
+            font-family: "Montserrat", sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        .pastry-favorite-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 37px;
+            width: 37px;
+            height: 37px;
+            padding: 0;
+            border: 1px solid #e8b9c5;
+            border-radius: 50%;
+            background: #fffafa;
+            color: #bd7189;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .pastry-favorite-btn:hover,
+        .pastry-favorite-btn.is-favorite {
+            background: #f5dce4;
+            color: #a94f6d;
+        }
+
+        .pastry-footer {
+            padding: 40px 20px;
+            background: #fbf0f2;
+            color: #85666e;
+            text-align: center;
+        }
+
+        .pastry-footer-logo {
+            color: #75434f;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 34px;
+            letter-spacing: 5px;
+        }
+
+        .pastry-footer p {
+            margin: 8px 0 0;
+            font-size: 12px;
+        }
+
+        .pastry-floating-actions {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pastry-floating-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            border: 1px solid #e6b5c2;
+            border-radius: 999px;
+            background: rgba(255, 250, 250, .97);
+            color: #a85f75;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(100, 65, 74, .09);
+            transition: .2s ease;
+        }
+
+        .pastry-floating-actions a:hover {
+            background: #f8e5eb;
+            transform: translateY(-2px);
+        }
+
+        .pastry-favorites-link {
+            padding: 0 19px;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .pastry-favorites-link [data-favorites-count] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: #f2d8e1;
+            color: #934c63;
+            font-size: 11px;
+        }
+
+        .pastry-back-to-top {
+            width: 54px;
+            height: 54px;
+            font-size: 19px;
+        }
+
+        @media (max-width: 1000px) {
+            .pastry-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 23px;
+            }
+
+            .pastry-card > .pastry-image-wrap img {
+                height: 285px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pastry-hero {
+                padding: 55px 18px 38px;
+            }
+
+            .pastry-category {
+                width: calc(100% - 28px);
+                margin-bottom: 55px;
+            }
+
+            .pastry-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .pastry-card > .pastry-image-wrap img {
+                height: 285px;
+            }
+
+            .pastry-card-content {
+                padding: 4px 20px 20px;
+            }
+
+            .pastry-card h3 {
+                font-size: 28px;
+            }
+
+            .pastry-floating-actions {
+                right: 12px;
+                bottom: 12px;
+                gap: 8px;
+            }
+
+            .pastry-floating-actions a {
+                min-height: 46px;
+            }
+
+            .pastry-back-to-top {
+                width: 46px;
+                height: 46px;
+            }
+
+            .pastry-favorites-link {
+                padding: 0 13px;
+                font-size: 12px;
+            }
+        }
+
+        
+
+
+.eloria-bakery-intro {
+    box-sizing: border-box;
+    max-width: 1400px;
+    margin: 35px auto 55px;
+    padding: 24px 7% 20px;
+    background: #fcf8f5;
+    border-top: 1px solid #eadbd3;
+    border-bottom: 1px solid #eadbd3;
+    color: #55413d;
+}
+
+/* Верхній рядок */
+
+.bakery-intro-top,
+.bakery-intro-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #9a8178;
+}
+
+.bakery-intro-top span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    letter-spacing: 4px;
+    color: #55413d;
+}
+
+/* Основний текст */
+
+.bakery-intro-content {
+    max-width: 680px;
+    margin: 75px auto 70px;
+    text-align: center;
+}
+
+.bakery-intro-eyebrow {
+    display: block;
+    margin-bottom: 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #ad8580;
+}
+
+.bakery-intro-content h1 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -1px;
+    color: #55413d;
+}
+
+.bakery-intro-content h1 em {
+    color: #b48782;
+    font-weight: 400;
+}
+
+.bakery-intro-divider {
+    width: 46px;
+    height: 1px;
+    margin: 28px auto 24px;
+    background: #c3a47e;
+}
+
+.bakery-intro-content p {
+    max-width: 440px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 2;
+    color: #82716b;
+}
+
+/* Нижній рядок */
+
+.bakery-intro-bottom {
+    padding-top: 17px;
+    border-top: 1px solid #eadbd3;
+    font-size: 8px;
+    letter-spacing: 1.7px;
+}
+
+/* Мобільна версія */
+
+@media (max-width: 600px) {
+    .eloria-bakery-intro {
+        margin: 20px 12px 35px;
+        padding: 20px 6% 16px;
+    }
+
+    .bakery-intro-top,
+    .bakery-intro-bottom {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .bakery-intro-top span:first-child {
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+
+    .bakery-intro-content {
+        margin: 55px auto;
+    }
+
+    .bakery-intro-content h1 {
+        font-size: clamp(43px, 10vw, 58px);
+    }
+
+    .bakery-intro-eyebrow {
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .bakery-intro-content p {
+        font-size: 11px;
+        line-height: 1.9;
+    }
+}
+
+
+    </style>
+</head>
+
+<body id="top">
+
+<header class="site-header">
+    <div class="header-inner">
+        <nav class="nav-left">
+            <a href="index.html">Про кондитерську</a>
+            <a href="chef.html">Про шефа</a>
+        </nav>
+
+        <a href="index.html" class="logo">
+            ÉLORIA
+            <span>PÂTISSERIE &amp; CAFÉ</span>
+        </a>
+
+        <button class="hamburger" aria-label="Відкрити меню" type="button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-right">
+            <a href="menu.html">Каталог</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </nav>
+
+        <div class="mobile-menu">
+            <a href="index.html">Головна</a>
+            <a href="chef.html">Про шефа</a>
+            <a href="career.html">Наша команда</a>
+            <a href="menu.html">Каталог десертів</a>
+            <a href="drinks.html">Кава та напої</a>
+            <a href="price.html">Прайс-лист</a>
+            <a href="contacts.html">Контакти</a>
+        </div>
+    </div>
+</header>
+
+
+<section class="eloria-bakery-intro">
+
+    <div class="bakery-intro-top">
+        <span>ÉLORIA</span>
+        <span>COLLECTION DE BOULANGERIE</span>
+    </div>
+
+    <div class="bakery-intro-content">
+
+        <span class="bakery-intro-eyebrow">
+            L'ART DU GOÛT
+        </span>
+
+        <h1>
+            Вишуканість<br>
+            <em>у кожній деталі.</em>
+        </h1>
+
+        <div class="bakery-intro-divider"></div>
+
+        <p>
+            Французькі традиції, авторські смаки
+            та особлива увага до кожної деталі.
+            Відкрийте колекцію випічки ÉLORIA,
+            створену для справжньої насолоди.
+        </p>
+
+    </div>
+
+    <div class="bakery-intro-bottom">
+        <span>MADE WITH PASSION</span>
+        <span>01 — 04</span>
+    </div>
+
+</section>
+
+    <!-- =========================================
+         01. CROISSANTS — КРУАСАНИ
+    ========================================== -->
+
+    
+    <section class="pastry-category" id="croissants">
+        <div class="pastry-category-heading">
+            <span class="eyebrow">Collection 01</span>
+            <h2><i class="fa-solid fa-croissant"></i> Croissants — Круасани</h2>
+            <p>Хрусткі шари французького тіста, ніжні креми та яскраві фруктові поєднання.</p>
+        </div>
+
+        <div class="pastry-grid">
+
+            <article class="pastry-card" data-id="chocolat-noir">
+                <div class="pastry-image-wrap">
+                    <img src="images/Chocolat Noir.png" alt="Chocolat Noir — круасан із темним шоколадом" loading="lazy">
+                    <span class="pastry-number">01</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Chocolat Noir</h3>
+                    <div class="pastry-subtitle">Шоколад</div>
+                    <p class="pastry-description">Класичний французький круасан із хрусткими золотистими шарами та насиченою начинкою з темного шоколаду. Витончений смак із приємною гірчинкою какао.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">315 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Chocolat Noir в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="soleil-exotique">
+                <div class="pastry-image-wrap">
+                    <img src="images/Soleil Exotique.png" alt="Soleil Exotique — круасан із манго та маракуєю" loading="lazy">
+                    <span class="pastry-number">02</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Soleil Exotique</h3>
+                    <div class="pastry-subtitle">Манго та маракуя</div>
+                    <p class="pastry-description">Золотистий круасан із ніжним кремом із манго та маракуї, тропічним конфі й делікатною глазур’ю. Яскраве поєднання фруктової солодкості та освіжальної кислинки.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">350 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Soleil Exotique в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="fraise-mascarpone">
+                <div class="pastry-image-wrap">
+                    <img src="images/Fraise Mascarpone.png" alt="Fraise Mascarpone — круасан із полуницею та маскарпоне" loading="lazy">
+                    <span class="pastry-number">03</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Fraise Mascarpone</h3>
+                    <div class="pastry-subtitle">Полуниця та маскарпоне</div>
+                    <p class="pastry-description">Повітряний круасан із полуничним конфі та ніжним кремом маскарпоне. М’яка вершкова текстура гармонійно поєднується з ягідною свіжістю.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">345 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Fraise Mascarpone в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="vanille-royale">
+                <div class="pastry-image-wrap">
+                    <img src="images/Vanille Royale.png" alt="Vanille Royale — ванільний круасан" loading="lazy">
+                    <span class="pastry-number">04</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Vanille Royale</h3>
+                    <div class="pastry-subtitle">Ваніль</div>
+                    <p class="pastry-description">Круасан із тонкими хрусткими шарами та ніжним ванільним кремом. Вишуканий аромат натуральної ванілі доповнюють вершковий смак і легка цукрова глазур.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">320 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Vanille Royale в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="ananas-coco-ivoire">
+                <div class="pastry-image-wrap">
+                    <img src="images/Ananas Coco Ivoire.png" alt="Ananas Coco Ivoire — ананас, кокос і білий шоколад" loading="lazy">
+                    <span class="pastry-number">05</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Ananas Coco Ivoire</h3>
+                    <div class="pastry-subtitle">Ананас, кокос і білий шоколад</div>
+                    <p class="pastry-description">Ніжний круасан із соковитим ананасовим конфі, кокосовим кремом і білим шоколадом. Екзотичне поєднання з м’яким вершковим післясмаком.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">340 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Ananas Coco Ivoire в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="yuzu-lumiere">
+                <div class="pastry-image-wrap">
+                    <img src="images/Yuzu Lumière.png" alt="Yuzu Lumière — круасан із юдзу" loading="lazy">
+                    <span class="pastry-number">06</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Yuzu Lumière</h3>
+                    <div class="pastry-subtitle">Юдзу</div>
+                    <p class="pastry-description">Хрусткий круасан із яскравим кремом із юдзу та ніжною цитрусовою начинкою. Освіжальний смак із тонкими нотками лимона, мандарина та грейпфрута.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">330 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Yuzu Lumière в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="litchi-perle">
+                <div class="pastry-image-wrap">
+                    <img src="images/Litchi Perlé.png" alt="Litchi Perlé — круасан із лічі" loading="lazy">
+                    <span class="pastry-number">07</span>
+                </div>
+                <div class="pastry-card-content">
+                    <h3>Litchi Perlé</h3>
+                    <div class="pastry-subtitle">Лічі</div>
+                    <p class="pastry-description">Повітряний круасан із ніжним кремом із лічі та фруктовим конфі. Делікатний квітковий аромат, легка солодкість і витончена глазур створюють особливо ніжний смак.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">350 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Litchi Perlé в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- =========================================
+         02. CRÉATIONS SIGNATURES — АВТОРСЬКІ БУЛОЧКИ
+    ========================================== -->
+
+    <section class="pastry-category" id="signatures">
+        <div class="pastry-category-heading">
+            <span class="eyebrow">Collection 02</span>
+            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Créations Signatures — Авторські булочки</h2>
+            <p>Власні рецептури ÉLORIA, незвичні форми та гармонійні поєднання смаків.</p>
+        </div>
+
+        <div class="pastry-grid">
+
+            <article class="pastry-card" data-id="rose-framboise-signature">
+                <div class="pastry-image-wrap">
+                    <img src="images/Rose Framboise.png" alt="Rose Framboise — малинова авторська булочка" loading="lazy">
+                    <span class="pastry-number">01</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Rose Framboise</h3>
+                    <div class="pastry-subtitle">Троянда та малина</div>
+                    <p class="pastry-description">Ніжна здобна булочка з малиновою начинкою, кремом із білого шоколаду та делікатною глазур’ю кольору пудрової троянди. Витончене поєднання ягідної кислинки та вершкової солодкості.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">270 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Rose Framboise в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="citron-ivoire">
+                <div class="pastry-image-wrap">
+                    <img src="images/Citron Ivoire.png" alt="Citron Ivoire — лимонно-ванільна булочка" loading="lazy">
+                    <span class="pastry-number">02</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Citron Ivoire</h3>
+                    <div class="pastry-subtitle">Лимон і ваніль</div>
+                    <p class="pastry-description">Повітряна булочка з лимонним кремом, ніжною ванільною серединкою та білою глазур’ю. Свіжий цитрусовий смак гармонійно поєднується з м’якою солодкістю ванілі.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">245 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Citron Ivoire в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="eclat-des-tropiques">
+                <div class="pastry-image-wrap">
+                    <img src="images/Éclat des Tropiques.png" alt="Éclat des Tropiques — булочка з манго та маракуєю" loading="lazy">
+                    <span class="pastry-number">03</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Éclat des Tropiques</h3>
+                    <div class="pastry-subtitle">Манго та маракуя</div>
+                    <p class="pastry-description">Здобна булочка з яскравою начинкою з манго й маракуї, вершковим кремом і тонкою золотистою глазур’ю. Тропічна фруктова свіжість у поєднанні з ніжною здобою.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">250 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Éclat des Tropiques в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="perle-de-velours">
+                <div class="pastry-image-wrap">
+                    <img src="images/Perle de Velours.png" alt="Perle de Velours — білий шоколад і малина" loading="lazy">
+                    <span class="pastry-number">04</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Perle de Velours</h3>
+                    <div class="pastry-subtitle">Білий шоколад і малина</div>
+                    <p class="pastry-description">Ніжна молочна булочка з малиновим центром, кремом із білого шоколаду та делікатним декором із цукрових перлин. Оксамитова текстура й легка ягідна кислинка доповнюють солодкий вершковий смак.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">235 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Perle de Velours в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="cherry-velvet">
+                <div class="pastry-image-wrap">
+                    <img src="images/Cherry Velvet.png" alt="Cherry Velvet — вишня та мигдаль" loading="lazy">
+                    <span class="pastry-number">05</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Cherry Velvet</h3>
+                    <div class="pastry-subtitle">Вишня та мигдаль</div>
+                    <p class="pastry-description">Булочка-кільце з вишневою начинкою, ніжним мигдальним кремом і хрусткою цукровою скоринкою. Насичений ягідний смак поєднується з горіховими нотками та приємним карамельним хрускотом.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">240 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Cherry Velvet в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="abricot-fleur-oranger">
+                <div class="pastry-image-wrap">
+                    <img src="images/Abricot & Fleur d'Oranger.png" alt="Abricot & Fleur d'Oranger — абрикос і квіти апельсина" loading="lazy">
+                    <span class="pastry-number">06</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Abricot &amp; Fleur d'Oranger</h3>
+                    <div class="pastry-subtitle">Абрикос і квіти апельсина</div>
+                    <p class="pastry-description">Плетена булочка з абрикосовим конфі, ароматним кремом із квітів апельсина та обсмаженим мигдалем. Фруктова ніжність, легкі квіткові ноти й делікатний горіховий акцент.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">250 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Abricot & Fleur d'Oranger в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="tiramisu-velours-bun">
+                <div class="pastry-image-wrap">
+                    <img src="images/Tiramisu Velours.png" alt="Tiramisu Velours — булочка зі смаком тірамісу" loading="lazy">
+                    <span class="pastry-number">07</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Tiramisu Velours</h3>
+                    <div class="pastry-subtitle">Тірамісу</div>
+                    <p class="pastry-description">М’яка здобна булочка у стилі сінабона з кавовою начинкою, кремом маскарпоне, какао та шоколадною стружкою. Знайомий смак італійського десерту в ароматній випічці.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">250 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Tiramisu Velours в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- =========================================
+         03. HÉRITAGE FRANÇAIS — ФРАНЦУЗЬКА КЛАСИКА
+    ========================================== -->
+
+    <section class="pastry-category" id="heritage">
+        <div class="pastry-category-heading">
+            <span class="eyebrow">Collection 03</span>
+            <h2><i class="fa-solid fa-bread-slice"></i> Héritage Français — Французька класика</h2>
+            <p>Улюблені французькі рецепти з вершковим тістом, пряними начинками та золотистою скоринкою.</p>
+        </div>
+
+        <div class="pastry-grid">
+
+            <article class="pastry-card" data-id="pain-aux-raisins">
+                <div class="pastry-image-wrap">
+                    <img src="images/Pain aux Raisins.png" alt="Pain aux Raisins — родзинки та заварний крем" loading="lazy">
+                    <span class="pastry-number">01</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Pain aux Raisins</h3>
+                    <div class="pastry-subtitle">Родзинки та заварний крем</div>
+                    <p class="pastry-description">Традиційна французька спіральна випічка з ніжного листкового тіста, заварного крему та соковитих родзинок. Золотиста скоринка й м’яка вершкова серединка створюють гармонійний класичний смак.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">180 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Pain aux Raisins в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="pain-au-chocolat">
+                <div class="pastry-image-wrap">
+                    <img src="images/Pain au Chocolat.png" alt="Pain au Chocolat — шоколадна французька випічка" loading="lazy">
+                    <span class="pastry-number">02</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Pain au Chocolat</h3>
+                    <div class="pastry-subtitle">Шоколад</div>
+                    <p class="pastry-description">Французька листкова випічка з тонкими хрусткими шарами та насиченим темним шоколадом усередині. Ідеальне поєднання вершкового тіста й глибокого шоколадного смаку.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">190 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Pain au Chocolat в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="chausson-aux-pommes">
+                <div class="pastry-image-wrap">
+                    <img src="images/Chausson aux Pommes.png" alt="Chausson aux Pommes — яблучний листковий пиріжок" loading="lazy">
+                    <span class="pastry-number">03</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Chausson aux Pommes</h3>
+                    <div class="pastry-subtitle">Яблуко</div>
+                    <p class="pastry-description">Хрусткий листковий пиріжок із ніжною яблучною начинкою, легкою корицею та делікатними карамельними нотками. Традиційний французький смак у простому й елегантному виконанні.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">175 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Chausson aux Pommes в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="cannelle-velours">
+                <div class="pastry-image-wrap">
+                    <img src="images/Cannelle Velours.png" alt="Cannelle Velours — булочка з корицею" loading="lazy">
+                    <span class="pastry-number">04</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Cannelle Velours</h3>
+                    <div class="pastry-subtitle">Кориця</div>
+                    <p class="pastry-description">М’яка булочка-завиток із корицею, коричневим цукром і ніжною вершковою глазур’ю. Ароматна начинка та карамелізовані шари тіста створюють затишний смак класичної випічки.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">180 <small>грн</small></span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Cannelle Velours в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="poire-amande">
+                <div class="pastry-image-wrap">
+                    <img src="images/Poire Amande.png" alt="Poire Amande — груша та мигдаль" loading="lazy">
+                    <span class="pastry-number">05</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Poire Amande</h3>
+                    <div class="pastry-subtitle">Груша та мигдаль</div>
+                    <p class="pastry-description">Витончена випічка з ніжною грушею, мигдальним кремом і тонким ароматом натуральної ванілі. М’яка фруктова начинка чудово поєднується з горіховими нотками.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">220 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Poire Amande в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="caramel-cristal">
+                <div class="pastry-image-wrap">
+                    <img src="images/Caramel Cristal.png" alt="Caramel Cristal — карамельна випічка" loading="lazy">
+                    <span class="pastry-number">06</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Caramel Cristal</h3>
+                    <div class="pastry-subtitle">Карамель</div>
+                    <p class="pastry-description">Багатошарова булочка з карамелізованою цукровою скоринкою та ніжною маслянистою серединкою. Тонкий хрускіт карамелі доповнює насичений вершковий смак.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">185 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Caramel Cristal в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="velours-cinnamone">
+                <div class="pastry-image-wrap">
+                    <img src="images/Velours Cinnamone.png" alt="Velours Cinnamone — кориця та вершкова глазур" loading="lazy">
+                    <span class="pastry-number">07</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Velours Cinnamone</h3>
+                    <div class="pastry-subtitle">Кориця та вершкова глазур</div>
+                    <p class="pastry-description">Пухка булочка з ароматною коричною начинкою, карамельними нотками коричневого цукру та шовковистою вершковою глазур’ю. Класична випічка з ніжною текстурою та насиченим ароматом спецій.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">190 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Velours Cinnamone в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- =========================================
+         04. PETITS PAINS — МІНІ-ВИПІЧКА
+    ========================================== -->
+
+    <section class="pastry-category" id="petits-pains">
+        <div class="pastry-category-heading">
+            <span class="eyebrow">Collection 04</span>
+            <h2><i class="fa-solid fa-cookie-bite"></i> Petits Pains — Міні-випічка</h2>
+            <p>Маленькі за формою, особливі за смаком. Мініатюрні солодкі творіння ÉLORIA.</p>
+        </div>
+
+        <div class="pastry-grid">
+
+            <article class="pastry-card" data-id="Perle-ivoire">
+                <div class="pastry-image-wrap">
+                    <img src="images/Perle Ivoire.png" alt="Perle Ivoire — мінібулочка у формі мушлі" loading="lazy">
+                    <span class="pastry-number">01</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Perle Ivoire</h3>
+                    <div class="pastry-subtitle">Білий шоколад і ваніль</div>
+                    <p class="pastry-description">Мінібулочка з рельєфною формою мушлі, ніжним кремом із білого шоколаду та ванілі. Золотиста скоринка й делікатна солодкість роблять її маленьким десертом до кави.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">280 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Coquillage в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="perle-de-vanille-mini">
+                <div class="pastry-image-wrap">
+                    <img src="images/Perle de Vanille.png" alt="Perle de Vanille — мінібулочка з ваніллю" loading="lazy">
+                    <span class="pastry-number">02</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Perle de Vanille</h3>
+                    <div class="pastry-subtitle">Ваніль</div>
+                    <p class="pastry-description">Маленька кільцева булочка з плетеного тіста, ніжним ванільним кремом і цукровими перлинами. Легка, повітряна випічка з вершковим ароматом і витонченим виглядом.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">240 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Perle de Vanille в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="Fleur de Framboise">
+                <div class="pastry-image-wrap">
+                    <img src="images/Fleur de Framboise.png" alt="Fleur de Framboise — мінібулочка у формі троянди" loading="lazy">
+                    <span class="pastry-number">03</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Fleur de Framboise</h3>
+                    <div class="pastry-subtitle">Малина</div>
+                    <p class="pastry-description">Мінібулочка у формі троянди з малиновим конфі та ніжним солодким тістом. Ягідна кислинка й ароматна випічка поєднуються з делікатним рожевим декором.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">280 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Rose Framboise Mini в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="mini-cinnamon">
+                <div class="pastry-image-wrap">
+                    <img src="images/Mini Cinnamon.png" alt="Mini Cinnamon — мінібулочка з корицею" loading="lazy">
+                    <span class="pastry-number">04</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Mini Cinnamon</h3>
+                    <div class="pastry-subtitle">Кориця та вершкова глазур</div>
+                    <p class="pastry-description">Маленька спіральна булочка з корицею, коричневим цукром і вершковою глазур’ю. Насичений аромат спецій, карамелізована начинка та м’яка текстура в зручному мініформаті.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">275 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Mini Cinnamon в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="fleur-de-creme">
+                <div class="pastry-image-wrap">
+                    <img src="images/Fleur de Crème.png" alt="Fleur de Crème — мінібулочка у формі квітки" loading="lazy">
+                    <span class="pastry-number">05</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Fleur de Crème</h3>
+                    <div class="pastry-subtitle">Ванільний заварний крем</div>
+                    <p class="pastry-description">Мінібулочка у формі квітки з пелюстками з ніжного здобного тіста та кремовою заварною серединкою. Золотиста поверхня й м’який ванільний смак створюють ніжний десертний акцент.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">320 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Fleur de Crème в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="fraise-delice-mini">
+                <div class="pastry-image-wrap">
+                    <img src="images/Fraise Délice.png" alt="Fraise Délice — мінібулочка з полуницею" loading="lazy">
+                    <span class="pastry-number">06</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Fraise Délice</h3>
+                    <div class="pastry-subtitle">Полуниця та ваніль</div>
+                    <p class="pastry-description">Мінібулочка квадратної форми зі складеними конвертиком краями, полуничним конфі та ніжним ванільним кремом. Поєднання фруктової свіжості й вершкової солодкості в кожному шматочку.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">310 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Fraise Délice в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="pastry-card" data-id="abricot-soleil-mini">
+                <div class="pastry-image-wrap">
+                    <img src="images/Abricot Soleil.png" alt="Abricot Soleil — мінібулочка з абрикосом" loading="lazy">
+                    <span class="pastry-number">07</span>
+                </div>
+                <div class="pastry-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="pastry-card-content">
+                    <h3>Abricot Soleil</h3>
+                    <div class="pastry-subtitle">Абрикос і апельсинова цедра</div>
+                    <p class="pastry-description">Мінібулочка із сонячною формою, абрикосовим конфі, ванільним кремом і тонкими нотками апельсинової цедри. Фруктова ніжність і цитрусовий аромат додають випічці легкості та свіжості.</p>
+                    <div class="pastry-card-bottom">
+                        <span class="pastry-price">340 ₴</span>
+                        <button class="pastry-favorite-btn" type="button" data-favorite-toggle aria-label="Додати Abricot Soleil в обране" title="Додати в обране"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="pastry-footer">
+    <div class="pastry-footer-logo">ÉLORIA</div>
+    <p>Французька випічка та авторські солодкі колекції</p>
+    <p>© 2026 ÉLORIA PÂTISSERIE &amp; CAFÉ</p>
+</footer>
+
+<div class="pastry-floating-actions">
+    <a href="favorite.html" class="pastry-favorites-link" aria-label="Перейти до улюблених товарів">
+        <i class="fa-regular fa-heart"></i>
+        <span>Улюблене</span>
+        <span data-favorites-count>0</span>
+    </a>
+
+    <a href="#top" class="pastry-back-to-top" aria-label="Повернутися нагору">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
+</div>
+
+<script>
+    // Мобільне меню сайту
+    const hamburger = document.querySelector(".hamburger");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener("click", function () {
+            hamburger.classList.toggle("active");
+            mobileMenu.classList.toggle("active");
+
+            document.body.style.overflow =
+                mobileMenu.classList.contains("active") ? "hidden" : "";
+        });
+    }
+
+    // Перехід до сторінки товару при натисканні на картку
+    document.querySelectorAll(".pastry-card").forEach(function (card) {
+        card.addEventListener("click", function (event) {
+            if (event.target.closest("[data-favorite-toggle]")) {
+                return;
+            }
+
+            const productId = card.getAttribute("data-id");
+
+            if (productId) {
+                window.location.href =
+                    "product.html?id=" + encodeURIComponent(productId);
+            }
+        });
+    });
+
+    // Кнопка повернення на початок сторінки
+    const backToTop = document.querySelector(".pastry-back-to-top");
+
+    if (backToTop) {
+        backToTop.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+</script>
+
+<script src="product.js"></script>
+<script src="favorite.js"></script>
+
+</body>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const STORAGE_KEY = "eloriaFavorites";
+
+    function getFavorites() {
+        try {
+            const items = JSON.parse(
+                localStorage.getItem(STORAGE_KEY) || "[]"
+            );
+            return Array.isArray(items) ? items : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveFavorites(items) {
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(items)
+        );
+    }
+
+    function updateFavorites() {
+        const favorites = getFavorites();
+
+        document.querySelectorAll(".pastry-favorite-btn").forEach(button => {
+            const card = button.closest(".pastry-card");
+            if (!card) return;
+
+            const id = card.dataset.id;
+            const isFavorite = favorites.some(item => item.id === id);
+
+            button.classList.toggle("is-favorite", isFavorite);
+            button.setAttribute("aria-pressed", String(isFavorite));
+
+            button.innerHTML = isFavorite
+                ? '<i class="fa-solid fa-heart"></i>'
+                : '<i class="fa-regular fa-heart"></i>';
+
+            button.title = isFavorite
+                ? "Видалити з улюбленого"
+                : "Додати в улюблене";
+        });
+
+        document.querySelectorAll("[data-favorites-count]").forEach(counter => {
+            counter.textContent = favorites.length;
+        });
+    }
+
+    document.querySelectorAll(".pastry-favorite-btn").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const card = button.closest(".pastry-card");
+            if (!card) return;
+
+            const id = card.dataset.id;
+            const name = card.querySelector("h3");
+            const image = card.querySelector("img");
+            const price = card.querySelector(".pastry-price");
+            const description = card.querySelector(".pastry-description");
+            const favorites = getFavorites();
+
+            const index = favorites.findIndex(item => item.id === id);
+
+            if (index !== -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push({
+                    id: id,
+                    name: name ? name.textContent.trim() : id,
+                    ukrainianName: "",
+                    price: price ? price.textContent.trim() : "",
+                    image: image ? image.getAttribute("src") : "",
+                    description: description
+                        ? description.textContent.trim()
+                        : ""
+                });
+            }
+
+            saveFavorites(favorites);
+            updateFavorites();
+        });
+    });
+
+    updateFavorites();
+});
+</script>
+
+</html>
